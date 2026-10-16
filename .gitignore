@@ -12,6 +12,9 @@ secrets/
 # Human-curated review inputs are ground truth, not regenerable output.
 !**/data/expectedness_synonyms.json
 !**/data/eval_candidates.json
+# The expectedness ground truth: cases_flat.json is not tracked, so this
+# could not be rebuilt from the repo alone.
+!**/data/cases_labeled.json
 
 # Python
 __pycache__/

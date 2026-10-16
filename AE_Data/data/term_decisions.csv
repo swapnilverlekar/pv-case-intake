@@ -25,3 +25,84 @@ sertraline,Depression,not_applicable,indication; false match on efficacy text
 warfarin,Anaemia,ambiguous,false match on bleeding risk-factor list; label lists cause not this event
 lisinopril,Death,ambiguous,outcome with unknown cause; not assessable against label
 levothyroxine,Death,ambiguous,outcome with unknown cause; not assessable against label
+atorvastatin,Dementia,unexpected,"The label lists cognitive impairment, but not dementia; dementia is a more specific/severe condition."
+atorvastatin,Dyspnoea exertional,unexpected,No exertional dyspnoea or dyspnoea is listed as an adverse reaction.
+atorvastatin,Immune-mediated myositis,ambiguous,The label separately lists immune-mediated necrotizing myopathy and myositis; it does not specifically establish “immune-mediated myositis” as the same event.
+atorvastatin,Liver disorder,expected,The label clearly describes hepatic dysfunction/liver-related adverse reactions associated with atorvastatin.
+atorvastatin,Liver injury,expected,Hepatic injury is explicitly described as a risk associated with LIPITOR use.
+atorvastatin,Muscle rupture,unexpected,"The label lists tendon rupture, not muscle rupture; these are distinct events."
+atorvastatin,Myocardial infarction,unexpected,Myocardial infarction is not listed as an adverse reaction.
+atorvastatin,Necrotising myositis,ambiguous,"The label specifically identifies immune-mediated necrotizing myopathy, which is closely related but not exactly the term “necrotizing myositis.”"
+atorvastatin,Neutrophil count decreased,unexpected,Decreased neutrophil count/neutropenia is not listed as an adverse reaction.
+atorvastatin,Thrombocytopenia,unexpected,Thrombocytopenia is not listed as an adverse reaction.
+levothyroxine,Alopecia,expected,Hair loss is explicitly listed as an adverse reaction; alopecia is the clinical term for hair loss.
+levothyroxine,Dialysis,unexpected,Dialysis is not listed as an adverse reaction or drug-related complication.
+levothyroxine,Drug abuse,unexpected,Drug abuse is not listed as an adverse reaction.
+levothyroxine,Drug level increased,unexpected,The label discusses levothyroxine dosing and therapeutic effects but does not list increased drug levels as an adverse reaction.
+levothyroxine,Electrocardiogram QT prolonged,unexpected,"The label lists arrhythmias and other cardiac effects, but does not specifically list QT prolongation or prolonged QT on ECG."
+levothyroxine,Intestinal obstruction,unexpected,"Gastrointestinal adverse reactions include diarrhea, vomiting, abdominal cramps, and liver-function-test elevations, but not intestinal obstruction."
+levothyroxine,Ischaemic stroke,unexpected,Stroke is not listed as an adverse reaction.
+levothyroxine,Neoplasm malignant,unexpected,Malignant neoplasm/cancer is not listed as an adverse reaction.
+levothyroxine,Schizoaffective disorder,unexpected,Schizoaffective disorder is not listed as an adverse reaction.
+levothyroxine,Sopor,unexpected,Sopor is not listed as an adverse reaction; the label does not identify this degree of impaired consciousness.
+levothyroxine,Suicidal behaviour,unexpected,Suicidal behavior is not listed as an adverse reaction.
+levothyroxine,Type 1 diabetes mellitus,unexpected,"The label discusses worsening glycemic control in patients with diabetes mellitus, but does not list type 1 diabetes mellitus as an adverse reaction."
+lisinopril,Brief resolved unexplained event,unexpected,The label does not list a brief resolved unexplained event (BRUE) as an adverse reaction.
+lisinopril,Cardiac amyloidosis,unexpected,Cardiac amyloidosis is not listed as an adverse reaction or drug-related condition.
+lisinopril,Cardiac failure,ambiguous,"The label discusses heart failure as the treated condition/population and lists adverse reactions occurring in those patients, but does not clearly identify cardiac failure itself as an adverse reaction."
+lisinopril,Cardio-respiratory arrest,unexpected,Cardiorespiratory arrest is not listed as an adverse reaction.
+lisinopril,Erectile dysfunction,expected,Impotence is explicitly listed as an adverse reaction and corresponds to erectile dysfunction.
+lisinopril,Rhinorrhoea,unexpected,Rhinorrhoea/runny nose is not listed as an adverse reaction.
+lisinopril,Swelling face,expected,"Facial swelling is clearly covered by angioedema of the face, an adverse reaction associated with Zestril."
+metformin,Accidental overdose,unexpected,Not listed as an adverse reaction in the label
+metformin,Azotaemia,unexpected,"Mentioned only as condition caused by other factors, not as metformin adverse reaction"
+metformin,Blood pressure inadequately controlled,unexpected,Not listed anywhere in the label
+metformin,Creatinine renal clearance decreased,unexpected,"Renal impairment discussed as risk factor/contraindication, not as adverse reaction"
+metformin,Dehydration,unexpected,"Volume depletion mentioned as risk factor in specific situations, not as adverse reaction"
+metformin,Encephalopathy,unexpected,Not listed in the label
+metformin,Eosinophilic pneumonia,unexpected,Not listed in the label
+metformin,Groin abscess,unexpected,Not listed in the label
+metformin,Guillain-Barre syndrome,unexpected,Not listed in the label
+metformin,Hypokalaemia,unexpected,Not listed in the label
+metformin,Liver disorder,expected,Explicitly listed as postmarketing adverse reaction
+metformin,Muscle spasms,unexpected,Myalgia (muscle pain) is listed but muscle spasms is a different condition
+metformin,Prerenal failure,unexpected,"Prerenal azotemia mentioned as caused by other conditions, not as metformin adverse reaction"
+metformin,Product monitoring error,unexpected,"Not listed as adverse reaction; this is a medication error, not physiological effect"
+metformin,Product prescribing error,unexpected,"Not listed as adverse reaction; this is a medication error, not physiological effect"
+metformin,Renal failure,unexpected,"Renal impairment discussed as risk factor and contraindication, not as adverse reaction caused by metformin"
+metformin,Tachycardia,unexpected,Palpitation (sensation) is listed but tachycardia (actual rapid heart rate) is not
+metformin,Thrombosis,unexpected,Not listed in the label
+metformin,Toxic encephalopathy,unexpected,Not listed in the label
+metformin,Vitamin B6 deficiency,unexpected,"Label mentions B12 deficiency, not B6 deficiency (different vitamins)"
+sertraline,Abdominal pain upper,unexpected,"Label lists ""abdominal pain"" but not specifically ""upper abdominal pain"""
+sertraline,Adverse drug reaction,unexpected,"This is a category term, not a specific adverse reaction listed in the label"
+sertraline,Asthenia,unexpected,"Not listed; ""fatigue"" and ""weakness"" are mentioned but asthenia is a different term"
+sertraline,Delusion of parasitosis,unexpected,Not listed in psychiatric disorders or post-marketing sections
+sertraline,Haemorrhagic hepatic cyst,unexpected,Hepatobiliary disorders mention hepatitis/jaundice/liver failure but not hepatic cyst
+sertraline,Hyperkalaemia,unexpected,Not listed; hyponatremia and hyperglycemia are mentioned but not hyperkalaemia
+sertraline,Intestinal obstruction,unexpected,Not listed in gastrointestinal disorders section
+sertraline,Paranoia,unexpected,"Not listed; ""psychosis"" and ""hallucination"" are mentioned but not paranoia specifically"
+sertraline,Pre-eclampsia,unexpected,Not mentioned anywhere in the label
+sertraline,Substance abuse,unexpected,Not listed as an adverse reaction
+sertraline,Suicidal ideation,expected,"Covered by ""suicidal thoughts and behaviors"" discussed extensively in warnings"
+warfarin,Anticoagulation drug level below therapeutic,not_applicable,"Relates to drug efficacy (not working), not a side effect"
+warfarin,Cardio-respiratory arrest,unexpected,Not listed as an adverse reaction in the label
+warfarin,Cerebrovascular accident,unexpected,"Mentioned only as a risk factor for bleeding, not as adverse reaction"
+warfarin,Chest wall haematoma,expected,"Hematoma is a type of hemorrhage covered by ""hemorrhage from any tissue or organ"""
+warfarin,Completed suicide,unexpected,Not listed in the label
+warfarin,Dyspnoea,unexpected,Not listed in respiratory disorders or elsewhere
+warfarin,Gastric haemorrhage,expected,"Gastric hemorrhage is covered by ""hemorrhage from any tissue or organ"""
+warfarin,Haematoma muscle,expected,Muscle hematoma is a type of hemorrhage covered by the label
+warfarin,Haemoglobin decreased,unexpected,Not explicitly listed as an adverse reaction
+warfarin,Ischaemic cardiomyopathy,unexpected,Not listed in the label
+warfarin,Loss of consciousness,unexpected,Not listed in the label
+warfarin,Melaena,expected,"Melaena indicates GI bleeding, covered by ""hemorrhage from any tissue or organ"""
+warfarin,Neuropathy peripheral,unexpected,Not listed in the label
+warfarin,Shock haemorrhagic,expected,Hemorrhagic shock results from severe bleeding covered by the label
+warfarin,Suspected suicide,unexpected,Not listed in the label
+warfarin,Taste disorder,expected,"""Taste perversion"" is listed, which covers taste disorder"
+warfarin,Thyroid disorder,unexpected,Not listed in the label
+warfarin,Transfusion,unexpected,"This is a medical intervention/treatment, not an adverse reaction"
+warfarin,Transient ischaemic attack,unexpected,Not listed in the label
+warfarin,Upper gastrointestinal haemorrhage,expected,"Upper GI hemorrhage is covered by ""hemorrhage from any tissue or organ"""
+metformin,Abdominal pain,ambiguous,listed only as lactic acidosis symptom; label lists abdominal discomfort separately
