@@ -593,7 +593,9 @@ def call_model(system, user, output_format=None):
 
 
 @traceable(run_type="llm", name="generate_narrative")
-def generate(facts, style):
+def generate(facts, style, extra_instruction=""):
+    """extra_instruction is empty for every real case; constructed cases
+    (construct_cases.py) use it to remove a validity element."""
     user = (
         f"Message format: {style['format']}\n"
         f"Reporter role: {style['reporter_role']}\n"
@@ -602,15 +604,22 @@ def generate(facts, style):
         f"Non-clinical detail to work in: {style['non_clinical_detail']}\n"
         f"Target length: about {style['target_words']} words (never more than 200)\n\n"
         f"Case facts:\n{json.dumps(facts, indent=2)}\n\n"
-        f"Write the message."
+        + (f"Special instruction (overrides the rules above where they conflict):\n{extra_instruction}\n\n"
+           if extra_instruction else "")
+        + "Write the message."
     )
     return call_model(SYSTEM_PROMPT, user)
 
 
 @traceable(run_type="llm", name="fidelity_check")
-def fidelity_check(facts, narrative):
-    """Generation QA, not ground truth: clinical content the writer added."""
-    user = f"Facts:\n{json.dumps(facts, indent=2)}\n\nNarrative:\n{narrative}"
+def fidelity_check(facts, narrative, extra_instruction=""):
+    """Generation QA, not ground truth: clinical content the writer added.
+    A constructed case's special instruction is shown too: content the
+    writer was told to produce is not an addition."""
+    user = f"Facts:\n{json.dumps(facts, indent=2)}\n\n"
+    if extra_instruction:
+        user += f"The writer was also given this special instruction:\n{extra_instruction}\n\n"
+    user += f"Narrative:\n{narrative}"
     text, _ = call_model(
         FIDELITY_PROMPT, user, {"type": "json_schema", "schema": FIDELITY_SCHEMA}
     )

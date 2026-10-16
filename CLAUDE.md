@@ -73,10 +73,14 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
   - Split `data/split.json` (tracked, seed 20261016, stratified by route × drug, reused unless `--resplit`): dev 20 (7 exp / 13 per), test 57 (21 / 36). Cases read during prompt work are forced into dev, so the test set stays unseen.
   - Generator sees facts only (no seriousness flag, expectedness, route, due date or label). `other_medically_important` is passed as "the reporter assessed this event as medically significant", voiced only by the reporter. Reporter role follows the FAERS qualification. Patients are never named; reporter names (per country/sex), sign-offs and non-clinical filler are assigned in code, all unique.
   - QA: deterministic checks (forbidden words, 80–200 words, drug name) + LLM fidelity check (same model; generation QA, never ground truth). Flagged → regenerated once → still flagged = `needs_review`.
-  - v3 result: 53 passed first time, 13 passed after regeneration, **11 needs_review** (all fidelity flags; most look like the checker over-flagging rewordings — review in `data/narrative_spotcheck.md`). All 202 calls traced.
+  - v3 result: 53 passed first time, 13 passed after regeneration, 11 needs_review → reviewed (`reviewed_by: llm_assisted_human`): 4 hand-edited (`manual_edit: true`), 7 accepted. All 202 calls traced.
   - Prompt history: v1 invented symptoms/tests/treatments; v2 fixed that but mis-attributed significance and ran long; v3 fixes both.
-- [ ] Build invalid cases and duplicate pairs
-- [ ] Push dataset to LangSmith
+- [x] Build invalid cases and duplicate pairs — `AE_Data/construct_cases.py` → `data/constructed_cases.jsonl` (30). No answer key is model-decided: invalid keys are fixed by construction, duplicate keys copied from the original, near-miss keys are real.
+  - **invalid (15, dev 5 / test 10):** a real, not-otherwise-narrated case with ONE element removed (no identifiable patient 4 / reporter 4 / suspect drug 4 / adverse event 3). Key: `valid=false`, `missing_element`, `reporting_route=follow_up_required`, rest null. Sources must have ≥1 real adverse event (not a product/usage term, not a human `not_applicable`), so exactly one element is missing.
+  - **duplicate (10, dev 5 / test 5):** second report of a narrated case from the other side (consumer ↔ HCP), age ±1, start date a few days off, received 2–12 days later. Key: the original's, plus `duplicate_of` = original report id (due date still runs from the original receipt).
+  - **near_miss (5, test):** REAL labelled cases (same drug, same sex, age within 5 y as a narrated case, no shared reactions). Key: their own, `duplicate_of=null`.
+  - The fidelity check is shown a constructed case's special instruction, so content the writer was told to produce isn't flagged. One false positive cleared by Claude (`reviewed_by: claude_verified`, with a `review_note`).
+- [x] Push dataset to LangSmith — `AE_Data/upload_dataset.py` → dataset **`pv-case-intake`**, **107 examples: dev 30 (9 expedited / 16 periodic / 5 follow-up), test 77 (25 / 42 / 10)**. Local files are the source of truth; never edit in the UI. Deterministic example ids (uuid5 of the case key) → a re-run updates the same dataset (new version), tagged `git-<commit>`. `needs_review` records are never uploaded.
 - [ ] Build the agent system
 - [ ] Evaluators and experiments
 

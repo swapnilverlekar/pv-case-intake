@@ -98,13 +98,13 @@ The fidelity check is generation QA (the same model listing clinical content not
 >
 > Hello,
 >
-> Forwarding a report from our partner network, passed on by a doctor who did not give a name. A 31-year-old woman was taking Sertraline Hcl 50 mg daily for mixed anxiety and low mood, started 21 July 2021. She was also on chlorpromazine 25 mg daily from the same date, and oxazepam from 9 July 2021, dose not known. She developed high blood pressure in pregnancy with the kidney-related complications the doctor described as pre-eclampsia, and was admitted to hospital. She has since recovered fully. The doctor mentioned they are moving house next month, so follow-up may be slow. Reporter is in France.
+> Forwarding a report from our partner network, passed on by a doctor who did not give a name. A 31-year-old woman was taking Sertraline Hcl 50 mg daily for mixed anxiety and low mood, started 21 July 2021. She was also on chlorpromazine 25 mg daily from the same date, and oxazepam from 9 July 2021, dose not known. She developed high blood pressure in pregnancy the doctor described as pre-eclampsia, and was admitted to hospital. She has since recovered fully. The doctor mentioned they are moving house next month, so follow-up may be slow. Reporter is in France.
 >
 > Regards,
 > Sophie Bernard, Drug Safety Associate, Quarry Hill Health
 
 **Flags on the kept version:**
-- fidelity [symptom_or_sign]: "high blood pressure in pregnancy with the kidney-related complications" (Facts only list pre-eclampsia; the narrative adds hypertension and kidney-related complications as specific clinical features that are not given.)
+- fidelity [symptom_or_sign]: "high blood pressure in pregnancy" (Facts only list pre-eclampsia; the narrative adds hypertension and kidney-related complications as specific clinical features that are not given.)
 
 **First attempt was flagged for:** "with raised blood pressure in pregnancy"
 
