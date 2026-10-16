@@ -62,13 +62,19 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
 
 - [x] `AE_Data/pull_faers.py` — pulls adverse event cases + SPL labels from openFDA, decodes the coded fields, writes `data/cases_flat.json`. `--from-raw` rebuilds from cached events without hitting the API.
 - [x] Rebalance: `pull_faers.py --topup` adds non-serious cases (`serious:2`) and tops up thin drugs. Now 200 cases, 140 serious / 60 non-serious, every drug ≥ 20 (see `data/summary.txt`).
-- [x] Derive expectedness per case — `AE_Data/derive_expectedness.py`, deterministic, no LLM calls. Output: `data/cases_labeled.json` (tracked), **128 cases: 59 expedited_15_day / 62 periodic / 7 ambiguous** (3 dropped: every reaction excluded).
+- [x] Derive expectedness per case — `AE_Data/derive_expectedness.py`, deterministic, no LLM calls. Output: `data/cases_labeled.json` (tracked), **128 cases: 58 expedited_15_day / 60 periodic / 10 ambiguous** (3 dropped: every reaction excluded). Later edits: both `Liver disorder` and warfarin `Haemoglobin decreased` → ambiguous (less specific than / a lab sign of what the label lists). Edit decision rows in place; never append a second row for the same pair.
   - Lexical matcher: plurals, British→US, lab abbreviations, `<lab test> increased/decreased` (`expected_lab`), `expectedness_synonyms.json` (lexical equivalents only). Never matches a specific term to a broader label term (21 CFR 314.80) — those are `partial` and need a human decision. Searches adverse_reactions, warnings, warnings_and_cautions, boxed_warning, precautions — **not contraindications**.
   - Eval candidates fixed before review: `data/eval_candidates.json` (131 cases, 1–3 reactions after not_applicable). Accepted as-is: 0 congenital-anomaly cases, lisinopril/levothyroxine below 20, the 13 `expected_lab` matches.
   - Human decisions per (drug, term) in `data/term_decisions.csv` (never written by the script). 81 of them were drafted with ChatGPT and verified by the reviewer (`data/my_review.csv`); the rest were decided directly. `Death` is always `ambiguous`. `not_applicable` = the treated disease (lack of effect).
   - Routing: non-serious → always periodic; serious AND any unexpected → expedited_15_day; serious AND any ambiguous → ambiguous (excluded from the primary metric, reported separately); else periodic. due_date = receive_date + 15 days, expedited only.
   - 37 non-serious-only pairs remain undecided; they cannot change a route (non-serious is always periodic).
-- [ ] Generate intake narratives from raw facts
+- [~] Generate intake narratives from raw facts — `AE_Data/generate_narratives.py` (Anthropic SDK, `claude-sonnet-5-5`, traced to LangSmith project `pv-case-intake`).
+  - Pool: not ambiguous, 1–3 distinct suspect drugs (1–4 checked: only +4 expedited), minus `EXCLUDED_CASES` (20296669: reaction term says "labelled"). **77 cases: 28 expedited / 49 periodic.**
+  - Split `data/split.json` (tracked, seed 20261016, stratified by route × drug, reused unless `--resplit`): **dev 20 (7 exp / 13 per), test 57 (21 / 36)**. Cases already read during prompt work are forced into dev, so the test set stays unseen.
+  - Generator sees facts only (no seriousness flag, expectedness, route, due date or label). `other_medically_important` is passed as "the reporter assessed this event as medically significant", otherwise 16 serious cases would read as non-serious. Reporter role is faithful to the FAERS qualification.
+  - QA after generation: deterministic checks (forbidden words, 80–200 words, drug name present) + an LLM fidelity check (same model) listing clinical content not in the facts. The fidelity check is generation QA, never ground truth.
+  - [x] Prompt v1 pilot (10) → invented symptoms/tests/treatments; v2 pilot (9 of the 10; one became ambiguous) → `data/narratives_pilot_v2.jsonl`.
+  - [ ] Review v2 pilot, then generate all (`--all` is deliberately not wired up yet).
 - [ ] Build invalid cases and duplicate pairs
 - [ ] Push dataset to LangSmith
 - [ ] Build the agent system
@@ -76,6 +82,7 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
 
 ## Conventions
 
+- Anaconda's Brotli 1.0.9 breaks the Anthropic SDK's response decoding (surfaces as "Connection error"); clients send `Accept-Encoding: gzip`. `pip install -U brotli` is the real fix.
 - Keep the dataset build in scripts, not notebooks — it gets regenerated.
 - Cache SPL labels to disk with their effective_time; the same label version must be used at eval time and run time. Labels are only re-fetched with `--refresh-labels`.
 - Log the label version as run metadata on every expectedness call.

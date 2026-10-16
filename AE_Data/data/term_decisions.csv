@@ -28,7 +28,7 @@ levothyroxine,Death,ambiguous,outcome with unknown cause; not assessable against
 atorvastatin,Dementia,unexpected,"The label lists cognitive impairment, but not dementia; dementia is a more specific/severe condition."
 atorvastatin,Dyspnoea exertional,unexpected,No exertional dyspnoea or dyspnoea is listed as an adverse reaction.
 atorvastatin,Immune-mediated myositis,ambiguous,The label separately lists immune-mediated necrotizing myopathy and myositis; it does not specifically establish “immune-mediated myositis” as the same event.
-atorvastatin,Liver disorder,expected,The label clearly describes hepatic dysfunction/liver-related adverse reactions associated with atorvastatin.
+atorvastatin,Liver disorder,ambiguous,less specific than label's hepatic injury; consistent with other less-specific calls
 atorvastatin,Liver injury,expected,Hepatic injury is explicitly described as a risk associated with LIPITOR use.
 atorvastatin,Muscle rupture,unexpected,"The label lists tendon rupture, not muscle rupture; these are distinct events."
 atorvastatin,Myocardial infarction,unexpected,Myocardial infarction is not listed as an adverse reaction.
@@ -64,7 +64,7 @@ metformin,Eosinophilic pneumonia,unexpected,Not listed in the label
 metformin,Groin abscess,unexpected,Not listed in the label
 metformin,Guillain-Barre syndrome,unexpected,Not listed in the label
 metformin,Hypokalaemia,unexpected,Not listed in the label
-metformin,Liver disorder,expected,Explicitly listed as postmarketing adverse reaction
+metformin,Liver disorder,ambiguous,less specific than label's hepatic injury; consistent with other less-specific calls
 metformin,Muscle spasms,unexpected,Myalgia (muscle pain) is listed but muscle spasms is a different condition
 metformin,Prerenal failure,unexpected,"Prerenal azotemia mentioned as caused by other conditions, not as metformin adverse reaction"
 metformin,Product monitoring error,unexpected,"Not listed as adverse reaction; this is a medication error, not physiological effect"
@@ -93,7 +93,7 @@ warfarin,Completed suicide,unexpected,Not listed in the label
 warfarin,Dyspnoea,unexpected,Not listed in respiratory disorders or elsewhere
 warfarin,Gastric haemorrhage,expected,"Gastric hemorrhage is covered by ""hemorrhage from any tissue or organ"""
 warfarin,Haematoma muscle,expected,Muscle hematoma is a type of hemorrhage covered by the label
-warfarin,Haemoglobin decreased,unexpected,Not explicitly listed as an adverse reaction
+warfarin,Haemoglobin decreased,ambiguous,"lab sign of anaemia; label lists the cause (bleeding), not this result; consistent with warfarin Anaemia"
 warfarin,Ischaemic cardiomyopathy,unexpected,Not listed in the label
 warfarin,Loss of consciousness,unexpected,Not listed in the label
 warfarin,Melaena,expected,"Melaena indicates GI bleeding, covered by ""hemorrhage from any tissue or organ"""

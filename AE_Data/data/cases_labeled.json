@@ -1922,12 +1922,12 @@
         "status": "partial",
         "matched_section": "adverse_reactions;warnings_and_cautions",
         "snippet": "stablish a causal relationship to drug exposure cholestatic hepatocellular and mixed hepatocellular liver injury have been reported with postmarketing use of metformin",
-        "expectedness": "expected",
+        "expectedness": "ambiguous",
         "decided_by": "human"
       }
     ],
-    "expectedness": "expected",
-    "reporting_route": "periodic",
+    "expectedness": "ambiguous",
+    "reporting_route": "ambiguous",
     "due_date": null,
     "label_effective_time": "20240821"
   },
@@ -5554,13 +5554,13 @@
         "status": "unmatched",
         "matched_section": "",
         "snippet": "",
-        "expectedness": "unexpected",
+        "expectedness": "ambiguous",
         "decided_by": "human"
       }
     ],
-    "expectedness": "unexpected",
-    "reporting_route": "expedited_15_day",
-    "due_date": "2022-01-16",
+    "expectedness": "ambiguous",
+    "reporting_route": "ambiguous",
+    "due_date": null,
     "label_effective_time": "20250708"
   },
   {
@@ -19447,12 +19447,12 @@
         "status": "partial",
         "matched_section": "adverse_reactions;warnings_and_cautions",
         "snippet": "pain muscle fatigue neck pain joint swelling metabolic and nutritional system transaminase increase liver function test abnormal blood alkaline phosphatase increase creatine phosphokinase increase hyp",
-        "expectedness": "expected",
+        "expectedness": "ambiguous",
         "decided_by": "human"
       }
     ],
-    "expectedness": "expected",
-    "reporting_route": "periodic",
+    "expectedness": "ambiguous",
+    "reporting_route": "ambiguous",
     "due_date": null,
     "label_effective_time": "20240415"
   },
