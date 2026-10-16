@@ -9,8 +9,8 @@ so a narrative cannot leak the answer the system is graded on.
 
     python generate_narratives.py              # qualify cases, print the dev/test split
     python generate_narratives.py --resplit    # rebuild split.json (otherwise it is reused)
-    python generate_narratives.py --pilot      # regenerate the pilot cases, print them
-    python generate_narratives.py --all        # every qualifying case (not wired up yet)
+    python generate_narratives.py --all        # every qualifying case -> narratives.jsonl (resumable)
+    python generate_narratives.py --spotcheck  # rebuild narrative_spotcheck.md from narratives.jsonl
 
 Inputs, under data/:
     cases_labeled.json         from derive_expectedness.py --finalize
@@ -19,7 +19,7 @@ Outputs:
     split.json                 dev/test assignment. Reused on every run unless
                                --resplit, so the test set never moves under
                                prompt iteration.
-    narratives_pilot_v2.jsonl  (--pilot)
+    narrative_spotcheck.md     every needs_review narrative + a random passed sample
     narratives.jsonl           (--all)
 
 After generation every narrative gets deterministic checks AND a fidelity
@@ -58,19 +58,22 @@ DATA = Path(__file__).resolve().parent / "data"
 LABELED = DATA / "cases_labeled.json"
 SPLIT = DATA / "split.json"
 PILOT_V1 = DATA / "narratives_pilot.jsonl"   # source of the pilot case list
-PILOT_OUT = DATA / "narratives_pilot_v2.jsonl"
 FULL_OUT = DATA / "narratives.jsonl"
+SPOTCHECK = DATA / "narrative_spotcheck.md"
 
 # ---------------------------------------------------------------- config
 
 MODEL = "claude-sonnet-5-5"
 EFFORT = "high"  # the model's default, pinned so a default change can't move results
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3"
 
 SEED = 20261016
 DEV_SIZE = 20
 MAX_SUSPECTS = 3  # 1-4 was checked: it adds only 4 expedited cases (threshold was 8)
-WORD_RANGE = (80, 200)
+WORD_RANGE = (80, 200)          # hard limits, checked after generation
+TARGET_RANGE = (80, 170)        # per-case target; below the ceiling because the model runs long
+MAX_ATTEMPTS = 2                # a flagged narrative is regenerated once, then needs_review
+WORKERS = 6
 
 # Cases kept out of the narrative pool, with the reason.
 EXCLUDED_CASES = {
@@ -112,19 +115,94 @@ WHAT_HAPPENED = {
     "other_medically_important": "the reporter assessed this event as medically significant",
 }
 
-# Fictional names for signatures; each case gets a unique combination.
-FIRST_NAMES = [
-    "Amara", "Ben", "Carmen", "Dmitri", "Elena", "Farid", "Grace", "Hiroshi", "Ines",
-    "Jonah", "Kavya", "Liam", "Mei", "Nikolai", "Olusegun", "Priya", "Quentin", "Rosa",
-    "Samir", "Tamsin", "Uma", "Viktor", "Wen", "Ximena", "Yusuf", "Zofia", "Aidan",
-    "Beatriz", "Callum", "Daniela", "Emeka", "Fiona", "Gustavo", "Hannah", "Ivan",
+# Reporter names, per country and sex. First names x surnames gives every
+# case a unique full name. Unlisted countries use "default". For CN the
+# surname comes first. Patients are never named; a reporter who IS the
+# patient gives no name at all.
+NAMES = {
+    "US": {"female": ["Jennifer", "Maria", "Ashley", "Linda", "Keisha", "Rachel", "Megan",
+                      "Patricia", "Tanya", "Lauren", "Denise", "Carla"],
+           "male": ["Michael", "David", "James", "Carlos", "Marcus", "Kevin", "Brian",
+                    "Anthony", "Tyler", "Darnell", "Steven", "Raymond"],
+           "surnames": ["Johnson", "Ramirez", "Miller", "Nguyen", "Patel", "Brooks",
+                        "Sullivan", "Harris", "Coleman", "Reyes", "Bennett", "Foster"]},
+    "GB": {"female": ["Sarah", "Emma", "Claire", "Joanne", "Priya"],
+           "male": ["James", "Gareth", "Tom", "Callum", "Neil"],
+           "surnames": ["Taylor", "Evans", "Walsh", "Hughes", "Khan"]},
+    "AU": {"female": ["Chloe", "Kylie", "Mia"], "male": ["Liam", "Brendan", "Josh"],
+           "surnames": ["Murphy", "Kelly", "Nguyen"]},
+    "FR": {"female": ["Camille", "Sophie", "Nathalie", "Claire"],
+           "male": ["Julien", "Pierre", "Laurent", "Mathieu"],
+           "surnames": ["Martin", "Bernard", "Lefèvre", "Moreau"]},
+    "DE": {"female": ["Anna", "Katrin", "Sabine", "Julia"],
+           "male": ["Thomas", "Stefan", "Jonas", "Markus"],
+           "surnames": ["Müller", "Schneider", "Weber", "Fischer"]},
+    "AT": {"female": ["Lena", "Theresa"], "male": ["Florian", "Lukas"],
+           "surnames": ["Gruber", "Huber"]},
+    "IT": {"female": ["Giulia", "Francesca", "Chiara"], "male": ["Marco", "Luca", "Alessandro"],
+           "surnames": ["Rossi", "Bianchi", "Romano"]},
+    "ES": {"female": ["Lucía", "Carmen"], "male": ["Javier", "Pablo"],
+           "surnames": ["García", "Fernández"]},
+    "SE": {"female": ["Ingrid", "Maja"], "male": ["Erik", "Lars"],
+           "surnames": ["Andersson", "Lindberg"]},
+    "NL": {"female": ["Sanne", "Femke"], "male": ["Daan", "Joost"],
+           "surnames": ["de Vries", "Bakker"]},
+    "CZ": {"female": ["Petra", "Lucie"], "male": ["Jakub", "Tomáš"],
+           "surnames": ["Novák", "Dvořák"], "surnames_female": ["Nováková", "Dvořáková"]},
+    "JP": {"female": ["Yuki", "Aiko", "Haruka"], "male": ["Kenji", "Takeshi", "Daisuke"],
+           "surnames": ["Tanaka", "Suzuki", "Watanabe"]},
+    "CN": {"female": ["Na", "Fang", "Jing"], "male": ["Wei", "Yang", "Lei"],
+           "surnames": ["Li", "Wang", "Zhang"], "surname_first": True},
+    "default": {"female": ["Nina", "Leila", "Sofia"], "male": ["Omar", "Daniel", "Adrian"],
+                "surnames": ["Haddad", "Novak", "Costa"]},
+}
+
+# One non-clinical detail per case, never repeated. Woven in as the
+# "irrelevant detail" real messages carry.
+FILLER = [
+    "it has been raining all week", "the caller is stuck in traffic on the way to work",
+    "a work deadline is looming", "a grandchild's birthday party is this weekend",
+    "the heating in the house broke yesterday", "the reporter has just come back from holiday",
+    "a delivery driver rang the doorbell mid-message", "the car is in for a service",
+    "it is the first warm day of spring", "the office is short-staffed this week",
+    "the reporter is moving house next month", "a neighbour is doing loud renovation work",
+    "the school run was chaotic this morning", "the reporter's phone battery is low",
+    "the train was cancelled earlier", "a family wedding is coming up",
+    "the reporter is calling on a lunch break", "it snowed overnight",
+    "the clinic's computer system was down this morning", "the reporter just got a new puppy",
+    "there is a power cut in the street", "the reporter is writing from a café",
+    "the in-laws are visiting for the week", "the reporter missed the bus",
+    "a quarterly audit is happening at work", "the garden fence blew down in the wind",
+    "the reporter has been on hold with another company all morning",
+    "the local football team won last night", "the reporter's teenager is revising for exams",
+    "the pharmacy had a queue out of the door today", "the internet at home keeps dropping",
+    "a colleague is retiring this Friday", "the reporter is about to start a night shift",
+    "the washing machine flooded the kitchen", "the reporter is jet-lagged from a conference",
+    "roadworks have blocked the usual route", "it is the reporter's day off",
+    "a parcel went to the wrong address", "the reporter's cat knocked over a plant",
+    "the hospital car park was full", "the reporter is typing on a borrowed laptop",
+    "there was a fire drill at work this morning", "the reporter's flight was delayed",
+    "the reporter is waiting for a plumber", "it is unusually foggy today",
+    "the reporter just finished a long shift", "a new manager started this week",
+    "the reporter is calling from a noisy supermarket", "the kids are off school with a holiday",
+    "the reporter's email inbox crashed yesterday", "a storm knocked out the phone lines briefly",
+    "the reporter is taking an evening class", "the reporter forgot their reading glasses",
+    "a street market is setting up outside", "the reporter's sister is visiting from abroad",
+    "the team is covering for a colleague on leave", "the reporter's bike got a flat tyre",
+    "the building's lift is out of order", "the reporter is between two meetings",
+    "there is a local festival this weekend", "the reporter is painting the spare room",
+    "the reporter's dog needs walking soon", "the bins were not collected this week",
+    "the reporter recently changed jobs", "it is very hot and the air conditioning is broken",
+    "the reporter is calling from the car park", "a long queue at the post office earlier",
+    "the reporter's daughter just passed her driving test", "the reporter is house-sitting for a friend",
+    "the reporter is on a slow train with patchy signal", "the office kettle broke",
+    "the reporter is preparing for a charity run", "the reporter's printer is jammed",
+    "a big family dinner is planned tonight", "the reporter has a dentist appointment later",
+    "the reporter is new to the area", "the reporter's neighbour's alarm keeps going off",
+    "the reporter is sorting out a mobile phone contract", "the reporter is writing late at night",
+    "the reporter's garden is flooded after heavy rain",
 ]
-LAST_NAMES = [
-    "Achebe", "Bergstrom", "Castillo", "Dubois", "Eriksen", "Fontaine", "Gallagher",
-    "Haddad", "Iwasaki", "Jovanovic", "Kowalski", "Lindqvist", "Mbeki", "Nakamura",
-    "Okafor", "Petrov", "Quinlan", "Rossi", "Sato", "Thornton", "Ubaldi", "Varga",
-    "Whitcombe", "Xu", "Yilmaz", "Zielinski", "Abbott", "Brennan", "Carvalho", "Desai",
-]
+
 # Fictional partner companies for forwarded safety reports.
 PARTNER_ORGS = [
     "Halvern Therapeutics", "Ostrava Pharma", "Kestrel Health Partners", "Maribel Labs",
@@ -145,11 +223,12 @@ FORBIDDEN = [
 
 SYSTEM_PROMPT = """You write realistic adverse event intake messages, the kind a pharmaceutical drug safety team receives: call-centre voicemail transcripts, emails from patients or their families, emails from healthcare professionals, and safety reports forwarded by partner companies.
 
-You are given case facts, a message format, the reporter's role, a sign-off, and a target length. Write ONE message in that format, conveying all the facts.
+You are given case facts, a message format, the reporter's role, the reporter's name (or that they gave none), a sign-off, a non-clinical detail, and a target length. Write ONE message in that format, conveying all the facts.
 
 Who is writing:
 - Write as the reporter role given. A partner safety report is written by the partner company's safety staff, passing on what the given reporter told them.
-- Use the sign-off given. Do not invent other names for the reporter.
+- Use the sign-off given. If the reporter gave no name, they do not give one anywhere in the message.
+- Never give the patient a name.
 
 The patient:
 - Always refer to a specific patient ("my mother", "a patient of mine", "a man in his sixties"), even when age and sex are unknown.
@@ -158,12 +237,12 @@ Reactions and what happened:
 - Describe each reaction in the reporter's own words, not the medical term. A consumer says "black tarry stools", not "melaena". A healthcare professional uses clinical but varied wording, not a copy of the term.
 - Include every reaction in the facts.
 - Convey each item in "what_happened" through events ("they kept her overnight", "he passed away on Tuesday"), never through regulatory words.
-- If the facts say the reporter assessed the event as medically significant, voice that naturally and in your own words ("I'd consider this a significant event", "the doctor said it was concerning"). Never use the word "serious".
+- Medical significance: ONLY if "what_happened" says the reporter assessed the event as medically significant, include that assessment, in the reporter's own voice and your own words ("I'd consider this a significant event"). Never attribute it to anyone other than the reporter. If the fact is absent, say nothing about how significant or concerning the event is. Never use the word "serious".
 
 Add nothing clinical:
-- Do NOT add any symptom, sign, test, lab value, diagnosis, treatment, hospital or care detail, drug start, stop or dose change, or other drug that is not in the facts. Rewording a given reaction is fine; adding a new one is not.
+- Do NOT add any symptom, sign, test, lab value, diagnosis, treatment, hospital or care detail, drug start, stop or dose change, medical history, or other drug that is not in the facts. Rewording or describing a given reaction is fine; adding a new one is not.
 - If a detail is not in the facts (dose, start date, indication, outcome), either leave it out or say it is not known.
-- Irrelevant detail is welcome but must be non-clinical: pets, the weather, the caller's day, background noise, work.
+- Work in the non-clinical detail you are given, briefly and naturally. Add no other background detail.
 
 Forbidden:
 - Never use these words: serious, seriousness, expected, unexpected, expedited, listed, labelled, known side effect.
@@ -172,7 +251,7 @@ Forbidden:
 Style:
 - Be realistic: vague or relative dates ("about three weeks ago"), hedging.
 - Use the drug name exactly as given in the facts.
-- Aim for the target length.
+- Aim for the target length. Never exceed 200 words.
 
 Output only the message body: no subject line, no headers, no preamble or commentary."""
 
@@ -180,8 +259,8 @@ FIDELITY_PROMPT = """You are a QA reviewer for synthetic adverse event narrative
 
 Flag: symptoms, signs, tests, lab values, diagnoses, treatments, hospital or care details (ICU, resuscitation, length of stay, discharge), drug starts, stops or dose changes, other drugs, and outcomes that are not in the facts.
 
-Do NOT flag:
-- rewording of a reaction that IS in the facts, in lay or clinical language, at the same level of severity;
+Flag only NEW clinical content. Do NOT flag:
+- rewording or describing a reaction that IS in the facts, in lay or clinical language, at the same level of severity (for example "red and blotchy" or "on her arms" for a rash);
 - the reporter's identity, names, sign-off, contact details, or where they work;
 - non-clinical background detail (pets, weather, the caller's day);
 - vague or relative timing, hedging, or uncertainty;
@@ -398,38 +477,75 @@ def source_type(case):
     return case_rng(case, "format").choice(formats)
 
 
-def signature_index(all_cases):
-    """A unique (first, last, partner org) per case, so no two narratives
-    share a sign-off. Assigned over every qualifying case in sorted order."""
-    combos = list(product(FIRST_NAMES, LAST_NAMES))
-    random.Random(SEED).shuffle(combos)
-    return {
-        case_key(c): {
-            "person": f"{combos[i][0]} {combos[i][1]}",
+def reporter_role(case):
+    return case_rng(case, "role").choice(REPORTER_ROLES[reporter_class(case)])
+
+
+def people_and_filler(all_cases):
+    """Per case: the writer's name (unique across all cases, from the
+    reporter's country and a sex consistent with who is writing), a partner
+    org, and a non-clinical detail (unique across all cases)."""
+    if len(all_cases) > len(FILLER):
+        sys.exit(f"{len(all_cases)} cases but only {len(FILLER)} filler options")
+    rng = random.Random(SEED)
+    filler = FILLER[:]
+    rng.shuffle(filler)
+
+    pools = {}
+    def next_name(country, sex):
+        names = NAMES.get(country, NAMES["default"])
+        if (country, sex) not in pools:
+            surnames = names.get(f"surnames_{sex}", names["surnames"])
+            combos = [
+                f"{last} {first}" if names.get("surname_first") else f"{first} {last}"
+                for first, last in product(names[sex], surnames)
+            ]
+            random.Random(f"{SEED}:{country}:{sex}").shuffle(combos)
+            pools[(country, sex)] = combos
+        if not pools[(country, sex)]:
+            sys.exit(f"ran out of unique names for {country}/{sex}")
+        return pools[(country, sex)].pop()
+
+    out = {}
+    for i, c in enumerate(sorted(all_cases, key=case_key)):
+        role = reporter_role(c)
+        country = c["reporter"]["country"]
+        if role == "the patient":
+            name = None  # the reporter is the patient, and patients are never named
+        else:
+            sex = case_rng(c, "writer_sex").choice(["female", "male"])
+            name = next_name(country if country in NAMES else "default", sex)
+        out[case_key(c)] = {
+            "name": name,
             "org": PARTNER_ORGS[i % len(PARTNER_ORGS)],
+            "filler": filler[i],
         }
-        for i, c in enumerate(sorted(all_cases, key=case_key))
-    }
+    return out
 
 
-def build_style(case, signatures):
+def build_style(case, people):
     """Non-clinical writing instructions. Recorded alongside the facts."""
     source = source_type(case)
-    role = case_rng(case, "role").choice(REPORTER_ROLES[reporter_class(case)])
-    sig = signatures[case_key(case)]
+    role = reporter_role(case)
+    who = people[case_key(case)]
+    name = who["name"]
     if source == "partner safety report":
-        sign_off = f"{sig['person']}, Drug Safety Associate, {sig['org']}"
+        sign_off = f"{name}, Drug Safety Associate, {who['org']}"
+    elif name is None:
+        sign_off = "(none: the reporter gives no name)"
     elif role == "doctor":
-        sign_off = f"Dr {sig['person']}"
+        sign_off = f"Dr {name}"
     elif role in ("pharmacist", "nurse", "nurse practitioner", "physician assistant"):
-        sign_off = f"{sig['person']}, {role}"
+        sign_off = f"{name}, {role}"
     else:
-        sign_off = sig["person"]  # consumers; a voicemail may use just the first name
+        sign_off = name
     return {
         "format": source,
         "reporter_role": role,
+        "reporter_name": name if source != "partner safety report" else None,
         "sign_off": sign_off,
-        "target_words": case_rng(case, "length").randint(*WORD_RANGE),
+        "non_clinical_detail": who["filler"],
+        "target_words": case_rng(case, "length").randint(*TARGET_RANGE),
     }
 
 
@@ -481,8 +597,10 @@ def generate(facts, style):
     user = (
         f"Message format: {style['format']}\n"
         f"Reporter role: {style['reporter_role']}\n"
+        f"Reporter name: {style['reporter_name'] or 'none given'}\n"
         f"Sign-off: {style['sign_off']}\n"
-        f"Target length: about {style['target_words']} words\n\n"
+        f"Non-clinical detail to work in: {style['non_clinical_detail']}\n"
+        f"Target length: about {style['target_words']} words (never more than 200)\n\n"
         f"Case facts:\n{json.dumps(facts, indent=2)}\n\n"
         f"Write the message."
     )
@@ -527,9 +645,8 @@ def deterministic_checks(record, case):
     return problems
 
 
-def make_record(case, split, signatures):
-    facts = build_facts(case)
-    style = build_style(case, signatures)
+def attempt(case, split, facts, style):
+    """One generation plus all checks."""
     trace = {
         "metadata": {
             "safety_report_id": case["safety_report_id"],
@@ -540,47 +657,195 @@ def make_record(case, split, signatures):
         }
     }
     narrative, served_by = generate(facts, style, langsmith_extra=trace)
-    additions = fidelity_check(facts, narrative, langsmith_extra=trace)
+    record = {"narrative": narrative, "source_type": style["format"], "generator_model": served_by}
+    problems = deterministic_checks(record, case)
+    record["deterministic_problems"] = [p for p in problems if not p.startswith("(info)")]
+    record["deterministic_info"] = [p for p in problems if p.startswith("(info)")]
+    record["fidelity_additions"] = fidelity_check(facts, narrative, langsmith_extra=trace)
+    record["flagged"] = bool(record["deterministic_problems"] or record["fidelity_additions"])
+    return record
+
+
+def make_record(case, split, people):
+    """Generate; if flagged (including over 200 words), regenerate once; if
+    still flagged, keep the second one and mark it needs_review."""
+    facts = build_facts(case)
+    style = build_style(case, people)
+    attempts = []
+    for _ in range(MAX_ATTEMPTS):
+        attempts.append(attempt(case, split, facts, style))
+        if not attempts[-1]["flagged"]:
+            break
+    final = attempts[-1]
+    if not final["flagged"]:
+        status = "passed" if len(attempts) == 1 else "passed_after_regeneration"
+    else:
+        status = "needs_review"
     return {
         "safety_report_id": case["safety_report_id"],
         "target_drug": case["target_drug"],
         "split": split,
         "source_type": style["format"],
         "header": header(case, style["format"]),
-        "narrative": narrative,
-        "generator_model": served_by,
+        "narrative": final["narrative"],
+        "generator_model": final["generator_model"],
         "prompt_version": PROMPT_VERSION,
         "facts_given": facts,
         "style_given": style,
-        "fidelity_additions": additions,
+        "status": status,
+        "attempts": len(attempts),
+        "deterministic_problems": final["deterministic_problems"],
+        "deterministic_info": final["deterministic_info"],
+        "fidelity_additions": final["fidelity_additions"],
+        # What the first attempt was flagged for, when it was regenerated.
+        "first_attempt_flags": (
+            attempts[0]["deterministic_problems"] + [a["quote"] for a in attempts[0]["fidelity_additions"]]
+            if len(attempts) > 1 else []
+        ),
     }
 
 
-# ------------------------------------------------------------------ pilot
+# ------------------------------------------------------------------ batch
 
 
-def print_record(i, record, case, problems):
-    style = record["style_given"]
-    print("=" * 100)
-    print(f"[{i}] {case['safety_report_id']} / {case['target_drug']}   "
-          f"route={case['reporting_route']}  serious={case['is_serious']}  "
-          f"criteria={[k for k, v in case['seriousness_criteria'].items() if v]}")
-    print(f"    answer key: {[(r['term'], r['expectedness']) for r in case['reaction_expectedness']]}")
-    print(f"    reporter: {case['reporter']['qualification']} -> {style['reporter_role']}; "
-          f"sign-off {style['sign_off']!r}; target {style['target_words']} words")
-    print(f"    facts given: {json.dumps(record['facts_given'])}")
-    print("-" * 100)
-    h = record["header"]
-    print(f"Source: {h['source']}\nReceived: {h['received']}\nRef: {h['ref']}\n")
-    print(record["narrative"])
-    print("-" * 100)
-    print(f"    words={len(record['narrative'].split())} (target {style['target_words']})  "
-          f"model={record['generator_model']}")
-    print("    deterministic: " + ("PASS" if not problems else "\n      ".join([""] + problems)))
-    adds = record["fidelity_additions"]
-    print("    fidelity: " + ("PASS (no additions)" if not adds else f"FLAG ({len(adds)} additions)"))
-    for a in adds:
-        print(f"      - [{a['category']}] {a['quote']!r} -- {a['why']}")
+def run_all(cases, assignment, people):
+    """Every qualifying case, in parallel, written as each finishes so an
+    interrupted run resumes where it stopped. Rewritten sorted at the end."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    from threading import Lock
+
+    done = {}
+    if FULL_OUT.exists():
+        for r in map(json.loads, FULL_OUT.open()):
+            if r["prompt_version"] == PROMPT_VERSION:
+                done[(r["safety_report_id"], r["target_drug"])] = r
+    todo = [c for c in cases if case_key(c) not in done]
+    print(f"\n{len(done)} already generated with {PROMPT_VERSION}; generating {len(todo)}")
+
+    lock = Lock()
+    with FULL_OUT.open("w") as f:
+        for r in done.values():
+            f.write(json.dumps(r) + "\n")
+        f.flush()
+        with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+            futures = {pool.submit(make_record, c, assignment[case_key(c)], people): c for c in todo}
+            for n, future in enumerate(as_completed(futures), 1):
+                case = futures[future]
+                try:
+                    record = future.result()
+                except Exception as e:  # keep going; the case is retried on the next run
+                    print(f"  [{n}/{len(todo)}] {case_key(case)} FAILED: {e}")
+                    continue
+                with lock:
+                    f.write(json.dumps(record) + "\n")
+                    f.flush()
+                    done[case_key(case)] = record
+                print(f"  [{n}/{len(todo)}] {case_key(case)} {record['status']}", flush=True)
+
+    records = sorted(done.values(), key=lambda r: (r["safety_report_id"], r["target_drug"]))
+    with FULL_OUT.open("w") as f:
+        for r in records:
+            f.write(json.dumps(r) + "\n")
+    return records
+
+
+def summarize(records, expected_total):
+    status = Counter(r["status"] for r in records)
+    print(f"\ngenerated: {len(records)} of {expected_total}")
+    print(f"  passed first time:          {status['passed']}")
+    print(f"  regenerated (any outcome):  {sum(r['attempts'] > 1 for r in records)}")
+    print(f"    passed after regeneration: {status['passed_after_regeneration']}")
+    print(f"  still needs_review:         {status['needs_review']}")
+    print(f"  word counts: min {min(len(r['narrative'].split()) for r in records)}, "
+          f"max {max(len(r['narrative'].split()) for r in records)}")
+    names = [r["style_given"]["reporter_name"] for r in records if r["style_given"]["reporter_name"]]
+    fillers = [r["style_given"]["non_clinical_detail"] for r in records]
+    print(f"  unique reporter names: {len(set(names))} of {len(names)} named; "
+          f"unique filler: {len(set(fillers))} of {len(fillers)}")
+
+
+# -------------------------------------------------------------- spot check
+
+
+def write_spotcheck(records):
+    """Every needs_review narrative, plus 10 random passed ones (5 dev,
+    5 test, both routes in each), each with facts and the answer key."""
+    labeled = {case_key(c): c for c in json.loads(LABELED.read_text())}
+    rng = random.Random(SEED)
+
+    def pick(split, n_exp, n_per):
+        passed = [r for r in records if r["split"] == split and r["status"] != "needs_review"]
+        route = lambda r: labeled[(r["safety_report_id"], r["target_drug"])]["reporting_route"]
+        exp = sorted([r for r in passed if route(r) == "expedited_15_day"], key=lambda r: r["safety_report_id"])
+        per = sorted([r for r in passed if route(r) == "periodic"], key=lambda r: r["safety_report_id"])
+        return rng.sample(exp, min(n_exp, len(exp))) + rng.sample(per, min(n_per, len(per)))
+
+    review = [r for r in records if r["status"] == "needs_review"]
+    sample = pick("dev", 3, 2) + pick("test", 2, 3)
+
+    lines = [
+        "# Narrative spot check",
+        "",
+        f"Prompt `{PROMPT_VERSION}`, model `{MODEL}`. {len(records)} narratives: "
+        f"{sum(r['status'] == 'passed' for r in records)} passed first time, "
+        f"{sum(r['status'] == 'passed_after_regeneration' for r in records)} passed after one regeneration, "
+        f"{len(review)} need review.",
+        "",
+        "The fidelity check is generation QA (the same model listing clinical content not in the facts), not ground truth.",
+        "",
+    ]
+
+    def block(r):
+        case = labeled[(r["safety_report_id"], r["target_drug"])]
+        h, style = r["header"], r["style_given"]
+        out = [
+            f"### {r['safety_report_id']} / {r['target_drug']} ({r['split']}, {r['status']})",
+            "",
+            f"**Answer key:** route `{case['reporting_route']}`"
+            + (f", due `{case['due_date']}`" if case["due_date"] else "")
+            + f"; serious `{case['is_serious']}`"
+            + f" ({', '.join(k for k, v in case['seriousness_criteria'].items() if v) or 'no criteria'})",
+            "",
+            "| reaction | expectedness | decided by |",
+            "|---|---|---|",
+            *[f"| {x['term']} | {x['expectedness']} | {x['decided_by']} |" for x in case["reaction_expectedness"]],
+            "",
+            f"**Reporter:** {case['reporter']['qualification']} → {style['reporter_role']}, "
+            f"{style['format']}, target {style['target_words']} words, "
+            f"actual {len(r['narrative'].split())}",
+            "",
+            f"**Facts given:** `{json.dumps(r['facts_given'], ensure_ascii=False)}`",
+            "",
+            f"> Source: {h['source']}  ",
+            f"> Received: {h['received']}  ",
+            f"> Ref: {h['ref']}",
+            ">",
+            *[f"> {line}" if line else ">" for line in r["narrative"].splitlines()],
+            "",
+        ]
+        if r["deterministic_problems"] or r["fidelity_additions"]:
+            out.append("**Flags on the kept version:**")
+            out += [f"- deterministic: {p}" for p in r["deterministic_problems"]]
+            out += [f"- fidelity [{a['category']}]: \"{a['quote']}\" ({a['why']})" for a in r["fidelity_additions"]]
+            out.append("")
+        if r["first_attempt_flags"]:
+            out.append("**First attempt was flagged for:** " + "; ".join(f"\"{q}\"" for q in r["first_attempt_flags"]))
+            out.append("")
+        return out
+
+    lines += [f"## Needs review ({len(review)})", ""]
+    for r in review:
+        lines += block(r)
+    if not review:
+        lines += ["None.", ""]
+    lines += [f"## Random passed sample ({len(sample)}: 5 dev, 5 test)", ""]
+    for r in sample:
+        lines += block(r)
+    SPOTCHECK.write_text("\n".join(lines))
+    print(f"wrote {SPOTCHECK.name}: {len(review)} needs_review + {len(sample)} sampled")
+
+
+# ------------------------------------------------------------------- main
 
 
 def main():
@@ -597,31 +862,18 @@ def main():
         group = [c for c in cases if assignment.get(case_key(c)) == split]
         routes = Counter(c["reporting_route"] for c in group)
         print(f"    {split:4} {len(group):3}  expedited {routes['expedited_15_day']:3}  "
-              f"periodic {routes['periodic']:3}   drugs {dict(sorted(Counter(c['target_drug'] for c in group).items()))}")
+              f"periodic {routes['periodic']:3}")
 
-    signatures = signature_index(cases)
+    people = people_and_filler(cases)
 
-    if "--pilot" in sys.argv:
-        v1_keys = [(r["safety_report_id"], r["target_drug"])
-                   for r in map(json.loads, PILOT_V1.open())]
-        by_key = {case_key(c): c for c in cases}
-        dropped = [k for k in v1_keys if k not in by_key]
-        print(f"\npilot: {len(v1_keys)} v1 cases, {len(dropped)} no longer qualify: {dropped}")
-
-        records = []
-        for i, key in enumerate([k for k in v1_keys if k in by_key], 1):
-            case = by_key[key]
-            record = make_record(case, assignment.get(key, "unassigned"), signatures)
-            records.append(record)
-            print_record(i, record, case, deterministic_checks(record, case))
-        with PILOT_OUT.open("w") as f:
-            for r in records:
-                f.write(json.dumps(r) + "\n")
-        flagged = sum(bool(r["fidelity_additions"]) for r in records)
-        print(f"\nWrote {len(records)} to {PILOT_OUT}; fidelity flagged {flagged}")
-
-    elif "--all" in sys.argv:
-        sys.exit("--all is deliberately not wired up until the pilot is reviewed")
+    if "--all" in sys.argv:
+        records = run_all(cases, assignment, people)
+        summarize(records, len(cases))
+        write_spotcheck(records)
+    elif "--spotcheck" in sys.argv:
+        records = [json.loads(l) for l in FULL_OUT.open()]
+        summarize(records, len(cases))
+        write_spotcheck(records)
 
 
 if __name__ == "__main__":

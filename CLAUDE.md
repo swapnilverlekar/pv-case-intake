@@ -68,13 +68,13 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
   - Human decisions per (drug, term) in `data/term_decisions.csv` (never written by the script). 81 of them were drafted with ChatGPT and verified by the reviewer (`data/my_review.csv`); the rest were decided directly. `Death` is always `ambiguous`. `not_applicable` = the treated disease (lack of effect).
   - Routing: non-serious → always periodic; serious AND any unexpected → expedited_15_day; serious AND any ambiguous → ambiguous (excluded from the primary metric, reported separately); else periodic. due_date = receive_date + 15 days, expedited only.
   - 37 non-serious-only pairs remain undecided; they cannot change a route (non-serious is always periodic).
-- [~] Generate intake narratives from raw facts — `AE_Data/generate_narratives.py` (Anthropic SDK, `claude-sonnet-5-5`, traced to LangSmith project `pv-case-intake`).
-  - Pool: not ambiguous, 1–3 distinct suspect drugs (1–4 checked: only +4 expedited), minus `EXCLUDED_CASES` (20296669: reaction term says "labelled"). **77 cases: 28 expedited / 49 periodic.**
-  - Split `data/split.json` (tracked, seed 20261016, stratified by route × drug, reused unless `--resplit`): **dev 20 (7 exp / 13 per), test 57 (21 / 36)**. Cases already read during prompt work are forced into dev, so the test set stays unseen.
-  - Generator sees facts only (no seriousness flag, expectedness, route, due date or label). `other_medically_important` is passed as "the reporter assessed this event as medically significant", otherwise 16 serious cases would read as non-serious. Reporter role is faithful to the FAERS qualification.
-  - QA after generation: deterministic checks (forbidden words, 80–200 words, drug name present) + an LLM fidelity check (same model) listing clinical content not in the facts. The fidelity check is generation QA, never ground truth.
-  - [x] Prompt v1 pilot (10) → invented symptoms/tests/treatments; v2 pilot (9 of the 10; one became ambiguous) → `data/narratives_pilot_v2.jsonl`.
-  - [ ] Review v2 pilot, then generate all (`--all` is deliberately not wired up yet).
+- [x] Generate intake narratives from raw facts — `AE_Data/generate_narratives.py` (Anthropic SDK, `claude-sonnet-5-5`, prompt **v3**, traced to LangSmith project `pv-case-intake`). Output: `data/narratives.jsonl`, **77 narratives** (dev 20 / test 57).
+  - Pool: not ambiguous, 1–3 distinct suspect drugs (1–4 checked: only +4 expedited), minus `EXCLUDED_CASES` (20296669: reaction term says "labelled"). 77 cases: 28 expedited / 49 periodic.
+  - Split `data/split.json` (tracked, seed 20261016, stratified by route × drug, reused unless `--resplit`): dev 20 (7 exp / 13 per), test 57 (21 / 36). Cases read during prompt work are forced into dev, so the test set stays unseen.
+  - Generator sees facts only (no seriousness flag, expectedness, route, due date or label). `other_medically_important` is passed as "the reporter assessed this event as medically significant", voiced only by the reporter. Reporter role follows the FAERS qualification. Patients are never named; reporter names (per country/sex), sign-offs and non-clinical filler are assigned in code, all unique.
+  - QA: deterministic checks (forbidden words, 80–200 words, drug name) + LLM fidelity check (same model; generation QA, never ground truth). Flagged → regenerated once → still flagged = `needs_review`.
+  - v3 result: 53 passed first time, 13 passed after regeneration, **11 needs_review** (all fidelity flags; most look like the checker over-flagging rewordings — review in `data/narrative_spotcheck.md`). All 202 calls traced.
+  - Prompt history: v1 invented symptoms/tests/treatments; v2 fixed that but mis-attributed significance and ran long; v3 fixes both.
 - [ ] Build invalid cases and duplicate pairs
 - [ ] Push dataset to LangSmith
 - [ ] Build the agent system
