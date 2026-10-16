@@ -1,0 +1,788 @@
+[
+  {
+    "safety_report_id": "20269184",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20269190",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20269357",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20269400",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20273500",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20274547",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20277682",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20277758",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278050",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278088",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278189",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278260",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20278419",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20278489",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278542",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278622",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20278813",
+    "target_drug": "lisinopril",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20278946",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20279004",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20279523",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20279523",
+    "target_drug": "lisinopril",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20279756",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20280044",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20280410",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20281766",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20281949",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20282093",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20282194",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20282258",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20282292",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20282358",
+    "target_drug": "lisinopril",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20282752",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20286481",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20286482",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20286485",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20287966",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20288831",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20288867",
+    "target_drug": "metformin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20288893",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20289079",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20289118",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20289119",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20289135",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20289274",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20289300",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20289350",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20289588",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20290104",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20290383",
+    "target_drug": "lisinopril",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20290885",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20290982",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20291015",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20291254",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20291425",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20291478",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20291590",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20292005",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20292078",
+    "target_drug": "lisinopril",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20292080",
+    "target_drug": "lisinopril",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20292106",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20292174",
+    "target_drug": "lisinopril",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20292300",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20294934",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20295840",
+    "target_drug": "levothyroxine",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20296305",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20296572",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20296644",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20296669",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20296792",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20297086",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20297508",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20297807",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20297831",
+    "target_drug": "lisinopril",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20298142",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20298221",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20298510",
+    "target_drug": "sertraline",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20298525",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20298936",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20299265",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20299311",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20299336",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20299490",
+    "target_drug": "sertraline",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20299690",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20300188",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20300227",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20300249",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20300287",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20301061",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20301496",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20304247",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20304313",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20304913",
+    "target_drug": "atorvastatin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20305057",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20305864",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20307064",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20308583",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20309026",
+    "target_drug": "metformin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20309200",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20309613",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20311497",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20313247",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20315862",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20315868",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20316497",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20317242",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20318323",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20318883",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20318896",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20320743",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20321074",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20321472",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20321508",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "rare_criterion"
+  },
+  {
+    "safety_report_id": "20321855",
+    "target_drug": "lisinopril",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20322932",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20323511",
+    "target_drug": "lisinopril",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20324413",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20325302",
+    "target_drug": "warfarin",
+    "is_serious": true,
+    "reason": "serious_stratified"
+  },
+  {
+    "safety_report_id": "20327766",
+    "target_drug": "atorvastatin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20328474",
+    "target_drug": "lisinopril",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20329129",
+    "target_drug": "lisinopril",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20345607",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20345652",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20349133",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20356074",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20357539",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20362145",
+    "target_drug": "levothyroxine",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20373853",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20391245",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20406669",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20410513",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  },
+  {
+    "safety_report_id": "20411240",
+    "target_drug": "warfarin",
+    "is_serious": false,
+    "reason": "non_serious"
+  }
+]

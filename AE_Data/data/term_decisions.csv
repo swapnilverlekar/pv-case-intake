@@ -1,0 +1,27 @@
+target_drug,term,decision,notes
+warfarin,Gastrointestinal haemorrhage,expected,label covers hemorrhage from any tissue or organ incl. fatal
+warfarin,Orthostatic hypotension,unexpected,not in label
+atorvastatin,Macular degeneration,unexpected,not in label
+sertraline,Atrial fibrillation,unexpected,label lists atrial arrhythmias; AF more specific (314.80 specificity rule)
+sertraline,Encephalitis autoimmune,unexpected,not in label
+sertraline,Pneumonia aspiration,unexpected,not in label
+atorvastatin,Blood pressure increased,unexpected,not an antihypertensive; genuine event
+atorvastatin,Cardiac ventricular disorder,unexpected,not in label
+atorvastatin,Cerebrovascular accident,ambiguous,label lists hemorrhagic stroke; report less specific
+lisinopril,Blood pressure increased,not_applicable,lack of effect on antihypertensive
+metformin,Diabetic metabolic decompensation,not_applicable,disease worsening; lack of effect
+atorvastatin,Arteriosclerosis,not_applicable,disease the drug prevents
+sertraline,Suicide attempt,expected,label lists suicidal thoughts and behaviors (AR + W&P 5.1)
+atorvastatin,Drug hypersensitivity,unexpected,hypersensitivity only in contraindications
+metformin,Hypersensitivity,unexpected,hypersensitivity only in contraindications
+metformin,Decreased appetite,unexpected,neither anorexia nor appetite in label
+atorvastatin,Blood creatinine increased,unexpected,creatinine absent
+atorvastatin,Chest discomfort,unexpected,chest absent from label
+warfarin,Hepatic cytolysis,ambiguous,label lists hepatitis; cytolysis overlaps but not identical
+atorvastatin,Hepatic cytolysis,ambiguous,label lists hepatitis; kept consistent with warfarin
+lisinopril,Drug hypersensitivity,ambiguous,label lists specific reactions; report less specific
+metformin,Metabolic acidosis,ambiguous,boxed warning is lactic acidosis; report less specific
+sertraline,Depression,not_applicable,indication; false match on efficacy text
+warfarin,Anaemia,ambiguous,false match on bleeding risk-factor list; label lists cause not this event
+lisinopril,Death,ambiguous,outcome with unknown cause; not assessable against label
+levothyroxine,Death,ambiguous,outcome with unknown cause; not assessable against label

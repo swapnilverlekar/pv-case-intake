@@ -1,0 +1,26 @@
+total usable cases: 200
+serious: 140  (70%)
+non-serious: 60
+
+by drug (serious / non-serious):
+  warfarin: 47  (37 / 10)
+  sertraline: 39  (29 / 10)
+  metformin: 34  (24 / 10)
+  atorvastatin: 34  (24 / 10)
+  levothyroxine: 26  (16 / 10)
+  lisinopril: 20  (10 / 10)
+
+by reporter type:
+  consumer or other non-health professional: 70
+  physician: 48
+  other health professional: 44
+  pharmacist: 36
+  unknown: 2
+
+seriousness criteria hit:
+  other_medically_important: 97
+  hospitalization: 87
+  death: 12
+  life_threatening: 8
+  disabling: 8
+  congenital_anomaly: 4

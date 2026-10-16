@@ -1,0 +1,29 @@
+# Secrets -- this repo goes to the interview panel, so keep this at the top
+.env
+.env.local
+*.key
+secrets/
+
+# Pulled data. Large, regenerable from pull_faers.py, and it bloats the repo.
+# Labels (data/raw/label_*.json) and summary.txt stay tracked: labels pin the
+# version used at eval and run time, summary tells a reviewer what was pulled.
+**/data/raw/events_*.jsonl
+**/data/*.json
+# Human-curated review inputs are ground truth, not regenerable output.
+!**/data/expectedness_synonyms.json
+!**/data/eval_candidates.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
