@@ -4693,10 +4693,10 @@
       },
       {
         "term": "Product prescribing error",
-        "status": "unmatched",
+        "status": "not_applicable",
         "matched_section": "",
         "snippet": "",
-        "expectedness": "unexpected",
+        "expectedness": "excluded",
         "decided_by": "human"
       }
     ],
@@ -5782,18 +5782,18 @@
       },
       {
         "term": "Transfusion",
-        "status": "unmatched",
+        "status": "not_applicable",
         "matched_section": "",
         "snippet": "",
-        "expectedness": "unexpected",
+        "expectedness": "excluded",
         "decided_by": "human"
       }
     ],
     "valid": true,
     "missing_element": null,
-    "expectedness": "unexpected",
-    "reporting_route": "expedited_15_day",
-    "due_date": "2022-01-16",
+    "expectedness": "expected",
+    "reporting_route": "periodic",
+    "due_date": null,
     "label_effective_time": "20250708"
   },
   {

@@ -157,6 +157,16 @@ NON_EVENT_PATTERNS = [
     "product complaint",
     "product quality issue",
     "product physical",  # physical consistency/appearance complaints (20349133)
+    # Medication errors and procedures/treatments are not reactions (rule
+    # change after Story 2: 20282292 "Transfusion" was keyed as an
+    # unexpected reaction). Other procedure terms in the data (Dialysis,
+    # Colectomy, Hip surgery, ...) await a decision: excluding them can hide
+    # the serious event they stand in for.
+    "incorrect route",
+    "prescribing error",
+    "wrong product",
+    "administration error",
+    "transfusion",
 ]
 
 # Eval candidate selection.

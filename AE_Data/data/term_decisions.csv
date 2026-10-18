@@ -68,7 +68,7 @@ metformin,Liver disorder,ambiguous,less specific than label's hepatic injury; co
 metformin,Muscle spasms,unexpected,Myalgia (muscle pain) is listed but muscle spasms is a different condition
 metformin,Prerenal failure,unexpected,"Prerenal azotemia mentioned as caused by other conditions, not as metformin adverse reaction"
 metformin,Product monitoring error,unexpected,"Not listed as adverse reaction; this is a medication error, not physiological effect"
-metformin,Product prescribing error,unexpected,"Not listed as adverse reaction; this is a medication error, not physiological effect"
+metformin,Product prescribing error,not_applicable,"medication error, not a reaction (rule change after Story 2; previously 'unexpected' despite this note)"
 metformin,Renal failure,unexpected,"Renal impairment discussed as risk factor and contraindication, not as adverse reaction caused by metformin"
 metformin,Tachycardia,unexpected,Palpitation (sensation) is listed but tachycardia (actual rapid heart rate) is not
 metformin,Thrombosis,unexpected,Not listed in the label
@@ -102,7 +102,7 @@ warfarin,Shock haemorrhagic,expected,Hemorrhagic shock results from severe bleed
 warfarin,Suspected suicide,unexpected,Not listed in the label
 warfarin,Taste disorder,expected,"""Taste perversion"" is listed, which covers taste disorder"
 warfarin,Thyroid disorder,unexpected,Not listed in the label
-warfarin,Transfusion,unexpected,"This is a medical intervention/treatment, not an adverse reaction"
+warfarin,Transfusion,not_applicable,"a treatment, not a reaction (rule change after Story 2; previously 'unexpected' despite this note)"
 warfarin,Transient ischaemic attack,unexpected,Not listed in the label
 warfarin,Upper gastrointestinal haemorrhage,expected,"Upper GI hemorrhage is covered by ""hemorrhage from any tissue or organ"""
 metformin,Abdominal pain,ambiguous,listed only as lactic acidosis symptom; label lists abdominal discomfort separately

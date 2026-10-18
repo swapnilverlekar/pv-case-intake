@@ -1,0 +1,19 @@
+# Dev log
+
+Every change made in response to dev results or data checks, so the test
+numbers can be read knowing exactly what was tuned and on what. Test-split
+agent predictions were never looked at for any of these.
+
+| date | change | why | exposed by |
+|---|---|---|---|
+| 2026-10-17 | Extraction: a product's/reaction's value must sit inside its own quote | the model quoted an unrelated sentence for "Synthroid" | dev INV-20278030-levothyroxine (run_one) |
+| 2026-10-17 | Validity: our product is suspect unless the reporter explicitly rules it out (MAH convention); enum `explicitly_not_suspected` replaces `other_medication` | metformin was dropped as "other medication" for being listed next to a vaccine | dev 20273500-metformin, DUP-20273500-metformin |
+| 2026-10-17 | Extraction: product quote may be code-located (sentence naming one of our drugs) when the model's name/quote isn't verbatim; prompt asks for the name without dose | "Metformin Hydrochloride 1500 mg" (not verbatim) rejected → no suspect drug | dev 20278946-metformin, 20291478-atorvastatin, 20300287-atorvastatin, 20309026-metformin, INV-20269357-metformin |
+| 2026-10-17 | Extraction: age/sex must be the PATIENT's (prompt only) | the relaying hairdresser's "She" was taken as the patient's sex | dev INV-20304190-sertraline (still missed after the change; left as a known miss) |
+| 2026-10-17 | Validity: reporter is identifiable by a stated HCP qualification as well as name/contact (ICH E2D) | design review, not a dev result: real partner reports say "a pharmacist who did not give a name" | spec review |
+| 2026-10-17 | Normalization: `BRAND_ALIASES` (other US brands of the same ingredient) | cached labels carry only their own brand | data check: 5 messages (Qbrelis, Thyquidity, Levoxyl, Tirosint, Unithroid) |
+| 2026-10-17 | Answer key: product-complaint terms are non-events; all-non-event cases are relabelled invalid (`no_adverse_event`), not dropped; `missing_element` is a list; eval candidates frozen | complaint-only reports ("No adverse event" among their FAERS terms) were keyed valid with "unexpected" reactions | dev 20321855-lisinopril, DUP-20321855-lisinopril, 20349133-levothyroxine |
+| 2026-10-17 | Answer key: duplicate references route `merge_with_existing`, no due date; dup/near-miss references rebuilt from cases_labeled at upload | the clock rule gives a duplicate no new clock | Story 2 spec (applied before any Story 2 dev run) |
+| 2026-10-17 | Extraction: outcomes (death, admission, recovery, treatment) are not reactions, except a death with no other event | "she died" listed as a reaction → expectedness found no label line for "death" → false 15-day route | dev 20278946-metformin (fatal lactic acidosis, run_one) |
+| 2026-10-17 | Answer key: medication-error terms ("incorrect route", "prescribing error", "wrong product", "administration error") and "transfusion" are non-events; human decisions for warfarin/Transfusion and metformin/Product prescribing error edited to not_applicable (their own notes already said "not a reaction") | "Transfusion" keyed as an unexpected reaction made a bleed on warfarin (expected) look expedited | dev 20282292-warfarin |
+| 2026-10-17 | Narratives: reporter identity line added to 3 patient-reporter narratives (`manual_edit`, reason "generator never-name rule removed reporter identity"); 20349133's message-level `no_identifiable_reporter` removed | the v3 never-name-the-patient rule left patient-reporters with no name or contact | data scan of all consumer/patient narratives (text only): 20278189 (test), 20324413 (test), 20349133 (dev) |

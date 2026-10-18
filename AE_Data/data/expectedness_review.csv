@@ -63,7 +63,6 @@ safety_report_id,target_drug,is_serious,term,status,matched_section,snippet,flag
 20282752,metformin,True,Diabetic metabolic decompensation,unmatched,,,
 20282752,metformin,True,Decreased appetite,unmatched,,,
 20287966,metformin,True,Blood pressure inadequately controlled,unmatched,,,
-20287966,metformin,True,Product prescribing error,unmatched,,,
 20288831,metformin,True,Toxic encephalopathy,unmatched,,,
 20288831,metformin,True,Azotaemia,unmatched,,,
 20288831,metformin,True,Metabolic acidosis,partial,adverse_reactions;warnings_and_cautions;boxed_warning,adverse reaction the following adverse reaction are also discussed elsewhere in the labeling lactic acidosis see boxed warning and warning and precaution 5 1 vitamin b12 deficiency see warning and pre,check specificity/severity
@@ -90,7 +89,6 @@ safety_report_id,target_drug,is_serious,term,status,matched_section,snippet,flag
 20299490,sertraline,True,Encephalitis autoimmune,unmatched,,,
 20299490,sertraline,True,Pneumonia aspiration,unmatched,,,
 20282258,warfarin,True,Haemoglobin decreased,unmatched,,,
-20282292,warfarin,True,Transfusion,unmatched,,,
 20296305,warfarin,True,Gastrointestinal haemorrhage,partial,adverse_reactions;warnings_and_cautions,rious adverse reaction to jantoven are discussed in greater detail in other section of the labeling hemorrhage see boxed warning warning and precaution 5 1 and overdosage 10 tissue necrosis see warnin,check specificity/severity
 20298142,warfarin,True,Upper gastrointestinal haemorrhage,partial,adverse_reactions;warnings_and_cautions,rious adverse reaction to jantoven are discussed in greater detail in other section of the labeling hemorrhage see boxed warning warning and precaution 5 1 and overdosage 10 tissue necrosis see warnin,check specificity/severity
 20298221,warfarin,True,Transient ischaemic attack,unmatched,,,
@@ -144,6 +142,7 @@ safety_report_id,target_drug,is_serious,term,status,matched_section,snippet,flag
 20278946,metformin,True,Lactic acidosis,expected,adverse_reactions;warnings_and_cautions;boxed_warning,6 adverse reaction the following adverse reaction are also discussed elsewhere in the labeling lactic acidosis see boxed warning and warning and precaution 5 1 vitamin b12 deficiency see warning and p,
 20287966,metformin,True,Drug ineffective,not_applicable,,,
 20287966,metformin,True,Medication error,not_applicable,,,
+20287966,metformin,True,Product prescribing error,not_applicable,,,
 20288867,metformin,True,Contraindicated product administered,not_applicable,,,
 20277682,sertraline,True,Intentional product misuse,not_applicable,,,
 20277682,sertraline,True,Headache,expected,adverse_reactions;warnings_and_cautions, diarrhea 2 agitation 2 and insomnia 2 mdd 2 and twice placebo decreased appetite dizziness fatigue headache somnolence tremor and vomiting ocd somnolence pd nervousness and somnolence male and female,
@@ -168,6 +167,7 @@ safety_report_id,target_drug,is_serious,term,status,matched_section,snippet,flag
 20299490,sertraline,True,Drug withdrawal syndrome,expected_synonym,adverse_reactions;warnings_and_cautions,leeding see warning and precaution 5 3 activation of mania hypomania see warning and precaution 5 4 discontinuation syndrome see warning and precaution 5 5 seizure see warning and precaution 5 6 angle,
 20299490,sertraline,True,Drug ineffective,not_applicable,,,
 20282292,warfarin,True,Haemorrhage,expected,adverse_reactions;warnings_and_cautions,rious adverse reaction to jantoven are discussed in greater detail in other section of the labeling hemorrhage see boxed warning warning and precaution 5 1 and overdosage 10 tissue necrosis see warnin,
+20282292,warfarin,True,Transfusion,not_applicable,,,
 20298142,warfarin,True,Anaemia,expected,warnings_and_cautions,ry of highly variable inr history of gastrointestinal bleeding hypertension cerebrovascular disease anemia malignancy trauma renal impairment certain genetic factor see clinical pharmacology 12 5 cert,
 20309200,warfarin,True,International normalised ratio increased,expected_lab,warnings_and_cautions,polycythemia vera vasculitis diabete mellitus 5 9 endogenous factor affecting inr the following factor may be responsible for increased inr response,
 20315868,warfarin,True,International normalised ratio increased,expected_lab,warnings_and_cautions,polycythemia vera vasculitis diabete mellitus 5 9 endogenous factor affecting inr the following factor may be responsible for increased inr response,
