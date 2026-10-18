@@ -187,15 +187,11 @@ safety_report_id,target_drug,is_serious,term,status,matched_section,snippet,flag
 20278260,levothyroxine,False,Lactose intolerance,partial,adverse_reactions, 5 and overdosage 10 they include the following general fatigue increased appetite weight loss heat intolerance fever excessive sweating central nervous system headache hyperactivity nervousness anxie,check specificity/severity
 20305864,levothyroxine,False,Weight increased,partial,adverse_reactions;boxed_warning,ng and precaution 5 and overdosage 10 they include the following general fatigue increased appetite weight loss heat intolerance fever excessive sweating central nervous system headache hyperactivity ,check specificity/severity
 20345652,levothyroxine,False,Thyroid function test abnormal,partial,adverse_reactions, respiratory dyspnea gastrointestinal diarrhea vomiting abdominal cramp elevation in liver function test dermatologic hair loss flushing rash endocrine decreased bone mineral density reproductive mens,check specificity/severity
-20349133,levothyroxine,False,Poor quality product administered,unmatched,,,
-20349133,levothyroxine,False,Product physical consistency issue,unmatched,,,
 20356074,levothyroxine,False,Eye disorder,unmatched,,,
 20357539,levothyroxine,False,Intercepted product dispensing error,unmatched,,,
 20362145,levothyroxine,False,Drug hypersensitivity,partial,adverse_reactions,the epiphyse in pediatric patient still experiencing growth with resultant compromised adult height hypersensitivity reaction hypersensitivity reaction to inactive ingredient have occurred in patient ,check specificity/severity
 20362145,levothyroxine,False,Face oedema,unmatched,,,
 20362145,levothyroxine,False,Oedema peripheral,unmatched,,,
-20321855,lisinopril,False,Product packaging quantity issue,unmatched,,,
-20321855,lisinopril,False,Product label issue,unmatched,,,
 20281766,metformin,False,Heart rate increased,partial,adverse_reactions;warnings_and_cautions,udy experience because clinical trial are conducted under widely varying condition adverse reaction rate observed in the clinical trial of a drug cannot be directly compared to rate in the clinical tr,check specificity/severity
 20281766,metformin,False,Glycosylated haemoglobin increased,unmatched,,,
 20281766,metformin,False,Blood glucose increased,unmatched,,,
@@ -226,11 +222,15 @@ safety_report_id,target_drug,is_serious,term,status,matched_section,snippet,flag
 20309613,atorvastatin,False,Malaise,expected,adverse_reactions;warnings_and_cautions,1 6 2 8 0 7 2 3 other adverse reaction reported in placebo controlled trial include body as a whole malaise pyrexia digestive system abdominal discomfort eructation flatulence hepatitis cholestasis mu,
 20318323,atorvastatin,False,Myalgia,expected,adverse_reactions,with lipitor that led to treatment discontinuation and occurred at a rate greater than placebo were myalgia 0 7 diarrhea 0 5 nausea 0 4 alanine aminotransferase increase 0 4 and hepatic enzyme increas,
 20318323,atorvastatin,False,Hepatic enzyme increased,expected_lab,adverse_reactions,5 nausea 0 4 alanine aminotransferase increase 0 4 and hepatic enzyme increase 0 4 table 1 summarize adverse reaction reported in,
+20349133,levothyroxine,False,Poor quality product administered,not_applicable,,,
+20349133,levothyroxine,False,Product physical consistency issue,not_applicable,,,
 20349133,levothyroxine,False,Product substitution issue,not_applicable,,,
 20349133,levothyroxine,False,No adverse event,not_applicable,,,
 20357539,levothyroxine,False,Transcription medication error,not_applicable,,,
 20278813,lisinopril,False,Dizziness,expected,adverse_reactions, adverse reaction common adverse reaction event 2 greater than placebo by use hypertension headache dizziness and cough 6 1 heart failure hypotension and chest pain 6 1 acute myocardial infarction hyp,
 20297831,lisinopril,False,Cough,expected,adverse_reactions,ion common adverse reaction event 2 greater than placebo by use hypertension headache dizziness and cough 6 1 heart failure hypotension and chest pain 6 1 acute myocardial infarction hypotension 6 1 t,
+20321855,lisinopril,False,Product packaging quantity issue,not_applicable,,,
+20321855,lisinopril,False,Product label issue,not_applicable,,,
 20321855,lisinopril,False,Product dose omission issue,not_applicable,,,
 20321855,lisinopril,False,No adverse event,not_applicable,,,
 20323511,lisinopril,False,Headache,expected,adverse_reactions,6 adverse reaction common adverse reaction event 2 greater than placebo by use hypertension headache dizziness and cough 6 1 heart failure hypotension and chest pain 6 1 acute myocardial infarction hy,

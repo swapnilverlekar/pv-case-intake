@@ -149,6 +149,14 @@ NON_EVENT_PATTERNS = [
     "exposure during pregnancy",
     "foetal exposure",
     "condition aggravated",
+    # Product complaints with no health effect (added after Story 1 found
+    # complaint-only cases labelled as valid with "unexpected" reactions).
+    "product label issue",
+    "product packaging",
+    "poor quality product",
+    "product complaint",
+    "product quality issue",
+    "product physical",  # physical consistency/appearance complaints (20349133)
 ]
 
 # Eval candidate selection.
@@ -397,7 +405,16 @@ def case_key(case):
 
 def select_candidates(cases, matched):
     """Stratified eval set, chosen before any review so review effort is not
-    spent on cases that will never be scored."""
+    spent on cases that will never be scored. Frozen once written: a later
+    rule change must relabel cases, not silently move them out of the set.
+    --reselect rebuilds it."""
+    if CANDIDATES.exists() and "--reselect" not in sys.argv:
+        frozen = load_candidate_keys()
+        selected = [c for c in cases if case_key(c) in frozen]
+        reasons = {(c["safety_report_id"], c["target_drug"]): c["reason"] for c in json.loads(CANDIDATES.read_text())}
+        print(f"reusing {CANDIDATES.name} ({len(selected)} cases); --reselect to rebuild")
+        return selected, selected, {case_key(c): reasons[case_key(c)] for c in selected}
+
     eligible = [
         c
         for c in cases
@@ -716,6 +733,13 @@ DEFAULT_DECISION = {
     # "partial" deliberately absent: it needs a human decision.
 }
 
+NO_EVENT_NOTE = (
+    "Relabelled invalid (no_adverse_event): every reported term is a non-event "
+    "(product complaint, lack of effect, or usage term). Rule change after Story 1; "
+    "previously such cases were dropped, or labelled valid when a product-complaint "
+    "term slipped past NON_EVENT_PATTERNS."
+)
+
 # Human decision -> final expectedness. Only not_applicable is renamed.
 HUMAN_DECISION = {
     "expected": "expected",
@@ -747,7 +771,7 @@ def finalize():
         if r["status"] == "partial"
     }
 
-    labeled, undecided_partial, dropped = [], set(), []
+    labeled, undecided_partial, relabelled = [], set(), []
     for case in selected:
         reactions = []
         for r in matched[case_key(case)]:
@@ -764,10 +788,24 @@ def finalize():
                 final, source = DEFAULT_DECISION[r["status"]], "matcher"
             reactions.append({**r, "expectedness": final, "decided_by": source})
 
-        # Nothing left to judge once every reaction is excluded (e.g. all were
-        # lack of effect), so the case cannot be scored.
+        # Every reaction is a non-event (product complaint, lack of effect,
+        # usage term): there is no adverse event, so this is not a valid
+        # case. It is kept and labelled invalid, not dropped.
         if reactions and all(r["expectedness"] == "excluded" for r in reactions):
-            dropped.append(case_key(case))
+            relabelled.append(case_key(case))
+            labeled.append(
+                {
+                    **case,
+                    "reaction_expectedness": reactions,
+                    "valid": False,
+                    "missing_element": ["no_adverse_event"],
+                    "expectedness": None,
+                    "reporting_route": "follow_up_required",
+                    "due_date": None,
+                    "label_effective_time": labels[case["target_drug"]]["effective_time"],
+                    "label_note": NO_EVENT_NOTE,
+                }
+            )
             continue
 
         # Precedence: one unexpected reaction in a serious case is enough to
@@ -800,6 +838,8 @@ def finalize():
             {
                 **case,
                 "reaction_expectedness": reactions,
+                "valid": True,
+                "missing_element": None,
                 "expectedness": expectedness,
                 "reporting_route": route,
                 "due_date": due.isoformat() if due else None,
@@ -816,20 +856,20 @@ def finalize():
 
     LABELED.write_text(json.dumps(labeled, indent=2))
 
-    if dropped:
-        print(f"dropped {len(dropped)} cases with every reaction excluded:")
-        for report_id, drug in dropped:
+    if relabelled:
+        print(f"relabelled {len(relabelled)} cases invalid (no_adverse_event: every reaction is a non-event):")
+        for report_id, drug in relabelled:
             print(f"  {report_id}  {drug}")
         print()
 
-    routes = ["expedited_15_day", "periodic", "ambiguous"]
+    routes = ["expedited_15_day", "periodic", "ambiguous", "follow_up_required"]
     print(f"cases: {len(labeled)}")
-    print(f"  {'drug':13} " + " ".join(f"{r:>17}" for r in routes))
+    print(f"  {'drug':13} " + " ".join(f"{r:>18}" for r in routes))
     for drug in sorted({c["target_drug"] for c in labeled}):
         counts = Counter(c["reporting_route"] for c in labeled if c["target_drug"] == drug)
-        print(f"  {drug:13} " + " ".join(f"{counts[r]:>17}" for r in routes))
+        print(f"  {drug:13} " + " ".join(f"{counts[r]:>18}" for r in routes))
     totals = Counter(c["reporting_route"] for c in labeled)
-    print(f"  {'total':13} " + " ".join(f"{totals[r]:>17}" for r in routes))
+    print(f"  {'total':13} " + " ".join(f"{totals[r]:>18}" for r in routes))
     print(f"\nWrote {LABELED}")
 
 

@@ -48,8 +48,40 @@ def example_id(key):
     return str(uuid.uuid5(ID_NAMESPACE, key))
 
 
+def reference_from(case, duplicate_of=None, extra_missing=()):
+    """Reference outputs from a labelled case. missing_element is a list (a
+    report can miss more than one element); invalid cases carry no
+    seriousness, expectedness or due date."""
+    missing = list(case.get("missing_element") or []) + [m for m in extra_missing if m not in (case.get("missing_element") or [])]
+    valid = case.get("valid", True) and not missing
+    if not valid:
+        return {
+            "valid": False, "missing_element": sorted(missing), "is_serious": None,
+            "seriousness_criteria": None, "reaction_expectedness": None, "case_expectedness": None,
+            "reporting_route": "follow_up_required", "due_date": None, "duplicate_of": duplicate_of,
+        }
+    return {
+        "valid": True,
+        "missing_element": None,
+        "is_serious": case["is_serious"],
+        "seriousness_criteria": case["seriousness_criteria"],
+        "reaction_expectedness": [
+            {"term": x["term"], "expectedness": x["expectedness"]} for x in case["reaction_expectedness"]
+        ],
+        "case_expectedness": case["expectedness"],
+        # A duplicate is merged into the existing case: no new clock.
+        "reporting_route": "merge_with_existing" if duplicate_of else case["reporting_route"],
+        "due_date": None if duplicate_of else case["due_date"],
+        "duplicate_of": duplicate_of,
+    }
+
+
+def labeled_cases():
+    return {(c["safety_report_id"], c["target_drug"]): c for c in json.loads((DATA / "cases_labeled.json").read_text())}
+
+
 def real_examples():
-    labeled = {(c["safety_report_id"], c["target_drug"]): c for c in json.loads((DATA / "cases_labeled.json").read_text())}
+    labeled = labeled_cases()
     split = json.loads((DATA / "split.json").read_text())
     splits = {tuple(k): s for s in ("dev", "test") for k in split[s]}
 
@@ -62,19 +94,9 @@ def real_examples():
             "needs_review": r.get("needs_review", False),
             "split": splits[key],
             "inputs": {"header": r["header"], "narrative": r["narrative"]},
-            "outputs": {
-                "valid": True,
-                "missing_element": None,
-                "is_serious": case["is_serious"],
-                "seriousness_criteria": case["seriousness_criteria"],
-                "reaction_expectedness": [
-                    {"term": x["term"], "expectedness": x["expectedness"]} for x in case["reaction_expectedness"]
-                ],
-                "case_expectedness": case["expectedness"],
-                "reporting_route": case["reporting_route"],
-                "due_date": case["due_date"],
-                "duplicate_of": None,
-            },
+            # Message-level gaps (e.g. a patient-reporter who gives no name or
+            # contact) add to the case-level ones.
+            "outputs": reference_from(case, extra_missing=r.get("message_missing_elements", [])),
             "metadata": {
                 "safety_report_id": key[0],
                 "target_drug": key[1],
@@ -84,6 +106,7 @@ def real_examples():
                 "reviewed_by": r.get("reviewed_by", "automated_checks"),
                 "manual_edit": r.get("manual_edit", False),
                 "label_effective_time": case["label_effective_time"],
+                "label_note": case.get("label_note") or r.get("message_missing_note"),
             },
         })
     return out
@@ -93,25 +116,25 @@ def constructed_examples():
     path = DATA / "constructed_cases.jsonl"
     if not path.exists():
         return []
+    labeled = labeled_cases()
     out = []
     for r in map(json.loads, path.open()):
         key = r["answer_key"]
+        if r["constructed"] == "invalid":
+            # Fixed by construction.
+            missing = key["missing_element"]
+            outputs = reference_from({"valid": False, "missing_element": [missing] if isinstance(missing, str) else missing})
+        else:
+            # Duplicates and near-misses take their reference from the labelled
+            # case at upload time, so an answer-key change reaches them too.
+            case = labeled[tuple(r["source_case"])]
+            outputs = reference_from(case, duplicate_of=key["duplicate_of"])
         out.append({
             "key": r["example_id"],
             "needs_review": r.get("needs_review", False),
             "split": r["split"],
             "inputs": {"header": r["header"], "narrative": r["narrative"]},
-            "outputs": {
-                "valid": key["valid"],
-                "missing_element": key["missing_element"],
-                "is_serious": key["is_serious"],
-                "seriousness_criteria": key["seriousness_criteria"],
-                "reaction_expectedness": key["reaction_expectedness"],
-                "case_expectedness": key["case_expectedness"],
-                "reporting_route": key["reporting_route"],
-                "due_date": key["due_date"],
-                "duplicate_of": key["duplicate_of"],
-            },
+            "outputs": outputs,
             "metadata": {
                 "safety_report_id": r["safety_report_id"],
                 "target_drug": r["target_drug"],
@@ -121,6 +144,7 @@ def constructed_examples():
                 "reviewed_by": r.get("reviewed_by", "automated_checks"),
                 "manual_edit": r.get("manual_edit", False),
                 "label_effective_time": key["label_effective_time"],
+                "label_note": labeled.get(tuple(r["source_case"]), {}).get("label_note") if r["constructed"] != "invalid" else None,
                 "source_case": "-".join(r["source_case"]),
                 "near_miss_of": "-".join(r["near_miss_of"]) if r.get("near_miss_of") else None,
             },
@@ -170,6 +194,17 @@ def main():
     to_update = [payload(eid, e) for eid, e in wanted.items() if eid in existing and not unchanged(eid, e)]
     to_delete = [eid for eid in existing if eid not in wanted]
 
+    for u in to_update:
+        old, new = existing[u["id"]].outputs or {}, u["outputs"]
+        changes = {k: (old.get(k), new.get(k)) for k in new if old.get(k) != new.get(k)}
+        if changes:
+            print(f"reference changed: {u['metadata']['example_key']}")
+            for k, (a, b) in changes.items():
+                if k == "reaction_expectedness":
+                    a = "[...]" if a else a
+                    b = "[...]" if b else b
+                print(f"    {k}: {a} -> {b}")
+
     if to_create:
         client.create_examples(dataset_id=dataset.id, examples=to_create)
     if to_update:
@@ -191,7 +226,7 @@ def main():
     print(f"\ndataset: {DATASET}  ({len(wanted)} examples)")
     print(f"url: {getattr(dataset, 'url', None) or client._host_url + '/datasets/' + str(dataset.id)}")
     by = Counter((e["split"], e["outputs"]["reporting_route"]) for e in examples)
-    routes = ["expedited_15_day", "periodic", "follow_up_required"]
+    routes = ["expedited_15_day", "periodic", "follow_up_required", "merge_with_existing"]
     print(f"  {'split':6} " + " ".join(f"{r:>19}" for r in routes) + f" {'total':>7}")
     for split in ("dev", "test"):
         print(f"  {split:6} " + " ".join(f"{by[(split, r)]:>19}" for r in routes)
