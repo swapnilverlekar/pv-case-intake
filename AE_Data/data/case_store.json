@@ -1,0 +1,3214 @@
+[
+  {
+    "case_id": "20268910",
+    "receive_date": "2022-01-01",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage",
+      "Abdominal distension",
+      "Abdominal pain upper",
+      "Malaise",
+      "Product dose omission issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20269184",
+    "receive_date": "2022-01-01",
+    "patient_age": "46",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Nausea"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20269190",
+    "receive_date": "2022-01-01",
+    "patient_age": "61",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Eosinophilic pneumonia"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20269357",
+    "receive_date": "2022-01-01",
+    "patient_age": "54",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Liver disorder"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20269373",
+    "receive_date": "2022-01-01",
+    "patient_age": "79",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Atrial fibrillation",
+      "Malaise",
+      "Tremor",
+      "Sensation of foreign body",
+      "Asthenia",
+      "Vertigo",
+      "Dizziness",
+      "Chest pain",
+      "Hyperhidrosis"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20269400",
+    "receive_date": "2022-01-01",
+    "patient_age": "51",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Rhabdomyolysis"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20270632",
+    "receive_date": "2022-01-01",
+    "patient_age": "35",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Metabolic syndrome",
+      "Electrocardiogram QT prolonged",
+      "Erectile dysfunction",
+      "Myalgia",
+      "Treatment noncompliance"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20270632",
+    "receive_date": "2022-01-01",
+    "patient_age": "35",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Metabolic syndrome",
+      "Electrocardiogram QT prolonged",
+      "Erectile dysfunction",
+      "Myalgia",
+      "Treatment noncompliance"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20282258",
+    "receive_date": "2022-01-01",
+    "patient_age": "56",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Haemoglobin decreased"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20282292",
+    "receive_date": "2022-01-01",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Haemorrhage",
+      "Transfusion"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20282358",
+    "receive_date": "2022-01-01",
+    "patient_age": "51",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Swelling face",
+      "Angioedema"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20282389",
+    "receive_date": "2022-01-01",
+    "patient_age": "89",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Nausea",
+      "Vomiting",
+      "Gastric haemorrhage",
+      "Hypophagia"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20282769",
+    "receive_date": "2022-01-01",
+    "patient_age": "65",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Hyperkalaemia",
+      "Electrocardiogram T wave amplitude increased",
+      "Blood urea increased",
+      "Blood creatinine increased"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20282803",
+    "receive_date": "2022-01-01",
+    "patient_age": "26",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Anaphylactic reaction",
+      "Angioedema",
+      "Rash",
+      "Pruritus",
+      "Urticaria"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20282826",
+    "receive_date": "2022-01-01",
+    "patient_age": "84",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Hyponatraemia",
+      "Decreased appetite",
+      "Nausea",
+      "Vomiting",
+      "Dizziness",
+      "Hypophagia",
+      "Intentional product use issue"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20273500",
+    "receive_date": "2022-01-02",
+    "patient_age": "55",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Guillain-Barre syndrome"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20274547",
+    "receive_date": "2022-01-02",
+    "patient_age": "64",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Thrombosis"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20274757",
+    "receive_date": "2022-01-02",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Hypomagnesaemia",
+      "Generalised tonic-clonic seizure",
+      "Blood lactic acid increased",
+      "Hypokalaemia",
+      "Pneumonia aspiration",
+      "Postictal paralysis",
+      "Electrocardiogram QT prolonged",
+      "Hemiparesis",
+      "Facial asymmetry",
+      "Aphasia",
+      "Confusional state"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20277682",
+    "receive_date": "2022-01-02",
+    "patient_age": "14",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Substance abuse",
+      "Intentional product misuse",
+      "Asthenia",
+      "Headache"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20277758",
+    "receive_date": "2022-01-03",
+    "patient_age": "75",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Lactic acidosis",
+      "Creatinine renal clearance decreased"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20278030",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Arteritis infective",
+      "Visual impairment",
+      "Bone loss",
+      "Post procedural complication",
+      "COVID-19",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20278050",
+    "receive_date": "2022-01-03",
+    "patient_age": "80",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Atrial fibrillation"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20278088",
+    "receive_date": "2022-01-03",
+    "patient_age": "73",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Tachycardia",
+      "Vomiting",
+      "Diarrhoea"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20278189",
+    "receive_date": "2022-01-03",
+    "patient_age": "46",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Adverse drug reaction"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20278260",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Lactose intolerance"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20278419",
+    "receive_date": "2022-01-03",
+    "patient_age": "81",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Hypokalaemia",
+      "Renal failure",
+      "Dehydration"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20278489",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Macular degeneration",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20278542",
+    "receive_date": "2022-01-03",
+    "patient_age": "61",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Drug ineffective",
+      "Off label use",
+      "Treatment failure",
+      "Type 1 diabetes mellitus"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20278622",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Electrocardiogram QT prolonged",
+      "Schizoaffective disorder",
+      "Drug level increased",
+      "Drug interaction"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20278813",
+    "receive_date": "2022-01-03",
+    "patient_age": "59",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Dizziness"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20278930",
+    "receive_date": "2022-01-03",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Bronchiectasis",
+      "Fatigue",
+      "Malaise",
+      "Impaired gastric emptying",
+      "Injection site pain",
+      "Blood glucose increased",
+      "Blood glucose fluctuation",
+      "Polyuria",
+      "Pulmonary mass",
+      "Glycosylated haemoglobin increased",
+      "Vomiting",
+      "Nausea",
+      "Wrong technique in product usage process"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20278946",
+    "receive_date": "2022-01-03",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Lactic acidosis"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20279004",
+    "receive_date": "2022-01-03",
+    "patient_age": "59",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Muscle spasms",
+      "Vitamin B6 deficiency"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20279523",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Drug hypersensitivity",
+      "Blood pressure increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20279523",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Drug hypersensitivity",
+      "Blood pressure increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20279756",
+    "receive_date": "2022-01-03",
+    "patient_age": "69",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Diabetic metabolic decompensation"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20279929",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Sciatica",
+      "Dyspnoea",
+      "Dyspnoea",
+      "Pain",
+      "Pain",
+      "Gait disturbance",
+      "Hand deformity",
+      "Injection site reaction",
+      "Injection site reaction",
+      "Rheumatoid arthritis",
+      "Rheumatoid arthritis",
+      "Deformity",
+      "Deformity",
+      "Mobility decreased",
+      "Mobility decreased",
+      "Condition aggravated",
+      "Condition aggravated",
+      "Contraindicated product administered",
+      "Contraindicated product administered",
+      "Treatment failure",
+      "Treatment failure",
+      "Product use issue",
+      "Product use issue",
+      "Drug ineffective",
+      "Drug ineffective",
+      "Drug ineffective",
+      "Off label use",
+      "Off label use"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20280042",
+    "receive_date": "2022-01-03",
+    "patient_age": "70",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Tachycardia",
+      "Hypotension",
+      "Weight increased",
+      "Renal impairment",
+      "Fall",
+      "Cardiac arrest",
+      "Electrocardiogram abnormal",
+      "Apnoea",
+      "General physical health deterioration",
+      "Dyspnoea",
+      "Loss of consciousness"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20280044",
+    "receive_date": "2022-01-03",
+    "patient_age": "64",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Groin abscess",
+      "Product monitoring error"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20280410",
+    "receive_date": "2022-01-03",
+    "patient_age": "64",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Accidental overdose",
+      "Prerenal failure"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20280416",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Tachypnoea",
+      "Impaired quality of life",
+      "Cardiomegaly",
+      "Cardiac failure",
+      "Foetal exposure during pregnancy"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20281766",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Heart rate increased",
+      "Glycosylated haemoglobin increased",
+      "Blood glucose increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20281775",
+    "receive_date": "2022-01-03",
+    "patient_age": "21",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Dyspnoea",
+      "Lip swelling",
+      "Hypoaesthesia oral",
+      "Epistaxis"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20281949",
+    "receive_date": "2022-01-03",
+    "patient_age": "31",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Pre-eclampsia"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20281962",
+    "receive_date": "2022-01-03",
+    "patient_age": "53",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Abdominal discomfort",
+      "Aptyalism",
+      "Arthralgia",
+      "Back pain",
+      "Bone pain",
+      "Bowel movement irregularity",
+      "Brain cancer metastatic",
+      "Cataract",
+      "Choking sensation",
+      "Cholelithiasis",
+      "Choroid melanoma",
+      "Coccydynia",
+      "Cold sweat",
+      "Cough",
+      "Epistaxis",
+      "Eructation",
+      "Gallbladder disorder",
+      "Gastritis",
+      "Gastrointestinal haemorrhage",
+      "Gingival bleeding",
+      "Groin pain",
+      "Gastrointestinal motility disorder",
+      "Hyperaesthesia",
+      "Hypertonic bladder",
+      "Illness",
+      "Inflammation",
+      "Joint injury",
+      "Malignant neoplasm progression",
+      "Mass",
+      "Metastases to bone",
+      "Metastases to ovary",
+      "Metastases to stomach",
+      "Musculoskeletal pain",
+      "Nasopharyngitis",
+      "Nervousness",
+      "Nodule",
+      "Odynophagia",
+      "Osteoarthritis",
+      "Ovarian cyst",
+      "Ovarian cyst ruptured",
+      "Pain",
+      "Peripheral coldness",
+      "Pneumonia",
+      "Swelling",
+      "Urinary incontinence",
+      "Weight decreased",
+      "Hypotension",
+      "Blood pressure systolic decreased",
+      "Asthenia",
+      "Chest pain",
+      "Contusion",
+      "Dizziness",
+      "Fatigue",
+      "Gastroenteritis viral",
+      "Headache",
+      "Hypoaesthesia",
+      "Paraesthesia",
+      "Blood glucose decreased",
+      "Blood pressure diastolic increased",
+      "Blood pressure systolic increased",
+      "Blood pressure increased",
+      "Headache",
+      "Vomiting",
+      "Vomiting",
+      "Abdominal pain",
+      "Abdominal pain lower",
+      "Diarrhoea",
+      "Nausea",
+      "Nausea",
+      "Nausea",
+      "Drug ineffective",
+      "Product use in unapproved indication",
+      "Needle issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20282093",
+    "receive_date": "2022-01-03",
+    "patient_age": "1",
+    "patient_age_unit": "day",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Intestinal obstruction"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20282194",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Flatulence",
+      "Dyspepsia",
+      "Wrong technique in product usage process"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20282752",
+    "receive_date": "2022-01-03",
+    "patient_age": "69",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Diabetic metabolic decompensation",
+      "Decreased appetite"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20283167",
+    "receive_date": "2022-01-03",
+    "patient_age": "57",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Blood glucose increased",
+      "Glycosylated haemoglobin increased",
+      "Urinary tract infection",
+      "Nephrolithiasis",
+      "Treatment failure"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20286480",
+    "receive_date": "2022-01-03",
+    "patient_age": "55",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Withdrawal syndrome",
+      "Illness",
+      "Dizziness",
+      "Hyperhidrosis",
+      "Nausea",
+      "Anxiety",
+      "Product substitution issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20286481",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Hypersensitivity"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20286482",
+    "receive_date": "2022-01-03",
+    "patient_age": "28",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Paranoia",
+      "Suicidal ideation",
+      "Suicide attempt",
+      "Maternal exposure during pregnancy",
+      "Product substitution issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20286485",
+    "receive_date": "2022-01-03",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Urticaria",
+      "Product substitution issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20286501",
+    "receive_date": "2022-01-03",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Malignant neoplasm progression",
+      "Carcinoid tumour",
+      "Hepatic pain",
+      "Pancreatic carcinoma",
+      "Metastases to lung",
+      "Urinary bladder haemorrhage",
+      "Metastases to spine",
+      "Urinary tract infection",
+      "Fatigue",
+      "Feeling cold",
+      "Pancreatitis",
+      "Blood glucose increased",
+      "Blood pressure increased",
+      "Hypertension",
+      "Abdominal pain upper",
+      "Abdominal pain",
+      "Nausea",
+      "Incorrect route of product administration",
+      "Inappropriate schedule of product administration",
+      "Product dose omission issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20287966",
+    "receive_date": "2022-01-04",
+    "patient_age": "55",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Blood pressure inadequately controlled",
+      "Drug ineffective",
+      "Medication error",
+      "Product prescribing error"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20288782",
+    "receive_date": "2022-01-04",
+    "patient_age": "47",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Hypothyroidism",
+      "Face injury",
+      "Depression",
+      "Hypoaesthesia",
+      "Cognitive disorder",
+      "Stress",
+      "Nervousness",
+      "Emotional disorder",
+      "Hypoglycaemia",
+      "Gait disturbance",
+      "Balance disorder",
+      "Thyroid disorder",
+      "Frustration tolerance decreased",
+      "Panic disorder",
+      "Fear",
+      "Pain in extremity",
+      "Asthenia",
+      "Dizziness",
+      "Fall",
+      "Joint injury"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20288799",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Exposure during pregnancy"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20288827",
+    "receive_date": "2022-01-04",
+    "patient_age": "5",
+    "patient_age_unit": "day",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Seizure",
+      "Hydronephrosis",
+      "Meconium aspiration syndrome",
+      "Cryptorchism",
+      "Atrial septal defect",
+      "Patent ductus arteriosus",
+      "Tricuspid valve incompetence",
+      "Foetal exposure during pregnancy",
+      "Paraesthesia"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20288831",
+    "receive_date": "2022-01-04",
+    "patient_age": "57",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Toxic encephalopathy",
+      "Azotaemia",
+      "Metabolic acidosis"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20288867",
+    "receive_date": "2022-01-04",
+    "patient_age": "57",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Encephalopathy",
+      "Contraindicated product administered"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20288893",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Abdominal discomfort"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20288967",
+    "receive_date": "2022-01-04",
+    "patient_age": "5",
+    "patient_age_unit": "day",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Neonatal seizure",
+      "Meconium aspiration syndrome",
+      "Cryptorchism",
+      "Hydronephrosis",
+      "Atrial septal defect",
+      "Patent ductus arteriosus",
+      "Tricuspid valve incompetence",
+      "Central nervous system lesion",
+      "Asphyxia",
+      "Paraesthesia",
+      "Foetal exposure during pregnancy",
+      "Intraventricular haemorrhage neonatal",
+      "Haemorrhage"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20289076",
+    "receive_date": "2022-01-04",
+    "patient_age": "24",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Somnolence",
+      "Homicidal ideation",
+      "Irritability",
+      "Product use in unapproved indication",
+      "Off label use",
+      "Intrusive thoughts",
+      "Mood swings",
+      "Tachyphrenia",
+      "Feeling abnormal",
+      "Suicidal ideation",
+      "Anger",
+      "Agitation",
+      "Insomnia",
+      "Psychotic disorder",
+      "Nausea",
+      "Headache",
+      "Loss of libido",
+      "Paranoia",
+      "Hallucination, auditory",
+      "Suicide attempt",
+      "Hallucination, visual",
+      "Confusional state",
+      "Amnesia",
+      "Sedation",
+      "Aggression",
+      "Withdrawal syndrome"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20289079",
+    "receive_date": "2022-01-04",
+    "patient_age": "36",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Akathisia"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20289118",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Dialysis",
+      "Alopecia"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20289119",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Suicide attempt",
+      "Maternal exposure during pregnancy"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20289135",
+    "receive_date": "2022-01-04",
+    "patient_age": "50",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Nail pitting"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20289274",
+    "receive_date": "2022-01-04",
+    "patient_age": "16",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Abdominal distension",
+      "Abdominal pain",
+      "Nausea"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20289300",
+    "receive_date": "2022-01-04",
+    "patient_age": "26",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Gait disturbance",
+      "Fatigue"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20289350",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Aortic valve replacement",
+      "Adverse drug reaction"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20289370",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Asthma",
+      "Back pain",
+      "Blood pressure decreased",
+      "Blood pressure fluctuation",
+      "Blood pressure increased",
+      "Body temperature decreased",
+      "Cough",
+      "Dyspnoea",
+      "Ear infection",
+      "Heart rate decreased",
+      "Hypertension",
+      "Increased bronchial secretion",
+      "Malaise",
+      "Nasopharyngitis",
+      "Oesophagitis",
+      "Pain in extremity",
+      "Lumbar spinal stenosis",
+      "Wheezing",
+      "Asthma",
+      "Pain in extremity",
+      "Ear infection",
+      "Nausea",
+      "Vision blurred"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20289370",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Asthma",
+      "Back pain",
+      "Blood pressure decreased",
+      "Blood pressure fluctuation",
+      "Blood pressure increased",
+      "Body temperature decreased",
+      "Cough",
+      "Dyspnoea",
+      "Ear infection",
+      "Heart rate decreased",
+      "Hypertension",
+      "Increased bronchial secretion",
+      "Malaise",
+      "Nasopharyngitis",
+      "Oesophagitis",
+      "Pain in extremity",
+      "Lumbar spinal stenosis",
+      "Wheezing",
+      "Asthma",
+      "Pain in extremity",
+      "Ear infection",
+      "Nausea",
+      "Vision blurred"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20289588",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Depression",
+      "Drug interaction"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20289804",
+    "receive_date": "2022-01-04",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Condition aggravated",
+      "Deformity",
+      "Dyspnoea",
+      "Gait disturbance",
+      "Hand deformity",
+      "Mobility decreased",
+      "Pain",
+      "Rheumatoid arthritis",
+      "Sciatica",
+      "Injection site reaction",
+      "Drug ineffective",
+      "Contraindicated product administered",
+      "Product use issue",
+      "Treatment failure",
+      "Off label use"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20290023",
+    "receive_date": "2022-01-04",
+    "patient_age": "71",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Abdominal pain",
+      "Anaemia",
+      "Chronic sinusitis",
+      "Colitis",
+      "Colitis ulcerative",
+      "Constipation",
+      "Dyspepsia",
+      "Erythema",
+      "Female genital tract fistula",
+      "Frequent bowel movements",
+      "Haematochezia",
+      "Headache",
+      "Infusion related reaction",
+      "Malaise",
+      "Nausea",
+      "Oral candidiasis",
+      "Pain",
+      "Paraesthesia oral",
+      "Procedural pain",
+      "Proctitis",
+      "Pyrexia",
+      "Radiculopathy",
+      "Rectal haemorrhage",
+      "Vaginal flatulence",
+      "Vaginal discharge",
+      "Weight decreased",
+      "Macular degeneration",
+      "Off label use",
+      "Therapeutic product effect incomplete",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20290104",
+    "receive_date": "2022-01-04",
+    "patient_age": "67",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Underdose",
+      "Product adhesion issue",
+      "Product use issue",
+      "Wrong technique in product usage process"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20290106",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Balance disorder",
+      "Creatinine renal clearance decreased",
+      "Depressed level of consciousness",
+      "Fall",
+      "Hypotension",
+      "Mobility decreased",
+      "Pain",
+      "Sedation",
+      "Sedation complication",
+      "Toxicity to various agents",
+      "Cognitive disorder",
+      "Orthostatic hypotension",
+      "Blood calcium decreased",
+      "Constipation",
+      "Product use in unapproved indication",
+      "Multiple drug therapy"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20290383",
+    "receive_date": "2022-01-04",
+    "patient_age": "48",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Death",
+      "Intentional product misuse",
+      "Cardio-respiratory arrest"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20290640",
+    "receive_date": "2022-01-04",
+    "patient_age": "40",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "COVID-19 pneumonia",
+      "Azotaemia",
+      "Haemoptysis",
+      "Death",
+      "Respiratory failure",
+      "Dyspnoea",
+      "Atrial fibrillation"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20290779",
+    "receive_date": "2022-01-04",
+    "patient_age": "53",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Haematoma muscle",
+      "Nerve compression",
+      "Femoral nerve injury",
+      "Allodynia",
+      "Sensory loss"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20290885",
+    "receive_date": "2022-01-04",
+    "patient_age": "59",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Drug hypersensitivity",
+      "Muscle spasms"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20290982",
+    "receive_date": "2022-01-04",
+    "patient_age": "79",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Dizziness",
+      "Medication error",
+      "Nausea"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20291015",
+    "receive_date": "2022-01-04",
+    "patient_age": "64",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Thrombocytopenia",
+      "Hepatic cytolysis",
+      "Neutrophil count decreased"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20291245",
+    "receive_date": "2022-01-04",
+    "patient_age": "17",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Electroencephalogram abnormal",
+      "Seizure",
+      "Muscle tone disorder",
+      "Drug withdrawal syndrome",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20291254",
+    "receive_date": "2022-01-04",
+    "patient_age": "83",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Ischaemic stroke"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20291425",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Suicidal behaviour",
+      "Sopor",
+      "Drug abuse",
+      "Off label use"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20291464",
+    "receive_date": "2022-01-04",
+    "patient_age": "72",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Asthenia",
+      "Atrial fibrillation",
+      "Back pain",
+      "Blood pressure diastolic decreased",
+      "Blood pressure systolic decreased",
+      "Dyspnoea",
+      "Dysstasia",
+      "Feeling cold",
+      "Pain in jaw",
+      "Palpitations"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20291478",
+    "receive_date": "2022-01-04",
+    "patient_age": "48",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Hypotension",
+      "Dizziness"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20291590",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Macular degeneration",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20291594",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Bone erosion",
+      "Fatigue",
+      "Influenza like illness",
+      "Musculoskeletal stiffness",
+      "Pain",
+      "Psoriatic arthropathy",
+      "Tenosynovitis",
+      "C-reactive protein increased",
+      "Drug ineffective",
+      "Treatment failure",
+      "Incorrect route of product administration"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20291959",
+    "receive_date": "2022-01-04",
+    "patient_age": "54",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Abdominal pain upper",
+      "Arthritis",
+      "Blood glucose increased",
+      "Cardiac failure congestive",
+      "Chest pain",
+      "Diarrhoea",
+      "Eye haemorrhage",
+      "Headache",
+      "Malnutrition",
+      "Myalgia",
+      "Neuropathy peripheral",
+      "Pericardial effusion",
+      "Pulmonary oedema",
+      "Thyroid disorder",
+      "Weight decreased",
+      "Multi-organ disorder"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20292005",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Macular degeneration",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20292078",
+    "receive_date": "2022-01-04",
+    "patient_age": "76",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Cardiac failure",
+      "Cardiac amyloidosis"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20292080",
+    "receive_date": "2022-01-04",
+    "patient_age": "81",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Erectile dysfunction",
+      "Rhinorrhoea",
+      "Blood pressure increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20292106",
+    "receive_date": "2022-01-04",
+    "patient_age": "13",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Suicide attempt",
+      "Intentional product use issue",
+      "Hypertension",
+      "Tremor"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20292174",
+    "receive_date": "2022-01-04",
+    "patient_age": "65",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Angioedema",
+      "Brief resolved unexplained event"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20292212",
+    "receive_date": "2022-01-04",
+    "patient_age": "54",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Cardiac failure congestive",
+      "Eye haemorrhage",
+      "Pericardial effusion",
+      "Pulmonary oedema",
+      "Neuropathy peripheral",
+      "Abdominal pain upper",
+      "Arthritis",
+      "Chest pain",
+      "Diarrhoea",
+      "Headache",
+      "Malnutrition",
+      "Myalgia",
+      "Thyroid disorder",
+      "Weight decreased",
+      "Multi-organ disorder",
+      "Blood glucose increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20292300",
+    "receive_date": "2022-01-04",
+    "patient_age": "54",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Liver disorder"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20294934",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Death"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20295840",
+    "receive_date": "2022-01-04",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Neoplasm malignant",
+      "Intestinal obstruction"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20298142",
+    "receive_date": "2022-01-04",
+    "patient_age": "73",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Upper gastrointestinal haemorrhage",
+      "Anaemia"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20298146",
+    "receive_date": "2022-01-04",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage",
+      "Tachycardia",
+      "Haemoglobin decreased",
+      "Haemorrhoids",
+      "Rectal polyp",
+      "Large intestinal ulcer",
+      "Diverticulum intestinal",
+      "Therapy interrupted"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20298221",
+    "receive_date": "2022-01-04",
+    "patient_age": "49",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Transient ischaemic attack",
+      "Cerebrovascular accident",
+      "Anticoagulation drug level below therapeutic"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20299336",
+    "receive_date": "2022-01-04",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage",
+      "Shock haemorrhagic"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20296305",
+    "receive_date": "2022-01-05",
+    "patient_age": "84",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20296308",
+    "receive_date": "2022-01-05",
+    "patient_age": "60",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Serotonin syndrome",
+      "Rhabdomyolysis",
+      "Acute kidney injury",
+      "Respiratory failure",
+      "Pyrexia",
+      "Hypertension",
+      "Neuroleptic malignant syndrome",
+      "Seizure"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20296572",
+    "receive_date": "2022-01-05",
+    "patient_age": "15",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Vaginal haemorrhage"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20296644",
+    "receive_date": "2022-01-05",
+    "patient_age": "31",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Haemorrhagic hepatic cyst",
+      "Abdominal pain upper",
+      "Abdominal pain"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20296669",
+    "receive_date": "2022-01-05",
+    "patient_age": "83",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Atrial fibrillation",
+      "Labelled drug-drug interaction medication error",
+      "Hyperkalaemia"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20296792",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Maternal exposure during pregnancy",
+      "Delusion of parasitosis",
+      "Suicide attempt"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20296911",
+    "receive_date": "2022-01-05",
+    "patient_age": "5",
+    "patient_age_unit": "day",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Seizure",
+      "Cryptorchism",
+      "Hydronephrosis",
+      "Atrial septal defect",
+      "Patent ductus arteriosus",
+      "Tricuspid valve incompetence",
+      "Meconium aspiration syndrome",
+      "Foetal exposure during pregnancy",
+      "Paraesthesia",
+      "Hypotonia"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20297055",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Appetite disorder",
+      "Fall",
+      "Sleep disorder due to a general medical condition",
+      "Insomnia",
+      "Weight decreased",
+      "Heart sounds",
+      "Malaise",
+      "Depressive symptom",
+      "Wheezing",
+      "Rales",
+      "Chest discomfort",
+      "Dyspnoea exertional",
+      "Prolonged expiration",
+      "Angina pectoris",
+      "Asthma",
+      "Chest pain",
+      "Cough",
+      "Depressed mood",
+      "Dyspnoea",
+      "Flank pain",
+      "Influenza",
+      "Injury",
+      "Loss of personal independence in daily activities",
+      "Lower respiratory tract infection",
+      "Nasal congestion",
+      "Nasopharyngitis",
+      "Productive cough",
+      "Respiration abnormal",
+      "Rhinorrhoea",
+      "Stress",
+      "Upper respiratory tract infection",
+      "Pyrexia"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20297086",
+    "receive_date": "2022-01-05",
+    "patient_age": "77",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Arteriosclerosis"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20297263",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Malaise",
+      "Tremor",
+      "Atrial fibrillation",
+      "Sensation of foreign body",
+      "Chest pain",
+      "Hyperhidrosis",
+      "Vertigo",
+      "Dizziness",
+      "Asthenia"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20297508",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Abdominal distension"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20297763",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Dyspnoea",
+      "Blood pressure increased",
+      "Product use issue",
+      "Device use issue",
+      "Drug delivery system issue"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20297807",
+    "receive_date": "2022-01-05",
+    "patient_age": "30",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Cerebrovascular accident",
+      "Myocardial infarction",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20297823",
+    "receive_date": "2022-01-05",
+    "patient_age": "60",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Acute kidney injury",
+      "Rhabdomyolysis",
+      "Serotonin syndrome",
+      "Pyrexia",
+      "Respiratory failure",
+      "Hypertension",
+      "Neuroleptic malignant syndrome",
+      "Seizure"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20297831",
+    "receive_date": "2022-01-05",
+    "patient_age": "42",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Cough"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20297934",
+    "receive_date": "2022-01-05",
+    "patient_age": "77",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Cognitive disorder",
+      "Constipation",
+      "Fall",
+      "Hypotension",
+      "Orthostatic hypotension",
+      "Sedation",
+      "Toxicity to various agents",
+      "Blood calcium decreased",
+      "Creatinine renal clearance decreased",
+      "Depressed level of consciousness",
+      "Mobility decreased",
+      "Pain",
+      "Sedation complication",
+      "Balance disorder"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20298284",
+    "receive_date": "2022-01-05",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Eosinophilia",
+      "Full blood count abnormal",
+      "Middle insomnia",
+      "Obstructive airways disorder",
+      "Productive cough",
+      "Asthma"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20298510",
+    "receive_date": "2022-01-05",
+    "patient_age": "38",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Somnolence"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20298525",
+    "receive_date": "2022-01-05",
+    "patient_age": "70",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Sluggishness"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20298730",
+    "receive_date": "2022-01-05",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Eosinophilia",
+      "Full blood count abnormal",
+      "Middle insomnia",
+      "Obstructive airways disorder",
+      "Productive cough",
+      "Asthma"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20298881",
+    "receive_date": "2022-01-05",
+    "patient_age": "68",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Haemorrhage",
+      "Anticoagulation drug level above therapeutic",
+      "Asthenia",
+      "Dysphagia",
+      "Dysarthria",
+      "Cognitive disorder"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20298936",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Macular degeneration",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20299265",
+    "receive_date": "2022-01-05",
+    "patient_age": "52",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Immune-mediated myositis"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20299311",
+    "receive_date": "2022-01-05",
+    "patient_age": "17",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Encephalitis autoimmune",
+      "Drug withdrawal syndrome",
+      "Pneumonia aspiration",
+      "Drug ineffective",
+      "Product use in unapproved indication"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20299490",
+    "receive_date": "2022-01-05",
+    "patient_age": "17",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Encephalitis autoimmune",
+      "Drug withdrawal syndrome",
+      "Pneumonia aspiration",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20299648",
+    "receive_date": "2022-01-05",
+    "patient_age": "61",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Accelerated hypertension",
+      "Dizziness",
+      "Palpitations",
+      "Malaise"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20299690",
+    "receive_date": "2022-01-05",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Hepatic cytolysis"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20299699",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Drug hypersensitivity",
+      "Swelling",
+      "Hepatic failure",
+      "Renal failure",
+      "Condition aggravated",
+      "Joint stiffness",
+      "Fatigue"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20300188",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Abdominal discomfort",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "unknown"
+  },
+  {
+    "case_id": "20300227",
+    "receive_date": "2022-01-05",
+    "patient_age": "75",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Chest discomfort"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20300249",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Muscle rupture",
+      "Muscle spasms"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20300287",
+    "receive_date": "2022-01-05",
+    "patient_age": "77",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Liver injury",
+      "Off label use"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20301061",
+    "receive_date": "2022-01-05",
+    "patient_age": "67",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Necrotising myositis"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20301496",
+    "receive_date": "2022-01-05",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Dementia"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20304247",
+    "receive_date": "2022-01-05",
+    "patient_age": "60",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastric haemorrhage",
+      "Loss of consciousness"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20304900",
+    "receive_date": "2022-01-05",
+    "patient_age": "28",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20302910",
+    "receive_date": "2022-01-06",
+    "patient_age": "66",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Squamous cell carcinoma of skin",
+      "Basal cell carcinoma",
+      "Bowen^s disease",
+      "Actinic keratosis"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20304190",
+    "receive_date": "2022-01-06",
+    "patient_age": "23",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "sertraline",
+    "reaction_terms": [
+      "Nervousness",
+      "Dizziness",
+      "Product dose omission issue",
+      "Disturbance in attention",
+      "Asthenia"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20304313",
+    "receive_date": "2022-01-06",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Hepatic cytolysis"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20304913",
+    "receive_date": "2022-01-06",
+    "patient_age": "76",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Cardiac ventricular disorder",
+      "Blood creatinine increased",
+      "Dyspnoea exertional"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20305057",
+    "receive_date": "2022-01-06",
+    "patient_age": "81",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Suspected suicide"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20305409",
+    "receive_date": "2022-01-06",
+    "patient_age": "42",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Mental disorder",
+      "Thyroid disorder",
+      "Gastrooesophageal reflux disease",
+      "Drug ineffective",
+      "Blood glucose increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20305864",
+    "receive_date": "2022-01-06",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Weight increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20306658",
+    "receive_date": "2022-01-06",
+    "patient_age": "68",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Cerebral haemorrhage",
+      "Cognitive disorder",
+      "Cerebral mass effect",
+      "Dysarthria",
+      "Dysphagia"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20306676",
+    "receive_date": "2022-01-06",
+    "patient_age": "71",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Cardiac pacemaker insertion",
+      "Deep vein thrombosis",
+      "Aortic aneurysm",
+      "Heart rate increased",
+      "Chest discomfort",
+      "Dyspnoea",
+      "Palpitations",
+      "Nasopharyngitis",
+      "Chest pain",
+      "Back pain",
+      "Headache",
+      "Dizziness",
+      "White blood cell count increased",
+      "Neutrophil count decreased",
+      "Lymphocyte count increased",
+      "Lymphocyte morphology abnormal",
+      "Adrenal adenoma",
+      "Renal cyst",
+      "Axillary mass",
+      "Splenomegaly",
+      "Drug intolerance",
+      "Influenza like illness",
+      "Limb discomfort",
+      "Angiopathy",
+      "Capillary permeability increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20309026",
+    "receive_date": "2022-01-06",
+    "patient_age": "34",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Hypersensitivity",
+      "Rash"
+    ],
+    "reporter_qualification": "unknown"
+  },
+  {
+    "case_id": "20307064",
+    "receive_date": "2022-01-07",
+    "patient_age": "91",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Chest wall haematoma"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20308583",
+    "receive_date": "2022-01-07",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "metformin",
+    "reaction_terms": [
+      "Decreased appetite",
+      "Nausea",
+      "Blood glucose increased",
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20309200",
+    "receive_date": "2022-01-07",
+    "patient_age": "82",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Orthostatic hypotension",
+      "International normalised ratio increased"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20309613",
+    "receive_date": "2022-01-07",
+    "patient_age": "49",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Ocular icterus",
+      "Sluggishness",
+      "Malaise"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20311226",
+    "receive_date": "2022-01-07",
+    "patient_age": "53",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Bronchiectasis",
+      "Colitis ulcerative",
+      "Deep vein thrombosis",
+      "Condition aggravated",
+      "Drug ineffective",
+      "Frequent bowel movements",
+      "Impaired quality of life",
+      "Loss of personal independence in daily activities",
+      "Off label use",
+      "Weight decreased",
+      "Product use in unapproved indication"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20311497",
+    "receive_date": "2022-01-08",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20313247",
+    "receive_date": "2022-01-10",
+    "patient_age": "84",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20315795",
+    "receive_date": "2022-01-10",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Dizziness",
+      "Dyspnoea",
+      "Dizziness",
+      "Constipation"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20315862",
+    "receive_date": "2022-01-10",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Neuropathy peripheral",
+      "Haematoma muscle"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20315868",
+    "receive_date": "2022-01-10",
+    "patient_age": "82",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Orthostatic hypotension",
+      "International normalised ratio increased"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20316497",
+    "receive_date": "2022-01-10",
+    "patient_age": "19",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Completed suicide",
+      "Cardio-respiratory arrest"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20316813",
+    "receive_date": "2022-01-10",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Internal haemorrhage",
+      "Malaise",
+      "Dizziness",
+      "Decreased appetite"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20317242",
+    "receive_date": "2022-01-10",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Ischaemic cardiomyopathy",
+      "Thyroid disorder",
+      "Taste disorder"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20317287",
+    "receive_date": "2022-01-10",
+    "patient_age": "31",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Cerebral haematoma",
+      "Hydrocephalus",
+      "Cerebral mass effect",
+      "Cerebral haemorrhage",
+      "Subarachnoid haemorrhage",
+      "Mesenteric haematoma"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20318323",
+    "receive_date": "2022-01-10",
+    "patient_age": "64",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Aphasia",
+      "Myalgia",
+      "Hepatic enzyme increased"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20318883",
+    "receive_date": "2022-01-10",
+    "patient_age": "82",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "International normalised ratio increased",
+      "Orthostatic hypotension"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20318896",
+    "receive_date": "2022-01-10",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Injection site bruising",
+      "Rash",
+      "Skin discolouration"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20319019",
+    "receive_date": "2022-01-10",
+    "patient_age": "44",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Colectomy",
+      "Crohn^s disease",
+      "Autoimmune hepatitis",
+      "Cholangitis sclerosing",
+      "Drug hypersensitivity",
+      "Cerebrovascular accident",
+      "Drug ineffective",
+      "Hepatic cirrhosis",
+      "Intestinal anastomosis",
+      "Serum ferritin increased",
+      "Blood alkaline phosphatase increased",
+      "Gamma-glutamyltransferase increased",
+      "Aspartate aminotransferase increased",
+      "Alanine aminotransferase increased",
+      "Platelet count increased",
+      "Laparotomy",
+      "Ileostomy",
+      "Faecal calprotectin increased",
+      "Nausea",
+      "Vomiting",
+      "Cerebral venous sinus thrombosis",
+      "Bowel movement irregularity",
+      "Drug ineffective",
+      "Red blood cell sedimentation rate increased",
+      "Red blood cell sedimentation rate increased",
+      "Arthritis"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20320117",
+    "receive_date": "2022-01-11",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20320743",
+    "receive_date": "2022-01-11",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "International normalised ratio increased",
+      "Orthostatic hypotension"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20321074",
+    "receive_date": "2022-01-11",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Dyspnoea"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20321472",
+    "receive_date": "2022-01-11",
+    "patient_age": "48",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Haemorrhage",
+      "International normalised ratio increased"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20321508",
+    "receive_date": "2022-01-11",
+    "patient_age": "63",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Melaena"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20321855",
+    "receive_date": "2022-01-11",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Product packaging quantity issue",
+      "Product label issue",
+      "Product dose omission issue",
+      "No adverse event"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20322932",
+    "receive_date": "2022-01-11",
+    "patient_age": "84",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Gastrointestinal haemorrhage"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20323511",
+    "receive_date": "2022-01-11",
+    "patient_age": "53",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Headache",
+      "Urticaria",
+      "Pruritus"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20324413",
+    "receive_date": "2022-01-11",
+    "patient_age": "69",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Muscular weakness"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20324977",
+    "receive_date": "2022-01-11",
+    "patient_age": "80",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Abdominal distension",
+      "Appendicitis",
+      "Appendicolith",
+      "Ascites",
+      "Blood phosphorus increased",
+      "Blood cholesterol increased",
+      "Blood uric acid increased",
+      "Cardiogenic shock",
+      "Condition aggravated",
+      "Constipation",
+      "Death",
+      "Dry mouth",
+      "General physical health deterioration",
+      "Hyponatraemia",
+      "Multiple organ dysfunction syndrome",
+      "Myasthenia gravis",
+      "Sepsis",
+      "Somnolence",
+      "Stress",
+      "Ventricular fibrillation",
+      "Abdominal pain",
+      "Nausea",
+      "Vomiting",
+      "Off label use"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20325302",
+    "receive_date": "2022-01-12",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Orthostatic hypotension",
+      "International normalised ratio increased"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20327766",
+    "receive_date": "2022-01-12",
+    "patient_age": "71",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Headache"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20328474",
+    "receive_date": "2022-01-12",
+    "patient_age": "66",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Angioedema"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20328504",
+    "receive_date": "2022-01-12",
+    "patient_age": "75",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Angioedema",
+      "Urticaria",
+      "Pruritus",
+      "Herpes zoster"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20329129",
+    "receive_date": "2022-01-12",
+    "patient_age": "79",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Dizziness",
+      "Inappropriate schedule of product administration"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20331336",
+    "receive_date": "2022-01-12",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "atorvastatin",
+    "reaction_terms": [
+      "Therapy interrupted",
+      "Spinal operation",
+      "Hip surgery",
+      "Limb operation",
+      "Pain"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20332096",
+    "receive_date": "2022-01-13",
+    "patient_age": "77",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Balance disorder",
+      "Gait disturbance",
+      "Alopecia",
+      "Memory impairment",
+      "Feeling cold",
+      "Dizziness"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20334290",
+    "receive_date": "2022-01-14",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "lisinopril",
+    "reaction_terms": [
+      "Throat irritation",
+      "Dizziness",
+      "Colitis",
+      "Weight decreased",
+      "Cough",
+      "Inappropriate schedule of product administration"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20345021",
+    "receive_date": "2022-01-18",
+    "patient_age": "76",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Hyponatraemia",
+      "Headache",
+      "Nausea",
+      "Vomiting"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20345607",
+    "receive_date": "2022-01-18",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Infusion site haemorrhage",
+      "International normalised ratio fluctuation"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20345652",
+    "receive_date": "2022-01-18",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Thyroid function test abnormal"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20349133",
+    "receive_date": "2022-01-19",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Poor quality product administered",
+      "Product physical consistency issue",
+      "Product substitution issue",
+      "No adverse event"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20356074",
+    "receive_date": "2022-01-20",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Eye disorder"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20356076",
+    "receive_date": "2022-01-20",
+    "patient_age": "84",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Drug ineffective"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20357539",
+    "receive_date": "2022-01-20",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "unknown",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Transcription medication error",
+      "Intercepted product dispensing error"
+    ],
+    "reporter_qualification": "pharmacist"
+  },
+  {
+    "case_id": "20362145",
+    "receive_date": "2022-01-21",
+    "patient_age": "88",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "levothyroxine",
+    "reaction_terms": [
+      "Drug hypersensitivity",
+      "Face oedema",
+      "Oedema peripheral"
+    ],
+    "reporter_qualification": "physician"
+  },
+  {
+    "case_id": "20373853",
+    "receive_date": "2022-01-25",
+    "patient_age": "36",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Infusion site haemorrhage",
+      "Infusion site pain",
+      "Infusion site extravasation"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20381602",
+    "receive_date": "2022-01-27",
+    "patient_age": "62",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Memory impairment",
+      "Weight fluctuation",
+      "Hypotension",
+      "Blood glucose increased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20391245",
+    "receive_date": "2022-01-28",
+    "patient_age": null,
+    "patient_age_unit": null,
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Somnambulism",
+      "International normalised ratio decreased"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20406669",
+    "receive_date": "2022-01-31",
+    "patient_age": "72",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "International normalised ratio increased"
+    ],
+    "reporter_qualification": "other health professional"
+  },
+  {
+    "case_id": "20410513",
+    "receive_date": "2022-02-01",
+    "patient_age": "8",
+    "patient_age_unit": "year",
+    "patient_sex": "female",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Somnambulism",
+      "International normalised ratio decreased",
+      "Off label use",
+      "Overdose"
+    ],
+    "reporter_qualification": "consumer or other non-health professional"
+  },
+  {
+    "case_id": "20411240",
+    "receive_date": "2022-02-01",
+    "patient_age": "74",
+    "patient_age_unit": "year",
+    "patient_sex": "male",
+    "target_drug": "warfarin",
+    "reaction_terms": [
+      "Iron deficiency anaemia"
+    ],
+    "reporter_qualification": "pharmacist"
+  }
+]

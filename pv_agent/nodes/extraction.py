@@ -8,10 +8,9 @@ whose quote is not literally in the message is dropped and logged.
 import re
 from typing import Literal
 
-from langchain_anthropic import ChatAnthropic
 from pydantic import BaseModel, Field
 
-from pv_agent import config
+from pv_agent.llm import is_quote_of, structured
 from pv_agent.nodes.normalize import match
 
 QUOTE = "Exact words copied from the message that state this, or null if the message does not say it."
@@ -68,7 +67,11 @@ class Extraction(BaseModel):
     patient: Patient
     reporter: Reporter
     products: list[Product] = Field(description="Every drug the message names or describes, including vague ones ('some blood pressure pill').")
-    reactions: list[Reaction] = Field(description="Every health effect on the patient. NOT product complaints (appearance, packaging, price) and not statements that the patient is fine.")
+    reactions: list[Reaction] = Field(description=(
+        "Every adverse event: symptoms, diagnoses, abnormal findings. NOT outcomes or consequences of an "
+        "event (death, hospital admission, recovery, treatment given) -- those are assessed separately. "
+        "Exception: if the patient died and no cause or other event is given, record the death as the event. "
+        "NOT product complaints (appearance, packaging, price) and not statements that the patient is fine."))
 
 
 SYSTEM = """You extract evidence from an adverse event intake message for a drug safety team.
@@ -78,29 +81,9 @@ Extract only what the message says. Never infer, guess, or add anything. If the 
 For every value, give the exact words from the message it came from, copied character for character, as a short span (a phrase or one sentence). No quote, no value."""
 
 
-def model():
-    llm = ChatAnthropic(
-        model=config.MODEL,
-        max_tokens=config.MAX_TOKENS,
-        output_config={"effort": config.EFFORT},
-        betas=["server-side-fallback-2026-07-01"],
-        model_kwargs={"fallbacks": "default"},
-        # gzip only: Anaconda's Brotli 1.0.9 breaks the SDK's response decoding.
-        default_headers={"Accept-Encoding": "gzip"},
-    )
-    return llm.with_structured_output(Extraction, method="json_schema")
-
-
 # ------------------------------------------------------- grounding (code)
 
-
-def norm(text):
-    text = (text or "").replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
-    return " ".join(text.lower().split())
-
-
-def grounded(quote, message):
-    return bool(quote) and norm(quote) in norm(message)
+grounded = is_quote_of
 
 
 def sentence_naming(name, message):
@@ -176,6 +159,6 @@ def enforce_quotes(ex, message):
 
 def extraction(state):
     message = state["narrative"]
-    result = model().invoke([("system", SYSTEM), ("human", f"Message:\n\n{message}")])
+    result = structured(Extraction).invoke([("system", SYSTEM), ("human", f"Message:\n\n{message}")])
     cleaned, rejected = enforce_quotes(result, message)
     return {"extraction": cleaned, "rejected_evidence": rejected}

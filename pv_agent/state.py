@@ -36,4 +36,13 @@ class CaseState(TypedDict, total=False):
     valid: bool
     missing_elements: list[str]
     validity_basis: dict
+
+    # specialists, in parallel -- each writes only its own key
+    seriousness: dict           # per criterion: met + quote; is_serious computed in code
+    expectedness: dict          # per reaction: expected/unexpected/not_applicable + label quote
+    duplicate: dict             # candidates considered, duplicate_of, reasoning
+
+    # clock (code)
     route: str
+    due_date: str | None
+    clock_basis: str

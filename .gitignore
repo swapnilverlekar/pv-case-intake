@@ -18,6 +18,8 @@ CLAUDE.md
 !**/data/cases_labeled.json
 # The dev/test split must never move under prompt iteration.
 !**/data/split.json
+# The agent's case store (no answer key in it) is an agent input.
+!**/data/case_store.json
 
 # Python
 __pycache__/
