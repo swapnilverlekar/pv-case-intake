@@ -81,7 +81,14 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
   - **near_miss (5, test):** REAL labelled cases (same drug, same sex, age within 5 y as a narrated case, no shared reactions). Key: their own, `duplicate_of=null`.
   - The fidelity check is shown a constructed case's special instruction, so content the writer was told to produce isn't flagged. One false positive cleared by Claude (`reviewed_by: claude_verified`, with a `review_note`).
 - [x] Push dataset to LangSmith — `AE_Data/upload_dataset.py` → dataset **`pv-case-intake`**, **107 examples: dev 30 (9 expedited / 16 periodic / 5 follow-up), test 77 (25 / 42 / 10)**. Local files are the source of truth; never edit in the UI. Deterministic example ids (uuid5 of the case key) → a re-run updates the same dataset (new version), tagged `git-<commit>`. `needs_review` records are never uploaded.
-- [ ] Build the agent system
+- [~] Build the agent system — package `pv_agent/` (LangGraph v1 `StateGraph`, `langchain-anthropic`, model in `pv_agent/config.py`). The agent's only inputs are the message (header + narrative) and the cached labels (`labels.py` refuses any other path); run scripts pass `agent_inputs()` only, never reference outputs.
+  - [x] **Story 1: intake → extraction → product normalization → validity gate.** `python -m pv_agent.run_one <example_key>` (dev only), `python -m pv_agent.run_dev_validity`.
+    - intake (code): receipt timestamp from the header's `Received:` line; the state reducer makes it write-once (a changed value raises).
+    - extraction (one structured LLM call, `method="json_schema"` — Sonnet 5.5 rejects forced tool choice): patient, reporter, products, reactions, each with a verbatim quote. Code enforces "no quote, no value" and logs drops in `rejected_evidence`; a product's quote may be code-located (`quote_source: code_located`) when the message names one of our drugs.
+    - normalization (code): label generic/brand names + `BRAND_ALIASES` (other US brands of the same ingredient), whole-word, longest match.
+    - validity gate (code): patient = specific reference, age or sex; reporter = name, contact, **or stated HCP qualification (ICH E2D)**; suspect drug = one of our six, suspect unless the reporter explicitly rules it out (MAH convention); ≥1 event. invalid → `follow_up_required`, valid → `pending_assessment`.
+    - Dev result: 26/30 valid and missing_element. 3 of the 4 misses are **answer-key defects**: 20321855 (and its duplicate) and 20349133 are product complaints whose FAERS terms include "No adverse event", but product-issue terms ("Product label issue", "Poor quality product administered", ...) slipped past `NON_EVENT_PATTERNS`, so the key says valid. Not yet fixed. 1 agent miss: INV-20304190, where the relaying hairdresser's "She" was taken as the patient's sex.
+  - [ ] Story 2: specialists, clock, routing, human gate. [ ] Story 3: follow-up planner.
 - [ ] Evaluators and experiments
 
 ## Conventions

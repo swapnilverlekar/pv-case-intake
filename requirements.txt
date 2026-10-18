@@ -3,6 +3,8 @@ requests>=2.32
 python-dotenv>=0.21
 
 # agent system, tracing and evals
-langchain>=0.3
-langgraph>=0.2
-langsmith>=0.2
+langchain>=1.0
+langgraph>=1.0
+langchain-anthropic>=1.0
+anthropic>=1.8
+langsmith>=0.14
