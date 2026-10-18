@@ -3,6 +3,7 @@
 .env.local
 *.key
 secrets/
+CLAUDE.md
 
 # Pulled data. Large, regenerable from pull_faers.py, and it bloats the repo.
 # Labels (data/raw/label_*.json) and summary.txt stay tracked: labels pin the
