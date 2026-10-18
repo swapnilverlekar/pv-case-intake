@@ -32,7 +32,11 @@ DUPLICATE_AGE_TOLERANCE_YEARS = 2
 
 EXPEDITED_DAYS = 15  # 21 CFR 314.80(c)(1): serious AND unexpected -> 15 calendar days
 
-STORY = 2
+STORY = 3
+
+# Production records (gitignored): case files, append-only audit log,
+# reviewer corrections, follow-up outbox.
+RUNTIME = REPO / "runtime"
 
 # Other US brand names for the same active ingredients (openFDA brand_name).
 # The cached labels only carry their own brand (Zestril, Lipitor, ...), but a

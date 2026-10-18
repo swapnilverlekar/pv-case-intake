@@ -1,5 +1,6 @@
 """Graph state. The receipt timestamp is write-once: no node can change it after intake."""
 
+import operator
 from typing import Annotated, Any, TypedDict
 
 
@@ -46,3 +47,16 @@ class CaseState(TypedDict, total=False):
     route: str
     due_date: str | None
     clock_basis: str
+
+    # review routing (code) and sign-off (human, interrupt)
+    review_required: bool
+    review_reasons: list[str]
+    final: dict                 # the determinations committed: agent's, or reviewer-corrected
+    review: dict                # who reviewed, action, reason_code, note
+
+    # follow-up planner (agent) and its review (human, interrupt)
+    followup: dict
+    followup_review: dict
+
+    # audit events gathered along the way; the commit node writes them once
+    audit_events: Annotated[list[dict], operator.add]

@@ -101,7 +101,15 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
     - clock (code): duplicate → `merge_with_existing`; not serious → periodic; serious + any unexpected → `expedited_15_day`, due = receipt date + 15; else periodic.
     - Extraction fix found by the metformin lactic-acidosis death: outcomes (death, admission, recovery, treatment) are NOT reactions — "she died" as a reaction made an expected fatal lactic acidosis look unexpected.
     - Dev: route 28/30, **expedited recall 6/7, precision 6/6**, is_serious 22/22, due date 6/6, duplicate_of 4/5 (the miss is DUP-20321855, an invalid report — the gate fires before the duplicate check, by design). Misses: 20282292 (key says "Transfusion" is an unexpected reaction; the agent treats it as treatment — arguably a key issue) and 20328474 (agent merges with 20292174: same pharmacist-reported 65/66 M lisinopril angioedema 8 days earlier — a plausible real FAERS duplicate the key doesn't mark).
-  - [ ] Story 3: follow-up planner (the only agent). [ ] Human sign-off gate + audit log.
+  - [x] **Story 3: human checkpoints, follow-up agent, audit.**
+    - review routing (code): pause for a human if serious (either route), any `needs_review`, a suspected duplicate (never merged automatically), or an intake error; otherwise auto-commit ("auto_committed, sampled QC in production").
+    - case sign-off (LangGraph `interrupt`): payload lists flags first, then route/due date/days remaining, each seriousness criterion with its quote, each reaction with label quote and reasoning, the duplicate candidate. Resume: `approve`, or `correct` with `reason_code` (seriousness_wrong / expectedness_wrong / duplicate_wrong / extraction_wrong / other), note and reviewer; invalid responses re-interrupt with the errors. On correction, `decide_route()` (the same code as the clock) recomputes route and due date; the receipt timestamp is never touched.
+    - follow-up planner — **the one real agent** (`langchain.agents.create_agent`), only on `follow_up_required`: tools `get_case_facts`, `get_missing_elements`, `get_reporter_channel`, `draft_followup_message`; the model chooses the calls and the questions. Then an interrupt: approve / edit / reject. Approved → `runtime/outbox/<thread>.json` (`sent: false`, no real email).
+    - records (`runtime/`, gitignored), written ONLY by the `commit` node, once per case (interrupts re-run their node, so nodes gather `audit_events` in state): `cases/<thread_id>.json`, append-only `audit_log.jsonl` (timestamp, actor, action, before/after, reason_code, label effective_time, model, prompt-version hashes), `corrections.jsonl` (dataset-example shape), `outbox/`.
+    - eval mode: `configurable.eval_mode=true` skips both interrupts, commits the agent's own decisions, writes nothing to runtime/. Run scripts use it; default off.
+    - Studio: `langgraph.json` → `langgraph dev` (graph `pv_intake`). Demos: `python -m pv_agent.demo_signoff`, `python -m pv_agent.demo_followup` (SQLite checkpointer `runtime/checkpoints.sqlite`, thread per run).
+    - Dev (eval mode, after the Story-3 answer-key fixes): route 29/30, expedited recall 6/6, precision 6/6, is_serious 22/22, due date 6/6; only miss is the disputed 20328474.
+  - [ ] Evaluators and experiments on the test split.
 - [ ] Evaluators and experiments
 
 ## Conventions

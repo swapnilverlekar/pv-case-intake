@@ -4,6 +4,8 @@
     python -m pv_agent.run_one INV-20278030-levothyroxine
 
 Refuses test-split examples: the test set is only for final numbers.
+Runs in eval_mode (no human interrupts). For the sign-off and follow-up flows
+see demo_signoff.py and demo_followup.py.
 """
 
 import json
@@ -23,10 +25,10 @@ def main():
     meta = example.metadata
     state = build_graph().invoke(
         agent_inputs(example.inputs),
-        config=run_config(meta.get("example_key"), meta.get("safety_report_id")),
+        config=run_config(meta.get("example_key"), meta.get("safety_report_id"), eval_mode=True),
     )
     print(f"example {meta['example_key']} ({split_of(example)}, constructed={meta.get('constructed')})\n")
-    print(json.dumps({k: v for k, v in state.items() if k not in ("header", "narrative")}, indent=2, ensure_ascii=False))
+    print(json.dumps({k: v for k, v in state.items() if k not in ("header", "narrative", "audit_events")}, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

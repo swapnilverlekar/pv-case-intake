@@ -1,5 +1,6 @@
 """Quick check of routes on the dev split. Reads reference outputs to score;
-the agent gets agent_inputs() only. Not the real evaluator.
+the agent gets agent_inputs() only. Runs in eval_mode (no interrupts: the
+agent's own decisions are scored, not a reviewer's). Not the real evaluator.
 
     python -m pv_agent.run_dev_route
 """
@@ -42,7 +43,7 @@ def main():
     dev = sorted(examples("dev"), key=lambda e: e.metadata["example_key"])
     states = build_graph().batch(
         [agent_inputs(e.inputs) for e in dev],
-        config=[run_config(e.metadata["example_key"], e.metadata.get("safety_report_id")) for e in dev],
+        config=[run_config(e.metadata["example_key"], e.metadata.get("safety_report_id"), eval_mode=True) for e in dev],
         max_concurrency=6,
     )
     pairs = [(e, e.outputs, s) for e, s in zip(dev, states)]

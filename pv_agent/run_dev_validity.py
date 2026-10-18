@@ -15,7 +15,7 @@ def main():
     graph = build_graph()
     states = graph.batch(
         [agent_inputs(e.inputs) for e in dev],
-        config=[run_config(e.metadata["example_key"], e.metadata.get("safety_report_id")) for e in dev],
+        config=[run_config(e.metadata["example_key"], e.metadata.get("safety_report_id"), eval_mode=True) for e in dev],
         max_concurrency=6,
     )
 

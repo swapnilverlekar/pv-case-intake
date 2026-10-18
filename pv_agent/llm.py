@@ -5,6 +5,18 @@ from langchain_anthropic import ChatAnthropic
 from pv_agent import config
 
 
+def chat():
+    """The plain chat model (tool calling for the follow-up planner)."""
+    return ChatAnthropic(
+        model=config.MODEL,
+        max_tokens=config.MAX_TOKENS,
+        output_config={"effort": config.EFFORT},
+        betas=["server-side-fallback-2026-07-01"],
+        model_kwargs={"fallbacks": "default"},
+        default_headers={"Accept-Encoding": "gzip"},
+    )
+
+
 def structured(schema):
     """A model call that returns `schema` via native structured output.
     (json_schema, not tool calling: Sonnet 5.5 rejects forced tool choice.)"""
