@@ -167,7 +167,41 @@ NON_EVENT_PATTERNS = [
     "wrong product",
     "administration error",
     "transfusion",
+    # Usage terms, not reactions (rule change after Story 3).
+    "multiple drug therapy",
+    "therapy interrupted",
+    "treatment noncompliance",
 ]
+
+# Procedures: excluded ONLY when the same case also codes the condition the
+# procedure treats. A procedure with no coded condition is the only trace of
+# a serious event (dialysis -> kidney failure), so it stays an event:
+# excluding it would wrongly downgrade a 15-day case. Conditions are matched
+# as lowercase substrings of the case's other reaction terms.
+PROCEDURE_TREATS = {
+    "Dialysis": ["renal failure", "kidney injury", "renal impairment", "renal insufficiency",
+                 "end stage renal", "azotaemia", "uraemia", "nephropathy"],
+    "Colectomy": ["crohn", "colitis", "colon cancer", "colorectal", "intestinal obstruction",
+                  "bowel obstruction", "perforation", "diverticulitis", "intestinal ischaemia"],
+    "Ileostomy": ["crohn", "colitis", "colon cancer", "colorectal", "intestinal obstruction",
+                  "bowel obstruction", "perforation", "diverticulitis", "intestinal ischaemia"],
+    "Laparotomy": ["crohn", "colitis", "peritonitis", "perforation", "intestinal obstruction",
+                   "bowel obstruction", "abdominal haemorrhage", "appendicitis", "intestinal ischaemia"],
+    "Hip surgery": ["hip fracture", "femur fracture", "femoral neck fracture", "osteoarthritis", "osteonecrosis"],
+    "Limb operation": ["fracture", "limb ischaemia", "gangrene", "compartment syndrome"],
+    "Spinal operation": ["spinal stenosis", "intervertebral disc", "spinal fracture", "radiculopathy", "spondyl"],
+    "Aortic valve replacement": ["aortic stenosis", "aortic valve", "endocarditis", "valve incompetence"],
+    "Cardiac pacemaker insertion": ["bradycardia", "atrioventricular block", "sick sinus", "heart block", "bradyarrhythmia"],
+}
+
+
+def procedure_condition(term, case_terms):
+    """The coded condition this procedure treats, or None (keep it as an event)."""
+    for condition in PROCEDURE_TREATS.get(term, []):
+        for other in case_terms:
+            if other != term and condition in other.lower():
+                return other
+    return None
 
 # Eval candidate selection.
 MAX_REACTIONS = 3        # after removing not_applicable terms
@@ -389,17 +423,16 @@ def match_all(cases, labels, synonyms):
     matched = {}
     for case in cases:
         label = labels[case["target_drug"]]
+        case_terms = [r["term"] for r in case["reactions"]]
         rows = []
         for reaction in case["reactions"]:
             status, section, snippet = classify(reaction["term"], label, synonyms)
-            rows.append(
-                {
-                    "term": reaction["term"],
-                    "status": status,
-                    "matched_section": section,
-                    "snippet": snippet,
-                }
-            )
+            row = {"term": reaction["term"], "status": status, "matched_section": section, "snippet": snippet}
+            treats = procedure_condition(reaction["term"], case_terms)
+            if treats:
+                row.update(status="not_applicable", procedure_excluded=True,
+                           matched_section="", snippet=f"procedure for coded condition: {treats}")
+            rows.append(row)
         matched[case_key(case)] = rows
     return matched
 
@@ -787,7 +820,10 @@ def finalize():
         for r in matched[case_key(case)]:
             pair = (case["target_drug"], r["term"])
             decided = decisions.get(pair)
-            if decided:
+            if r.get("procedure_excluded"):
+                # Case-level rule; a per-(drug, term) decision cannot see the case.
+                final, source = "excluded", "procedure_rule"
+            elif decided:
                 final, source = HUMAN_DECISION[decided[0]], "human"
             elif r["status"] == "partial" and pair in partial_in_serious:
                 undecided_partial.add(pair)
