@@ -12,6 +12,9 @@ The follow-up planner is the only node where the model chooses its next action.
 Configurable eval_mode=true skips both interrupts.
 """
 
+import inspect
+
+from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 
 from pv_agent import config
@@ -30,6 +33,19 @@ from pv_agent.state import CaseState
 SPECIALISTS = ["seriousness", "expectedness", "duplicate_check"]
 
 
+def on_path(name, fn):
+    """Wrap a node so it appends its name to state['trajectory']. A node that
+    pauses on interrupt() returns only after resuming, so it is recorded once."""
+    takes_config = "config" in inspect.signature(fn).parameters
+
+    def node(state, config: RunnableConfig):
+        out = fn(state, config) if takes_config else fn(state)
+        return {**(out or {}), "trajectory": [name]}
+
+    node.__name__ = name
+    return node
+
+
 def route_after_gate(state):
     """Valid -> fan out to all three specialists; invalid -> follow-up planner."""
     return SPECIALISTS if state["valid"] else "followup_planner"
@@ -37,19 +53,19 @@ def route_after_gate(state):
 
 def build_graph(checkpointer=None):
     g = StateGraph(CaseState)
-    g.add_node("intake", intake)
-    g.add_node("extraction", extraction)
-    g.add_node("product_normalization", normalize)
-    g.add_node("validity_gate", validity)
-    g.add_node("seriousness", seriousness)
-    g.add_node("expectedness", expectedness)
-    g.add_node("duplicate_check", duplicate_check)
-    g.add_node("clock", clock)
-    g.add_node("review_routing", review_routing)
-    g.add_node("case_signoff", case_signoff)
-    g.add_node("followup_planner", followup_planner)
-    g.add_node("followup_review", followup_review)
-    g.add_node("commit", commit)
+    g.add_node("intake", on_path("intake", intake))
+    g.add_node("extraction", on_path("extraction", extraction))
+    g.add_node("product_normalization", on_path("product_normalization", normalize))
+    g.add_node("validity_gate", on_path("validity_gate", validity))
+    g.add_node("seriousness", on_path("seriousness", seriousness))
+    g.add_node("expectedness", on_path("expectedness", expectedness))
+    g.add_node("duplicate_check", on_path("duplicate_check", duplicate_check))
+    g.add_node("clock", on_path("clock", clock))
+    g.add_node("review_routing", on_path("review_routing", review_routing))
+    g.add_node("case_signoff", on_path("case_signoff", case_signoff))
+    g.add_node("followup_planner", on_path("followup_planner", followup_planner))
+    g.add_node("followup_review", on_path("followup_review", followup_review))
+    g.add_node("commit", on_path("commit", commit))
 
     g.add_edge(START, "intake")
     g.add_edge("intake", "extraction")

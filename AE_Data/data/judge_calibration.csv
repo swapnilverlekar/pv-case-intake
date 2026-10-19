@@ -1,0 +1,201 @@
+draft_id,example_key,repetition,missing_elements,report,channel,draft_message,my_score_1to5,my_notes
+D01,20321855-lisinopril,0,no_adverse_event,"Hello,
+
+Sorry if this is a bit disjointed, I'm writing from a crowded supermarket and it's hard to concentrate. I'm emailing about my father's Lisinopril. He takes 2.5 mg once a day for his blood pressure and has been on it since 2019.
+
+The latest bottle doesn't seem right. The number of tablets inside doesn't match what the packaging says should be there, and I think it's fewer. The label also looks off to me. I can't say exactly what's wrong with it, but it doesn't look like his earlier ones.
+
+Because of the count, he ended up missing a dose. I'm not sure whether it was just one day or more than that, and I haven't been able to ask him again.
+
+To be clear, nothing bad has happened to him that we know of. No new symptoms and no trouble. I just wanted this on record in case other people have had the same problem. I still have the bottle if you need details from it.
+
+Please let me know what else you need from me.
+
+Anthony Brooks",email_reply: reply to the sender's email address (Anthony Brooks),"Dear Mr Brooks,
+
+Thank you for getting in touch about your father's Lisinopril, and for the details you've given us. Please don't worry about the email being disjointed.
+
+We would be grateful for a little more information:
+
+1. How many days did your father go without his Lisinopril because of the tablet count? If you can, please ask him and let us know.
+2. Since then, has he had any blood pressure readings (at home, at a pharmacy or at the doctor's) or any medical check-up? If so, what were the results?
+3. Has he seen a doctor or nurse, or been given any treatment, because of the missed dose or for any other health reason since then?
+
+Please keep the bottle and its packaging safe for now. We may ask you for details from it later.
+
+You can answer by replying to this email. Thank you for your help.
+
+Kind regards,
+Drug Safety Team",,
+D02,INV-20299699-lisinopril,2,no_suspect_drug,"Hello,
+
+Sorry for the delay in sending this over; the power just came back on here and I'm getting caught up. Passing along a report from a physician assistant in the US, who did not give a name when contacting us.
+
+The PA described a male patient, age not provided, who was taking some blood pressure pill. The PA wasn't sure which one, and we don't have a product name, dose, or start date.
+
+According to the PA, the patient appeared to have an allergic-type reaction to the pill. He also developed swelling, and he had stiffness in his joints and ongoing tiredness. The PA also reported that his liver and kidneys had stopped working properly, and that his existing condition got worse. The PA didn't say what that condition was. The patient was admitted to hospital.
+
+No other medicines were mentioned. We don't know what the patient's outcome was or what was done with the blood pressure pill. I can try to go back to the PA for the missing details if that would help.
+
+Regards,
+Maria Ramirez, Drug Safety Associate, Kestrel Health Partners","Partner case query: send to Maria Ramirez, Drug Safety Associate, Kestrel Health Partners, and ask her to go back to the US physician assistant. The PA gave no name or contact details, so there is no direct route to the PA.","Dear Maria,
+
+Thank you for forwarding PSR-2022-81406, and for offering to go back to the physician assistant. Yes, please. We need two things to finish processing the case:
+
+1. What is the name of the blood pressure medicine the patient was taking (brand or generic name)? If the PA can't recall it, please ask for any detail that could identify it. Examples are the active ingredient, drug class, manufacturer, tablet strength or appearance, or the dispensing pharmacy.
+
+2. What was the outcome for the patient's reported events (for example recovered, still ongoing, worsened, or death)? Please include how long he was in hospital and whether he has been discharged.
+
+Thank you for your help.
+
+Kind regards,
+Drug Safety",,
+D03,INV-20278030-levothyroxine,2,no_identifiable_reporter,"Hello,
+
+I'm writing quickly because I'm minding my neighbour's kids and they're running around behind me, so forgive the rushed email. I want to report something about a woman who has been taking Synthroid since 2021. Levothyroxine was also part of her medicine.
+
+From what I understand, she developed an infection in her arteries, and her eyesight has got worse. She has also been told her bones are thinning. She had some kind of procedure and then had complications afterwards. She caught covid at some point too. Through all of this, the thyroid medicine didn't seem to be doing its job.
+
+She ended up being admitted to hospital. I don't know the doses, the exact dates, or how she is doing now.
+
+I'd rather not be contacted and I'm not leaving contact details. I just wanted this passed on to your safety team.","Email reply to the sender's address (the only route available). The reporter said they would rather not be contacted and gave no name or contact details, so hold this message for review before sending. Send it only if policy allows one reply to a reporter who declined contact.","Hello,
+
+Thank you for taking the time to write to us about this woman. We know you would rather not be contacted, so we will keep this to two short questions. Please answer only what you are comfortable sharing.
+
+1. Could you tell us your name and the best way to reach you?
+2. Do you know how she is doing now? For example, has she left hospital, is she still there, or has she recovered?
+
+Thank you again for passing this on.
+
+Kind regards,
+Drug Safety Team",,
+D04,INV-20269357-metformin,2,no_adverse_event,"Hello, passing on a product query from a doctor in Germany, who did not give their name. The doctor's patient is a 54-year-old woman taking metformin er 750 mg for type 2 diabetes, plus atorvastatin 40 mg for high cholesterol. She noticed the metformin tablets in her latest pack look a different colour from her previous one. The doctor wants to know whether the manufacturer changed anything. The patient is fine and has had no problems. The doctor had to end the conversation quickly because they were about to collect a parcel.
+
+Regards,
+Anna Weber, Drug Safety Associate, Maribel Labs","Partner case query: send to Anna Weber (Drug Safety Associate, Maribel Labs), asking her to obtain the information from the original German physician. The physician gave no name or contact details, so we can't reach them directly.","Dear Anna,
+
+Thank you for passing on ref. PSR-2022-92741 (the German physician's query about the metformin ER tablet colour). To complete our record, could you please ask the physician one question:
+
+1. Has the patient had any health problem, symptom or unwanted effect while taking metformin ER 750 mg or atorvastatin 40 mg? If so, please describe it and give the start date.
+
+If the physician confirms there has been none, please tell us so we can document that.
+
+Many thanks,
+Drug Safety",,
+D05,INV-20301061-atorvastatin,1,no_identifiable_patient,"Hello, I'm passing on a report from a pharmacist in France who phoned us today and did not give their name. A toddler was singing in the background for much of the call.
+
+The pharmacist heard second-hand from a customer about someone that customer knows, who has taken Lipitor 20 mg once a day for high cholesterol since 2018. According to the story, the muscle tissue in this person's body became inflamed and started to die off. They were admitted to hospital, and the pharmacist understands they are now slowly recovering.
+
+The pharmacist could not identify the person and had no other details. I have nothing further to add at the moment.
+
+Camille Moreau, Drug Safety Associate, Halvern Therapeutics","Partner case query: send to Camille Moreau, Drug Safety Associate, Halvern Therapeutics (the pharmacist gave no name or contact details), and ask her to get the information from the original pharmacist in France.","Dear Camille,
+
+Thank you for your report PSR-2022-77489 (Lipitor 20 mg, muscle inflammation and breakdown, France). We cannot process it yet because we have no identifiable patient. Could you ask the pharmacist, and through them the customer if possible, the following?
+
+1. Can the pharmacist give any details that identify the patient, such as age or date of birth, sex, or initials?
+2. Was the patient admitted to hospital for this muscle problem? If so, what was the approximate admission date?
+3. What is the patient's current condition (for example recovered, recovering, or not recovered)?
+
+Any partial information would help. Thank you for your help.
+
+Kind regards,
+Drug Safety",,
+D06,INV-20304190-sertraline,0,no_identifiable_patient,"Hello,
+
+I'm writing this on my phone while sitting under the dryer at the hairdresser's, so apologies if it's a bit rambling. The woman doing my hair was chatting about someone she knows through a friend, and it stuck with me, so I thought I'd pass it on to you.
+
+As I understand it, this person has been on Sertraline since around November 2019, for anxiety and low mood together. She said they had been feeling very nervous and jittery and got dizzy spells. They also seemed to have trouble keeping their attention on things and were feeling weak and drained a lot of the time. Apparently they'd also missed some doses of it at some point, though I don't know how often or why.
+
+The nervousness and the dizziness have both cleared up now, I was told. I don't know whether the weakness or the concentration trouble have gone.
+
+I can't tell you who the person is, and I don't know anything else about them, I'm afraid. I just wanted it noted.
+
+Kind regards,
+Claire Evans",email_reply: reply to the sender's email address (Claire Evans),"Dear Ms Evans,
+
+Thank you for taking the time to write to us about this. We appreciate it.
+
+We have noted what you told us about the person taking sertraline. To record the report, we need a few details about the person themselves. Please share only what you know or can easily find out. We don't need their full name.
+
+1. Do you know, or could you find out, the person's age (or approximate age) and whether they are male or female?
+2. Do you know their initials, or any other detail that would help us tell this person apart from others, for example the country or region they live in?
+3. If you can't find out any of this, would you be willing to ask your hairdresser to pass our contact details to the person, so they can contact us directly if they wish?
+
+You can answer by replying to this email. Thank you for your help.
+
+Kind regards,
+Drug Safety Team",,
+D07,DUP-20321855-lisinopril,2,no_adverse_event,"Hello Drug Safety team,
+
+A pharmacist contacted us about a man taking Lisinopril 2.5 mg once daily for high blood pressure, on it since 2019. The pharmacist didn't give a name and said they were hanging balloons for a party while they called, so the details were brief. They said the quantity in the package didn't seem right, there was a problem with the label, and a dose was missed. They said the patient had no adverse event.
+
+Regards,
+Linda Patel, Drug Safety Associate, Arkhaven Life Sciences","partner_case_query: send to Linda Patel, Drug Safety Associate, Arkhaven Life Sciences, and ask her to obtain the information from the original pharmacist reporter","Dear Linda,
+
+Thank you for report PSR-2022-19129 (lisinopril 2.5 mg, male patient). We need one more detail from the original pharmacist reporter to complete our assessment. Could you please ask:
+
+1. Did the patient have any symptom, medical problem, or change in health at any time while taking this product, including around the time of the missed dose? If yes, please describe it and give the start date.
+2. If an event did occur, what was the outcome (for example recovered, ongoing, or other), and was the patient seen by a doctor, treated, or admitted to hospital?
+
+If the pharmacist confirms that no health event occurred, please tell us so we can document it.
+
+Kind regards,
+Drug Safety Team",,
+D08,20349133-levothyroxine,0,no_adverse_event,"I'm writing about my Synthroid. At my last refill, the tablets looked and felt different from what I normally get. They seemed crumbly and chalky, and a few broke apart when I took them out of the bottle. I think the pharmacy may have switched me to a different product without telling me, because the bottle looked unfamiliar too. I'm not sure who made them.
+
+I haven't noticed anything wrong with how I feel since taking them. I just wanted this on record because the quality seemed poor.
+
+On a happier note, my daughter just passed her driving test, so it's been a busy week here. You can reply to this email or call me on 555-0163.",email_reply: reply to the sender's email address (phone 555-0163 also offered by the reporter),"Hello,
+
+Thank you for writing to us about your Synthroid tablets and for letting us know about the crumbly, chalky tablets. We have noted your report.
+
+We have one question:
+
+1. Since you started taking the tablets from your last refill, have you had any health problems, new symptoms, or changes in how you feel, even small ones? If so, please tell us what happened and when it started.
+
+If you haven't had any, just let us know and that is fine too.
+
+Thank you for your time.
+
+Kind regards",,
+D09,20321855-lisinopril,2,no_adverse_event,"Hello,
+
+Sorry if this is a bit disjointed, I'm writing from a crowded supermarket and it's hard to concentrate. I'm emailing about my father's Lisinopril. He takes 2.5 mg once a day for his blood pressure and has been on it since 2019.
+
+The latest bottle doesn't seem right. The number of tablets inside doesn't match what the packaging says should be there, and I think it's fewer. The label also looks off to me. I can't say exactly what's wrong with it, but it doesn't look like his earlier ones.
+
+Because of the count, he ended up missing a dose. I'm not sure whether it was just one day or more than that, and I haven't been able to ask him again.
+
+To be clear, nothing bad has happened to him that we know of. No new symptoms and no trouble. I just wanted this on record in case other people have had the same problem. I still have the bottle if you need details from it.
+
+Please let me know what else you need from me.
+
+Anthony Brooks",email_reply: reply to the sender's email address (Anthony Brooks),"Dear Mr Brooks,
+
+Thank you for your email about your father's Lisinopril, and for keeping the bottle. We have noted what you told us about the tablet count and the label.
+
+We need to check one thing with you. When you have a quiet moment, could you ask your father the following?
+
+1. Since the missed dose, has he had any change in his health or how he feels, or any change in his blood pressure readings, even a small one? If the answer is no, please tell us that too.
+2. If yes, what did he notice, and roughly when did it start?
+
+Please reply to this email whenever it suits you. Thank you for your help.
+
+Kind regards,
+Patient Safety Team",,
+D10,INV-20269357-metformin,1,no_adverse_event,"Hello, passing on a product query from a doctor in Germany, who did not give their name. The doctor's patient is a 54-year-old woman taking metformin er 750 mg for type 2 diabetes, plus atorvastatin 40 mg for high cholesterol. She noticed the metformin tablets in her latest pack look a different colour from her previous one. The doctor wants to know whether the manufacturer changed anything. The patient is fine and has had no problems. The doctor had to end the conversation quickly because they were about to collect a parcel.
+
+Regards,
+Anna Weber, Drug Safety Associate, Maribel Labs","Partner case query: email to the forwarding partner's safety contact (Anna Weber, Maribel Labs), asking her to obtain the information from the original physician in Germany. The physician gave no name or contact details.","Dear Anna,
+
+Thank you for forwarding PSR-2022-92741, the physician's query about the changed tablet colour of metformin ER 750 mg. To complete our records, could you please check these points with the physician?
+
+1. Has the patient had any adverse event or health problem (any symptom, change in condition, or lack of effect) that the physician wants to report? Your message says she is fine, so please confirm that none has occurred.
+2. If an event has occurred, please describe it and say when it started.
+
+Please also pass on the physician's name and contact details if they are willing to share them, so we can reply to their product query directly.
+
+Thank you for your help.
+
+Kind regards,
+Pharmacovigilance",,

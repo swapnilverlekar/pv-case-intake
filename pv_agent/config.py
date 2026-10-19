@@ -13,6 +13,16 @@ MODEL = "claude-sonnet-5-5"
 EFFORT = "high"
 MAX_TOKENS = 16000
 
+# Evaluation only: the follow-up quality judge. A different, stronger model
+# than the system under test, so the judge is not grading its own writing.
+JUDGE_MODEL = "claude-opus-5-5"
+
+# $ per million tokens, for cost per case (Anthropic list prices).
+PRICES = {
+    "claude-sonnet-5-5": {"input": 2.00, "output": 10.00, "cache_read": 0.20, "cache_write": 2.50},
+    "claude-opus-5-5": {"input": 4.00, "output": 20.00, "cache_read": 0.40, "cache_write": 5.00},
+}
+
 # The ONLY data the agent may read: the pinned drug labels and the case
 # store. Never the answer key (cases_labeled.json, term_decisions.csv,
 # my_review.csv, narratives/constructed jsonl, split.json), and never the

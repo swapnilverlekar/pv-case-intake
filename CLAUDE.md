@@ -109,7 +109,9 @@ Never use a combination-product label (e.g. lisinopril + HCTZ, sitagliptin + met
     - eval mode: `configurable.eval_mode=true` skips both interrupts, commits the agent's own decisions, writes nothing to runtime/. Run scripts use it; default off.
     - Studio: `langgraph.json` → `langgraph dev` (graph `pv_intake`). Demos: `python -m pv_agent.demo_signoff`, `python -m pv_agent.demo_followup` (SQLite checkpointer `runtime/checkpoints.sqlite`, thread per run).
     - Dev (eval mode, after the Story-3 answer-key fixes): route 29/30, expedited recall 6/6, precision 6/6, is_serious 22/22, due date 6/6; only miss is the disputed 20328474.
-  - [ ] Evaluators and experiments on the test split.
+  - [~] **Story 4: evaluation (dev only so far).** `pv_agent/evals/`: code evaluators (validity, route, expedited recall/precision as summary, due date, is_serious + per-criterion recall, case expectedness, duplicate P/R over all examples, evidence grounding, trajectory, cost/latency), an LLM judge for follow-up quality (`JUDGE_MODEL = claude-opus-5-5`, calibrated against human scores in `AE_Data/data/judge_calibration.csv`), and a V1 baseline (one `create_agent`, same model, label + case-store tools, route and due date computed by the model). `python -m pv_agent.evals.run_dev_experiments` (3 repetitions each; refuses non-dev examples). Approach and online monitoring plan: `docs/EVALUATION.md`.
+    - Dev (V2 n=3 complete runs, V1 n=2 — V1's third run failed on an Anthropic credit-balance error and is excluded): expedited recall V2 0.94 vs V1 0.83, precision 0.95 vs 1.00, validity 0.98 vs 0.88, case expectedness 0.95 vs 0.85, duplicate recall 0.80 vs 0.60 (precision 0.80 vs 1.00: V2's false merge is the disputed 20328474), due date 1.00 both, cost ≈ $0.03/case both. Follow-up quality (judge) 3.32/5 — the weakest area (re-asks what the report already says).
+    - [ ] Human scores in judge_calibration.csv → `python -m pv_agent.evals.judge` for judge-vs-human agreement. [ ] Re-run V1 once credit is restored. [ ] Test split: run once, at the end.
 - [ ] Evaluators and experiments
 
 ## Conventions

@@ -17,11 +17,11 @@ def chat():
     )
 
 
-def structured(schema):
+def structured(schema, model=None):
     """A model call that returns `schema` via native structured output.
     (json_schema, not tool calling: Sonnet 5.5 rejects forced tool choice.)"""
     llm = ChatAnthropic(
-        model=config.MODEL,
+        model=model or config.MODEL,
         max_tokens=config.MAX_TOKENS,
         output_config={"effort": config.EFFORT},
         betas=["server-side-fallback-2026-07-01"],

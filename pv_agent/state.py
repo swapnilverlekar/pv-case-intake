@@ -60,3 +60,7 @@ class CaseState(TypedDict, total=False):
 
     # audit events gathered along the way; the commit node writes them once
     audit_events: Annotated[list[dict], operator.add]
+
+    # node path, appended by every node (graph.py wraps each node); parallel
+    # specialists may appear in any order
+    trajectory: Annotated[list[str], operator.add]
