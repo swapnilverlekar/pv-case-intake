@@ -63,8 +63,19 @@ def followup_quality(inputs, outputs, reference_outputs):
 # ---------------------------------------------------------- calibration
 
 
+def human_scores_present():
+    if not CALIBRATION_CSV.exists():
+        return False
+    with CALIBRATION_CSV.open() as f:
+        return any(row["my_score_1to5"].strip() or row["my_notes"].strip() for row in csv.DictReader(f))
+
+
 def write_calibration(drafts):
-    """drafts: [{draft_id, example_key, repetition, report, missing, channel, message, judge}]."""
+    """drafts: [{draft_id, example_key, repetition, report, missing, channel, message, judge}].
+    Never overwrites a sheet that already holds human scores or notes."""
+    if human_scores_present():
+        print(f"{CALIBRATION_CSV.name} already has human scores: left untouched")
+        return False
     with CALIBRATION_CSV.open("w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["draft_id", "example_key", "repetition", "missing_elements", "report", "channel",
@@ -73,6 +84,7 @@ def write_calibration(drafts):
             w.writerow([d["draft_id"], d["example_key"], d["repetition"], ", ".join(d["missing"]), d["report"],
                         d["channel"], d["message"], "", ""])
     JUDGE_SCORES.write_text(json.dumps({d["draft_id"]: d["judge"] for d in drafts}, indent=2))
+    return True
 
 
 def judge_agreement():

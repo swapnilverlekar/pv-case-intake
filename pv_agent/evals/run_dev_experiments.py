@@ -137,8 +137,7 @@ def calibration_sheet(saved_v2, n=10):
         "report": r["inputs"]["narrative"], "channel": r["outputs"]["followup_draft"]["channel"],
         "message": r["outputs"]["followup_draft"]["message"], "judge": {"score": r["judge"]["score"], **r["judge"]["detail"]},
     } for i, r in enumerate(chosen)]
-    write_calibration(rows)
-    return rows
+    return rows if write_calibration(rows) else []
 
 
 def compare_link(client, saved_by_system):
@@ -168,7 +167,8 @@ def main():
     print_table(saved)
     if "v2" in saved:
         sheet = calibration_sheet(saved["v2"])
-        print(f"\ncalibration sheet: {len(sheet)} drafts -> AE_Data/data/judge_calibration.csv (judge scores kept separately)")
+        if sheet:
+            print(f"\ncalibration sheet: {len(sheet)} drafts -> AE_Data/data/judge_calibration.csv (judge scores kept separately)")
     if len(saved) > 1:
         print(f"\ncomparison view: {compare_link(client, saved)}")
 
