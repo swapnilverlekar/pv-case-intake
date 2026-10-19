@@ -18,17 +18,24 @@ from langgraph.types import interrupt
 from pv_agent.llm import chat
 from pv_agent.nodes.review import event, eval_mode
 
-PLANNER_PROMPT = """You plan the follow-up for an adverse event report that cannot be processed yet because a required element is missing.
+PLANNER_PROMPT = """You plan the next step for an adverse event report that cannot be processed yet because a required element is missing.
 
-Use the tools to see the case facts, what is missing, and how the reporter can be reached. Then write ONE follow-up message with draft_followup_message.
+First call get_case_facts and get_missing_elements. Then choose ONE action:
+- draft_followup_message: ask the reporter for what is missing (call get_reporter_channel first).
+- draft_quality_referral: when the ONLY missing element is no_adverse_event AND the report describes a product issue (appearance, packaging, quantity, quality, supply) with no harm to the patient. This is an internal note to the product quality team; nothing goes back to the reporter.
 
-Rules:
-- Ask ONLY for what is missing, plus the exception below. Do not re-ask what the report already says.
+Never re-ask what the report already says. Before drafting, check every question against the message and drop any question the message already answers.
+Worked example: a partner forwards a doctor's query that the metformin tablets in the latest pack are a different colour, and says "The patient is fine and has had no problems." Asking the reporter whether the patient had any health problem is WRONG: the report already answers it. The only missing element is an adverse event, the report describes a product issue with no harm, so the right action is draft_quality_referral.
+
+Rules for a follow-up message:
+- Ask ONLY for what is missing, plus the exception below.
 - If anything in the report sounds severe (a hospital stay, a death, an emergency, a life-threatening situation), ALSO ask about the outcome and whether the patient was admitted to hospital: a hidden 15-day case must be found early.
 - Plain, polite language that fits the reporter: everyday words for a patient or family member, clinical language for a healthcare professional, a concise case query for a partner company.
 - Never suggest whether the drug caused the event, and never mention reporting deadlines or regulatory categories.
 - Keep it short. Number the questions.
-- If there is no way to reach the reporter, still draft the message and say so in the channel field."""
+- If there is no way to reach the reporter, still draft the message and say so in the channel field.
+
+Rules for a quality referral: a short internal note naming the product, the issue as reported, and the batch or pack details if given; no questions to the reporter, no clinical content the report does not give."""
 
 
 def followup_planner(state, config):
@@ -66,13 +73,21 @@ def followup_planner(state, config):
                            "reporter_gave_name_or_contact": not anonymous})
 
     def draft_followup_message(channel: str, questions: list[str], message: str) -> str:
-        """Record the follow-up draft: the channel to use, the numbered questions, and the full message text."""
-        drafted.update({"channel": channel, "questions": questions, "message": message})
-        return "Draft recorded."
+        """Record a follow-up query to the reporter: the channel to use, the numbered questions, and the full message text."""
+        drafted.clear()
+        drafted.update({"type": "followup_query", "channel": channel, "questions": questions, "message": message})
+        return "Follow-up query recorded."
+
+    def draft_quality_referral(product_issue: str, summary: str) -> str:
+        """Record an internal referral to the product quality team for a product issue with no harm to the patient. No questions go to the reporter."""
+        drafted.clear()
+        drafted.update({"type": "quality_referral", "channel": "internal: product quality team",
+                        "questions": [], "product_issue": product_issue, "message": summary})
+        return "Quality referral recorded."
 
     agent = create_agent(
         model=chat(),
-        tools=[get_case_facts, get_missing_elements, get_reporter_channel, draft_followup_message],
+        tools=[get_case_facts, get_missing_elements, get_reporter_channel, draft_followup_message, draft_quality_referral],
         system_prompt=PLANNER_PROMPT,
         name="followup_planner_agent",
     )
@@ -94,7 +109,7 @@ def followup_review(state, config):
         return {"followup_review": {"action": "skipped_eval_mode"},
                 "audit_events": [event(state, config, "review_routing (code)", "followup_review_skipped_eval_mode")]}
 
-    payload = {"missing_elements": state["missing_elements"], "draft": draft,
+    payload = {"draft_type": (draft or {}).get("type"), "missing_elements": state["missing_elements"], "draft": draft,
                "planner_error": state["followup"]["error"],
                "how_to_respond": {"approve": {"action": "approve", "reviewer": "<your name>"},
                                   "edit": {"action": "edit", "reviewer": "<your name>", "message": "<edited text>"},
@@ -117,6 +132,7 @@ def followup_review(state, config):
     action = response["action"]
     message = response.get("message") if action == "edit" else (draft or {}).get("message")
     review = {"action": action, "reviewer": response["reviewer"], "note": response.get("note"),
+              "type": (draft or {}).get("type", "followup_query"),
               "channel": (draft or {}).get("channel"), "questions": (draft or {}).get("questions"), "message": message}
     return {"followup_review": review,
             "final": {"route": "follow_up_required", "decided_by": f"followup {action} by {response['reviewer']}"},

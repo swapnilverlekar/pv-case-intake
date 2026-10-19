@@ -125,10 +125,13 @@ def trajectory_ok(outputs):
         if SPECIALISTS & set(rest):
             problems.append("specialists ran on an invalid case")
         tools = [t["tool"] for t in outputs.get("tool_calls") or []]
-        if "draft_followup_message" not in tools:
+        drafts = [i for i, t in enumerate(tools) if t in ("draft_followup_message", "draft_quality_referral")]
+        if not drafts:
             problems.append("no draft")
-        elif "get_missing_elements" not in tools or tools.index("get_missing_elements") > tools.index("draft_followup_message"):
+        elif "get_missing_elements" not in tools or tools.index("get_missing_elements") > drafts[-1]:
             problems.append("drafted before get_missing_elements")
+        elif drafts[-1] != len(tools) - 1:
+            problems.append("a draft tool is not the final step")
     if path[-1:] != ["commit"]:
         problems.append("does not end at commit")
     return {"key": "trajectory_ok", "score": int(not problems), "comment": "; ".join(problems) or "ok"}

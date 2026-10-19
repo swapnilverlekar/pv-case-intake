@@ -16,6 +16,7 @@ from pv_agent.llm import structured
 
 CALIBRATION_CSV = config.REPO / "AE_Data" / "data" / "judge_calibration.csv"
 JUDGE_SCORES = config.REPO / "AE_Data" / "data" / "judge_calibration_judge_scores.json"  # kept apart: no anchoring
+JUDGE_SCORES_V2 = config.REPO / "AE_Data" / "data" / "judge_calibration_judge_scores_rubric_v2.json"
 
 
 class FollowupJudgement(BaseModel):
@@ -38,14 +39,16 @@ Rubric:
 - asks about outcome / hospitalisation ONLY when the event sounds severe
 - gives no clinical advice
 - polite, plain, and appropriate to the reporter (patient/family, healthcare professional, partner company)
-- invents no facts about the case"""
+- invents no facts about the case
+- for a product issue with no harm to the patient, a quality referral (internal note to the product quality team) is the correct output; asking the reporter about health problems the report already rules out is a fault"""
 
 
 def judge_followup(report_text, missing_elements, draft):
     return structured(FollowupJudgement, model=config.JUDGE_MODEL).invoke([
         ("system", RUBRIC),
         ("human", f"Original report:\n{report_text}\n\nMissing elements: {missing_elements}\n\n"
-                  f"Channel: {draft.get('channel')}\n\nDrafted follow-up message:\n{draft.get('message')}"),
+                  f"Draft type: {draft.get('type', 'followup_query')}\nChannel: {draft.get('channel')}\n\n"
+                  f"Draft:\n{draft.get('message')}"),
     ])
 
 
@@ -87,9 +90,9 @@ def write_calibration(drafts):
     return True
 
 
-def judge_agreement():
+def judge_agreement(scores_file=None):
     """Judge vs human on the calibration drafts: exact and within-1 agreement."""
-    judge = json.loads(JUDGE_SCORES.read_text())
+    judge = json.loads((scores_file or JUDGE_SCORES).read_text())
     pairs = []
     with CALIBRATION_CSV.open() as f:
         for row in csv.DictReader(f):
@@ -103,5 +106,20 @@ def judge_agreement():
             "disagreements": [(d, h, j) for h, j, d in pairs if abs(h - j) > 1]}
 
 
+def rejudge_calibration():
+    """Re-run the CURRENT rubric on the same calibration drafts (after a rubric change)."""
+    out = {}
+    with CALIBRATION_CSV.open() as f:
+        for row in csv.DictReader(f):
+            draft = {"type": "followup_query", "channel": row["channel"], "message": row["draft_message"]}
+            j = judge_followup(row["report"], row["missing_elements"].split(", "), draft)
+            out[row["draft_id"]] = j.model_dump()
+    JUDGE_SCORES_V2.write_text(json.dumps(out, indent=2))
+    return out
+
+
 if __name__ == "__main__":
-    print(json.dumps(judge_agreement(), indent=2))
+    import sys
+    if "--rejudge" in sys.argv:
+        rejudge_calibration()
+    print(json.dumps(judge_agreement(JUDGE_SCORES_V2 if ("--rejudge" in sys.argv or "--v2" in sys.argv) else None), indent=2))

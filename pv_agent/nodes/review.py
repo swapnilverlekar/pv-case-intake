@@ -243,7 +243,8 @@ def commit(state, config):
         records.append_correction(correction_example(state, review, state["final"]))
     fr = state.get("followup_review") or {}
     if fr.get("action") in ("approve", "edit"):
-        records.write_outbox(tid, {"to": fr["channel"], "message": fr["message"], "questions": fr["questions"],
+        records.write_outbox(tid, {"type": fr.get("type", "followup_query"),
+                                   "to": fr["channel"], "message": fr["message"], "questions": fr["questions"],
                                    "approved_by": fr["reviewer"], "approved_at": records.now(), "ref": state.get("ref"),
                                    "sent": False, "note": "outbox only: no real email or call is made"})
     records.append_audit(state.get("audit_events", []) + [done])
