@@ -1,0 +1,9 @@
+Source: email from patient or family
+Received: 2026-10-18T09:30:00+00:00
+Ref: INBOX-TEST-1
+
+Hello, I'm writing about my mother, who is 74 and takes warfarin for her heart rhythm. Last week she had black, tarry stools and felt very weak, and they kept her in hospital for two nights. She is home now and recovering.
+
+You can reply to this email or call me on 555-0199.
+Thanks,
+Ann
