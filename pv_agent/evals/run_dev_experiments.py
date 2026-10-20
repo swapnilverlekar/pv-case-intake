@@ -36,7 +36,7 @@ def dev_examples(client):
     return examples
 
 
-def run_system(client, system, examples, version):
+def run_system(client, system, examples, version, out_name=None):
     prefix, module, fn, concurrency = SYSTEMS[system]
     target = getattr(__import__(module, fromlist=[fn]), fn)
     results = evaluate(
@@ -67,7 +67,7 @@ def run_system(client, system, examples, version):
         seen[row["example_id"]] += 1
     saved = {"experiment": results.experiment_name, "system": system, "version": version, "rows": rows}
     RESULTS.mkdir(parents=True, exist_ok=True)
-    (RESULTS / f"{system}.json").write_text(json.dumps(saved, indent=1, default=str))
+    (RESULTS / f"{out_name or system}.json").write_text(json.dumps(saved, indent=1, default=str))
     return saved
 
 

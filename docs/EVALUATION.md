@@ -66,6 +66,13 @@ Of the cases that truly need a 15-day report, how many did the system route as e
 | follow-up quality (1–5) | an LLM judge (a stronger model than the system's) scores the drafted follow-up on a rubric: asks exactly what is missing and never re-asks what the report says, asks about outcome only if the event sounds severe, no clinical advice, polite and right for the reporter, no invented facts; for a product issue with no harm, an internal quality referral (not questions to the reporter) is the correct output. The judge is calibrated against human scores on 10 drafts, under the same rubric; we report exact and within-1 agreement, and re-calibrate whenever the rubric changes. |
 | cost per case, p50/p95 latency | tokens priced at list rates, and seconds per report |
 
+**Judge calibration (follow-up quality).**
+- *Original rubric:* blind human scores on 10 dev drafts agreed with the judge on **9/10 exactly and 10/10 within one point**.
+- *After the rubric change* (quality referrals for no-harm product issues; never re-ask what the report says): the judge's 10 judgments were cross-checked by a second AI model (ChatGPT/Qwen) and verified by the reviewer, who reports agreement on 10/10. Measured from the updated `judge_calibration.csv`, the human scores agree with the judge's scores on **8/10 exactly and 9/10 within one**. The difference is D06 (human 2, judge 5) and D02 (5 vs 4).
+- *Known judge limitation:* the judge is not shown the report header, so it wrongly flags header reference numbers (e.g. "PSR-2022-…") as invented facts (D02, D07).
+
+**Known agent limitation (what we would improve next).** When a reporter explicitly declines further contact, the follow-up planner should record the refusal instead of drafting a follow-up to them (D03).
+
 **Run-to-run variation.** Each system runs three times on the same data, and we report the mean and the spread. A difference smaller than the spread is not a difference.
 
 **Baseline.** We compare against a single "do everything" agent: the same model, the same label and case-store tools, the same output. It computes the route and the due date itself. The comparison shows what the designed structure buys:
