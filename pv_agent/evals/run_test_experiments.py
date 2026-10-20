@@ -12,6 +12,7 @@ and docs/results.csv.
 
 import argparse
 import csv
+import functools
 import json
 import subprocess
 import threading
@@ -24,7 +25,7 @@ from pv_agent.evals import judge as judge_mod
 from pv_agent.evals import run_dev_experiments as dev
 from pv_agent.evals.evaluators import EXP, failed
 
-TAG = "test-freeze"
+TAG = "test-freeze-2"  # test-freeze (782ff94) failed before any API call: wrapper hid the target signature
 RUNS = {"v2": 3, "v1": 1}
 STOP = {"error": None, "completed": 0}
 LOCK = threading.Lock()
@@ -43,6 +44,7 @@ def check_frozen():
 
 
 def stop_on_api_error(fn):
+    @functools.wraps(fn)  # keep the signature: LangSmith requires a named `inputs` parameter
     def wrapped(*args, **kwargs):
         if STOP["error"]:
             raise RuntimeError(f"aborted, no API call: earlier error {STOP['error']}")
@@ -58,7 +60,6 @@ def stop_on_api_error(fn):
             with LOCK:
                 STOP["completed"] += 1
         return out
-    wrapped.__name__ = fn.__name__
     return wrapped
 
 
