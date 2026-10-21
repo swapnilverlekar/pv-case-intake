@@ -1,100 +1,72 @@
 # Friction log
 
-Rough edges hit while building this project, written as product feedback. Every entry happened here; the evidence is in DEV_LOG.md, the git history or the code. **Deep Agents was not used in this project, so it has no entries.**
+Rough edges hit while building this project, written as product feedback. Every entry is backed by evidence in DEV_LOG.md, CLAUDE.md, the git history, the saved run results or the code. **Deep Agents was not used in this project, so it has no entries.**
 
-**Biggest frictions:** (1) side effects re-run when a node resumes after interrupt(), (7) a credit outage silently spoiled a LangSmith experiment, (13) changing a judge's rubric silently broke its calibration.
-
-## LangGraph
-
-**1. Resuming after `interrupt()` re-runs the node from the start**
-- *Trying to:* write an audit-log line when a reviewer approves or corrects a case.
-- *Expected:* code after the interrupt to run once, on resume.
-- *What happens:* Documented, but easy to miss: the node re-executes from its first line on every resume. Any side effect placed before the interrupt, or in a node that interrupts more than once (we re-interrupt on an invalid reviewer response), would repeat.
-- *Workaround:* nodes only collect audit events in state (an `operator.add` list). A single final `commit` node writes the files once per case (`pv_agent/nodes/review.py`).
-- *Suggestion:* a "side effects after interrupt" section in the interrupt docs, with this commit-node pattern, or a lint warning when a node both calls `interrupt()` and does I/O.
-
-**2. An interrupt carries no schema for its resume value**
-- *Trying to:* let a reviewer resume from Studio or a script with `approve`, or `correct` plus a reason code.
-- *Expected:* a way to declare the shape `Command(resume=...)` must have.
-- *What happens:* the resume value is untyped, so the reviewer has to guess the JSON shape, and a malformed response reaches the node.
-- *Workaround:* every interrupt payload includes a `how_to_respond` block with example JSON, and the node validates the response and re-interrupts with `errors_in_your_last_response`.
-- *Suggestion:* an optional resume schema on `interrupt()`, validated by the runtime and rendered as a form in Studio.
-
-**3. Studio's input form is built from the full state schema**
-- *Trying to:* submit a report (header + narrative) in Studio.
-- *What happens:* we compile `StateGraph(CaseState)` with no separate input schema, so the input is the whole state: around 27 fields that nodes write, not the 2 a user provides.
-- *Workaround:* `pv_agent/export_input.py` prints the 2-field input, and the README gives a sample.
-- *Suggestion:* in Studio, pre-fill or highlight the fields that have no writer node, and mention `input_schema` in the Studio quickstart.
-
-**4. The evaluation needs the node path, which isn't in the state**
-- *Trying to:* score whether each run followed the designed path (intake → … → specialists in parallel → clock).
-- *What happens:* The path exists in the LangSmith trace as child runs, but I found no simple way to read it inside an evaluate() evaluator, so I recorded it in state instead.
-- *Workaround:* every node is wrapped (`on_path` in `graph.py`) to append its name to a `trajectory` state field.
-- *Suggestion:* an opt-in "record node path" flag on `compile()`, or pass the node sequence to LangSmith evaluators.
-
-**5. Drawing the graph needs an undeclared extra**
-- *What happened:* `get_graph().draw_ascii()` raised `ImportError: Install grandalf`.
-- *Suggestion:* a `langgraph[draw]` extra, or fall back to Mermaid text when `grandalf` is missing.
-
-## LangChain
-
-**6. The default structured-output method isn't supported by the newest Claude models**
-- *Trying to:* get typed outputs from `claude-sonnet-5-5`.
-- *What happens:* The source shows with_structured_output() defaults to method='function_calling', which forces a tool choice that this model doesn't support, so I chose json_schema up front rather than hitting the error.
-- *Workaround:* `method="json_schema"` on every structured call, and `response_format=ProviderStrategy(...)` for the `create_agent` baseline.
-- *Suggestion:* pick the default per model capability, or raise a clear error naming the alternative method.
+**Biggest frictions:** (1) a credit outage spoiled a LangSmith experiment, (4) changing a judge's rubric silently broke its calibration, (6) interrupt() re-runs a node on resume, so side effects had to move to a commit node.
 
 ## LangSmith
 
-**7. A credit outage silently spoiled an experiment**
-- *What happened:* in the V1 dev experiment, 23 of 90 runs (almost all of one repetition) failed with "credit balance too low".
-- *Then:* my evaluators raised `KeyError` on the empty outputs, the summary evaluators errored, and the experiment's UI summary mixed 67 good runs with 23 failures. We had to re-run as a new experiment, and the spoiled one still sits next to it.
+**1. A credit outage spoiled an experiment**
+- *What happened:* in the V1 dev experiment, the third repetition failed on an Anthropic credit-balance error and had to be excluded (CLAUDE.md, f141a23). V1 was then re-run as a new, clean experiment, `v1-baseline-f141a23-0d05d78b` (CLAUDE.md, b607c8d).
 - *Workaround:* evaluators return n/a on failed runs; the local table drops incomplete repetitions; test runs stop all API calls on the first error.
 - *Suggestion:* an experiment-level "abort after N errors" option, a failed-run count in the summary header, and a way to mark an experiment superseded.
 
-**8. `evaluate()` rejects a wrapped target**
-- *What happened:* the first test run failed at start-up, with 0 runs, because of my stop-on-error wrapper `wrapped(*args, **kwargs)`: "Target function must accept at least one positional argument (inputs)".
+**2. `evaluate()` rejects a wrapped target**
+- *What happened:* the first test run (tag `test-freeze`) failed at start-up with 0 runs and 0 API calls. My stop-on-error wrapper, `wrapped(*args, **kwargs)`, hid the target's signature, which LangSmith rejects (DEV_LOG, 513c248).
 - *Workaround:* `functools.wraps`, then a re-freeze as `test-freeze-2` (DEV_LOG).
 - *Suggestion:* accept `*args`, or say in the error that the check inspects the signature and that `functools.wraps` fixes it.
 
-**9. Hitting the trace quota mid-run gives no early warning**
-- *What happened:* during the final test run (308 runs), uploads hit "Monthly unique traces usage limit exceeded". 91 traces were rejected with HTTP 429, while the runs themselves completed locally.
+**3. The trace quota ran out mid-run**
+- *What happened:* LangSmith's monthly trace limit was exceeded during the final test run of 308 runs; 91 trace uploads were rejected, while the runs themselves completed locally (DEV_LOG, cee5387).
 - *Result:* the test experiments in the UI are missing traces; the numbers come from local results.
-- *Suggestion:* a pre-flight estimate of the traces `evaluate()` will create against the remaining quota, and one clear warning instead of 91 repeated errors.
+- *Suggestion:* a pre-flight estimate of the traces `evaluate()` will create against the remaining quota, and one summary of rejected uploads at the end of the run.
 
-**10. Tracing turned on with no API key fails on every call**
-- *What happened:* with `LANGSMITH_TRACING=true` and an empty `LANGSMITH_API_KEY`, every call logged a 401.
-- *Workaround:* our scripts detect this once and switch tracing off with one warning.
-- *Suggestion:* the SDK could do the same.
-
-**11. No built-in "sync this local dataset"**
-- *Trying to:* keep local files as the source of truth and re-upload after every answer-key change.
-- *What happens:* there's no upsert.
-- *Workaround:* `AE_Data/upload_dataset.py` (about 60 lines) does it:
-  - assigns deterministic example ids (uuid5 of the case key);
-  - diffs against the existing examples;
-  - creates, updates or deletes only what changed;
-  - tags the version with the git commit.
-- *Rough edges:* adding one metadata field updated all 107 examples (a new version for no content change), and tagging needs `list_dataset_versions` plus `update_dataset_tag`.
-- *Suggestion:* `client.sync_dataset(examples, key=...)` returning created/updated/deleted counts and the new version.
-
-**12. Repetitions have no index**
-- *What happens:* with `num_repetitions=3`, results don't say which repetition a run belongs to.
-- *Workaround:* we inferred it from start-time order per example.
-- *Suggestion:* expose `repetition` on each result row.
-
-**13. Changing a judge's rubric silently breaks its calibration**
+**4. Changing a judge's rubric silently breaks its calibration**
 - *What happened:* one added rubric line changed the judge's agreement with human scores from 9/10 exact to 2/10 on the same drafts. After the human re-scored under the new rubric, it was 8/10.
 - *Workaround:* the calibration set and its scores are versioned with the rubric, and the judge is re-run on every rubric change.
 - *Suggestion:* link an LLM-as-judge evaluator to a calibration dataset, and flag "rubric changed since last calibration".
 
 ## Environment
 
-**14. Anaconda's Brotli breaks the Anthropic SDK with a misleading error**
-- *What happened:* every response failed with "Connection error". The real cause was `TypeError: process() takes no keyword arguments` in the `httpx2` Brotli decoder (Brotli 1.0.9).
+**5. Anaconda's Brotli breaks the Anthropic SDK with a misleading error**
+- *What happened:* Anaconda's Brotli 1.0.9 broke the Anthropic SDK's response decoding, and the failure surfaced as "Connection error" (CLAUDE.md, Conventions; 794faad).
 - *Workaround:* send `Accept-Encoding: gzip`. The real fix is `pip install -U brotli`.
 - *Suggestion:* the SDK could surface the decoder error instead of wrapping it as a connection error.
 
-**15. Installing the LangGraph CLI changed shared dependencies**
-- *What happened:* `pip install "langgraph-cli[inmem]"` upgraded `protobuf` and `cryptography`, which pip reported as conflicting with `streamlit` and `pyopenssl` in the base Anaconda environment.
-- *Suggestion:* recommend a virtualenv in the CLI install docs.
+## Designed around (limitations I built workarounds for)
+
+No failure was recorded for these; each is a limitation I had to design around, and the workaround in the repo is the evidence.
+
+### LangGraph
+
+**6. `interrupt()` re-runs the node on resume**
+- *Limitation:* a node that pauses on `interrupt()` runs again from its first line when resumed, so side effects inside it can repeat.
+- *Workaround:* nodes only collect audit events in state, and a single final `commit` node writes the case record and audit log (`pv_agent/nodes/review.py`; the design reason is recorded in CLAUDE.md).
+- *Suggestion:* document this commit-node pattern in the interrupt docs.
+
+**7. An interrupt's resume value has no schema**
+- *Limitation:* `Command(resume=...)` accepts any value, so the expected shape has to be communicated and checked by hand.
+- *Workaround:* every interrupt payload carries a `how_to_respond` block, and the node validates the response and re-interrupts with `errors_in_your_last_response` (`pv_agent/nodes/review.py`, `pv_agent/nodes/followup.py`).
+- *Suggestion:* an optional resume schema on `interrupt()`, validated by the runtime and rendered as a form in Studio.
+
+**8. Studio's input form is built from the full state schema**
+- *Limitation:* because the graph is compiled as `StateGraph(CaseState)` without a separate input schema, Studio's input is the whole state rather than the two input fields (header and narrative).
+- *Workaround:* `pv_agent/export_input.py` prints the two-field input for a dev example, and the README gives a sample input.
+- *Suggestion:* in Studio, highlight the fields that no node writes, and mention `input_schema` in the Studio quickstart.
+
+### LangSmith
+
+**9. The node path isn't easily readable inside evaluators**
+- *Limitation:* the evaluators score the target's outputs, so checking the path a run took needs the path in those outputs.
+- *Workaround:* every node is wrapped by `on_path` to append its name to a `trajectory` state field, which the trajectory evaluator reads (`pv_agent/graph.py`, `pv_agent/evals/evaluators.py`).
+- *Suggestion:* pass the run's node sequence to evaluators, or offer an opt-in "record node path" flag on `compile()`.
+
+**10. No built-in sync from local files to a LangSmith dataset**
+- *Limitation:* keeping local files as the source of truth and re-uploading after each answer-key change needs custom code.
+- *Workaround:* `AE_Data/upload_dataset.py` assigns deterministic example ids (uuid5 of the case key), creates, updates or deletes only what changed, and tags the new version with the git commit.
+- *Suggestion:* a `client.sync_dataset(examples, key=...)` that returns created/updated/deleted counts and the new version.
+
+**11. Repetitions have no index in `evaluate()` results**
+- *Limitation:* with `num_repetitions`, the results don't say which repetition a run belongs to.
+- *Workaround:* the repetition is inferred from each example's runs in start-time order (`pv_agent/evals/run_dev_experiments.py`).
+- *Suggestion:* expose `repetition` on each result row.
