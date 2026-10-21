@@ -2,12 +2,14 @@
 
 Rough edges hit while building this project, written as product feedback. Every entry happened here; the evidence is in DEV_LOG.md, the git history or the code. **Deep Agents was not used in this project, so it has no entries.**
 
+**Biggest frictions:** (1) side effects re-run when a node resumes after interrupt(), (7) a credit outage silently spoiled a LangSmith experiment, (13) changing a judge's rubric silently broke its calibration.
+
 ## LangGraph
 
 **1. Resuming after `interrupt()` re-runs the node from the start**
 - *Trying to:* write an audit-log line when a reviewer approves or corrects a case.
 - *Expected:* code after the interrupt to run once, on resume.
-- *What happens:* the node re-executes from its first line on every resume. Any side effect placed before the interrupt, or in a node that interrupts more than once (we re-interrupt on an invalid reviewer response), would repeat.
+- *What happens:* Documented, but easy to miss: the node re-executes from its first line on every resume. Any side effect placed before the interrupt, or in a node that interrupts more than once (we re-interrupt on an invalid reviewer response), would repeat.
 - *Workaround:* nodes only collect audit events in state (an `operator.add` list). A single final `commit` node writes the files once per case (`pv_agent/nodes/review.py`).
 - *Suggestion:* a "side effects after interrupt" section in the interrupt docs, with this commit-node pattern, or a lint warning when a node both calls `interrupt()` and does I/O.
 
@@ -26,7 +28,7 @@ Rough edges hit while building this project, written as product feedback. Every 
 
 **4. The evaluation needs the node path, which isn't in the state**
 - *Trying to:* score whether each run followed the designed path (intake → … → specialists in parallel → clock).
-- *What happens:* the path is in the LangSmith trace, but `evaluate()` evaluators see only the target's outputs.
+- *What happens:* The path exists in the LangSmith trace as child runs, but I found no simple way to read it inside an evaluate() evaluator, so I recorded it in state instead.
 - *Workaround:* every node is wrapped (`on_path` in `graph.py`) to append its name to a `trajectory` state field.
 - *Suggestion:* an opt-in "record node path" flag on `compile()`, or pass the node sequence to LangSmith evaluators.
 
@@ -36,9 +38,9 @@ Rough edges hit while building this project, written as product feedback. Every 
 
 ## LangChain
 
-**6. The default structured-output method doesn't work with the newest Claude models**
+**6. The default structured-output method isn't supported by the newest Claude models**
 - *Trying to:* get typed outputs from `claude-sonnet-5-5`.
-- *What happens:* `with_structured_output()` defaults to `method="function_calling"`, which forces a tool choice, and Sonnet 5.5 rejects forced tool choice. We checked the source before the first call, so this was a design constraint rather than a failure.
+- *What happens:* The source shows with_structured_output() defaults to method='function_calling', which forces a tool choice that this model doesn't support, so I chose json_schema up front rather than hitting the error.
 - *Workaround:* `method="json_schema"` on every structured call, and `response_format=ProviderStrategy(...)` for the `create_agent` baseline.
 - *Suggestion:* pick the default per model capability, or raise a clear error naming the alternative method.
 
@@ -93,10 +95,6 @@ Rough edges hit while building this project, written as product feedback. Every 
 - *Workaround:* send `Accept-Encoding: gzip`. The real fix is `pip install -U brotli`.
 - *Suggestion:* the SDK could surface the decoder error instead of wrapping it as a connection error.
 
-**15. Running a script outside the package**
-- *What happened:* a one-off script run as `python /path/script.py` failed with `ModuleNotFoundError: pv_agent`.
-- *Workaround:* every project script is run as `python -m pv_agent....`; the one-off used `PYTHONPATH`.
-
-**16. Installing the LangGraph CLI changed shared dependencies**
+**15. Installing the LangGraph CLI changed shared dependencies**
 - *What happened:* `pip install "langgraph-cli[inmem]"` upgraded `protobuf` and `cryptography`, which pip reported as conflicting with `streamlit` and `pyopenssl` in the base Anaconda environment.
 - *Suggestion:* recommend a virtualenv in the CLI install docs.
